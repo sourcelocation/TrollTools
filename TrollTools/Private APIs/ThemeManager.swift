@@ -30,9 +30,7 @@ class ThemeManager {
     
     static func set(theme: Theme) throws {
         let iconBundlesURL = theme.url.appendingPathComponent("IconBundles")
-        if !fm.fileExists(atPath: activeIconsDir.path) {
-            try fm.createDirectory(at: activeIconsDir, withIntermediateDirectories: true)
-        }
+        try? fm.createDirectory(at: activeIconsDir, withIntermediateDirectories: true)
         
         let filesInIconBundles = try fm.contentsOfDirectory(at: iconBundlesURL, includingPropertiesForKeys: nil)
         
@@ -106,22 +104,15 @@ class ThemeManager {
     }
     
     static func importTheme(from importURL: URL) throws -> Theme {
-        let rawIcons = !fm.fileExists(atPath: importURL.appendingPathExtension("IconBundles").path)
         let name = importURL.deletingPathExtension().lastPathComponent
-        if rawIcons {
-            let themeURL = themesDir.appendingPathComponent(name)
-            try fm.createDirectory(at: themeURL, withIntermediateDirectories: true)
-            try fm.copyItem(at: importURL, to: themeURL.appendingPathComponent("IconBundles"))
-        } else {
-            if !fm.fileExists(atPath: themesDir.path) {
-                try fm.createDirectory(at: themesDir, withIntermediateDirectories: true)
-            }
-            
-            try fm.copyItem(at: importURL, to: themesDir.appendingPathComponent(name))
-        }
+        try? fm.createDirectory(at: themesDir, withIntermediateDirectories: true)
+        let themeURL = themesDir.appendingPathComponent(name)
         
-        let targetURL = themesDir.appendingPathComponent(name)
-        return Theme(name: targetURL.deletingPathExtension().lastPathComponent, iconCount: try fm.contentsOfDirectory(at: targetURL.appendingPathComponent("IconBundles"), includingPropertiesForKeys: nil).count)
+        try? fm.removeItem(at: themeURL)
+        try fm.createDirectory(at: themeURL, withIntermediateDirectories: true)
+        try fm.copyItem(at: importURL, to: themeURL.appendingPathComponent("IconBundles"))
+        
+        return Theme(name: themeURL.deletingPathExtension().lastPathComponent, iconCount: try fm.contentsOfDirectory(at: themeURL.appendingPathComponent("IconBundles"), includingPropertiesForKeys: nil).count)
     }
     
     static func removeImportedTheme(theme: Theme) throws {

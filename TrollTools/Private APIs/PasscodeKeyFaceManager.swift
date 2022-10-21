@@ -44,15 +44,10 @@ class PasscodeKeyFaceManager {
         }
     }
     
-    
     static func getFaces() throws -> [UIImage?] {
-        let fm = FileManager.default
-        return try (try fm.contentsOfDirectory(at: telephonyUIURL, includingPropertiesForKeys: nil))
-            .sorted(by: { url1, url2 in
-                url1.lastPathComponent[3] < url2.lastPathComponent[3]
-            })
-            .map { UIImage(data: try Data(contentsOf: $0)) }
+        return try [0,1,2,3,4,5,6,7,8,9].map { try getFace(for: $0) }
     }
+    
     static func getFace(for n: Int) throws -> UIImage? {
         return UIImage(data: try Data(contentsOf: getURL(for: n)))
     }

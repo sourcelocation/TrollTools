@@ -23,7 +23,7 @@ struct ThemesView: View {
         NavigationView {
             Group {
                 if themes.count == 0 {
-                    Text("No themes imported. \nImport them using the button in the top right corner (Themes have .theme extension).")
+                    Text("No themes imported. \nImport them using the button in the top right corner (Themes have to contain icons in the format of <id>.png).")
                         .padding()
                         .background(Color(uiColor14: .secondarySystemBackground))
                         .multilineTextAlignment(.center)
@@ -97,34 +97,16 @@ struct ThemesView: View {
             allowsMultipleSelection: false
         ) { result in
             guard let url = try? result.get().first else { alert("Couldn't get url of file. Did you select it?"); return }
-            let fm = FileManager.default
-            
+            if themes.contains(where: { t in
+                t.name == url.deletingPathExtension().lastPathComponent
+            }) {
+                alert("Theme with the name \(url.deletingPathExtension().lastPathComponent) already exists. Please rename the folder.")
+                return
+            }
             do {
-                if url.pathExtension == "deb" { // .deb import
-                    let extractedURL = fm.temporaryDirectory.appendingPathComponent("ExtractedTheme")
-                    try? fm.removeItem(at: extractedURL)
-                    let _ = try DebExtractor.extractDeb(url, to: extractedURL) { status in
-                        print(status)
-                    }
-                    let themesURL = extractedURL.appendingPathComponent("Library/Themes/")
-                    
-                    var numberOfThemesImported = 0
-                    for themeURL in try fm.contentsOfDirectory(at: themesURL, includingPropertiesForKeys: nil) {
-                        guard let theme = try? ThemeManager.importTheme(from: themeURL) else { continue }
-                        themes.append(theme)
-                        numberOfThemesImported += 1
-                    }
-                    saveThemes()
-                    if numberOfThemesImported == 0 {
-                        alert("Couldn't find any valid themes inside the .deb. Make sure it's a valid theme and it contains .theme files.")
-                    } else {
-                        alert("Successfully imported \(numberOfThemesImported) themes")
-                    }
-                } else { // IconBundles import
-                    let theme = try ThemeManager.importTheme(from: url)
-                    themes.append(theme)
-                    saveThemes()
-                }
+                let theme = try ThemeManager.importTheme(from: url)
+                themes.append(theme)
+                saveThemes()
             } catch { alert(error.localizedDescription) }
         }
         .alert(isPresented: $showingAlert) {
