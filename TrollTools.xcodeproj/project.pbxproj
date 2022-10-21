@@ -82,7 +82,6 @@
 		CE2BF7B92902DFF300AD10BE /* TrollTools */ = {
 			isa = PBXGroup;
 			children = (
-				CEDBC70A2902E5A000E566F7 /* Preview Content */,
 				CE2BF8442902E21D00AD10BE /* Assets.xcassets */,
 				CE2BF80F2902E07F00AD10BE /* Extensions.swift */,
 				CE2BF8362902E10900AD10BE /* TrollToolsApp.swift */,
@@ -143,13 +142,6 @@
 				CE2BF83E2902E18900AD10BE /* CoreServices.framework */,
 			);
 			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		CEDBC70A2902E5A000E566F7 /* Preview Content */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = "Preview Content";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -370,7 +362,6 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"TrollTools/Preview Content\"";
 				DEVELOPMENT_TEAM = 92S6JX27W2;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -404,7 +395,6 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"TrollTools/Preview Content\"";
 				DEVELOPMENT_TEAM = 92S6JX27W2;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
