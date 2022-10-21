@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>ApplicationBundleVersion</key>
+	<integer>1</integer>
+	<key>ClassicMode</key>
+	<false/>
+	<key>ConfigurationIsManaged</key>
+	<false/>
+	<key>ContentMode</key>
+	<string>UIWebClipContentModeRecommended</string>
+	<key>FullScreen</key>
+	<true/>
+	<key>IconIsPrecomposed</key>
+	<false/>
+	<key>IconIsScreenShotBased</key>
+	<false/>
+	<key>IgnoreManifestScope</key>
+	<false/>
+	<key>IsAppClip</key>
+	<false/>
+	<key>Orientations</key>
+	<integer>0</integer>
+	<key>ScenelessBackgroundLaunch</key>
+	<true/>
+	<key>WebClipStatusBarStyle</key>
+	<string>UIWebClipStatusBarStyleDefault</string>
+	<key>RemovalDisallowed</key>
+	<false/>
+</dict>
+</plist>

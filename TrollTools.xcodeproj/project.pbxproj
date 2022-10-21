@@ -1,0 +1,471 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		CE2BF8242902E07F00AD10BE /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2BF80F2902E07F00AD10BE /* Extensions.swift */; };
+		CE2BF8252902E07F00AD10BE /* MaterialView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2BF8122902E07F00AD10BE /* MaterialView.swift */; };
+		CE2BF8262902E07F00AD10BE /* ImagePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2BF8132902E07F00AD10BE /* ImagePickerView.swift */; };
+		CE2BF8272902E07F00AD10BE /* BadgeChangerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2BF8142902E07F00AD10BE /* BadgeChangerView.swift */; };
+		CE2BF8282902E07F00AD10BE /* ThemesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2BF8152902E07F00AD10BE /* ThemesView.swift */; };
+		CE2BF8292902E07F00AD10BE /* PasscodeEditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2BF8162902E07F00AD10BE /* PasscodeEditorView.swift */; };
+		CE2BF82A2902E07F00AD10BE /* WebClipTemplate.plist in Resources */ = {isa = PBXBuildFile; fileRef = CE2BF8172902E07F00AD10BE /* WebClipTemplate.plist */; };
+		CE2BF82B2902E07F00AD10BE /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2BF8182902E07F00AD10BE /* RootView.swift */; };
+		CE2BF82C2902E07F00AD10BE /* TSUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = CE2BF81A2902E07F00AD10BE /* TSUtil.m */; };
+		CE2BF82E2902E07F00AD10BE /* WallpaperGetter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2BF8202902E07F00AD10BE /* WallpaperGetter.swift */; };
+		CE2BF82F2902E07F00AD10BE /* ThemeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2BF8212902E07F00AD10BE /* ThemeManager.swift */; };
+		CE2BF8302902E07F00AD10BE /* PasscodeKeyFaceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2BF8222902E07F00AD10BE /* PasscodeKeyFaceManager.swift */; };
+		CE2BF8312902E07F00AD10BE /* BadgeChanger.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2BF8232902E07F00AD10BE /* BadgeChanger.swift */; };
+		CE2BF8372902E10900AD10BE /* TrollToolsApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2BF8362902E10900AD10BE /* TrollToolsApp.swift */; };
+		CE2BF83C2902E14E00AD10BE /* Dynamic in Frameworks */ = {isa = PBXBuildFile; productRef = CE2BF83B2902E14E00AD10BE /* Dynamic */; };
+		CE2BF83F2902E18900AD10BE /* CoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE2BF83E2902E18900AD10BE /* CoreServices.framework */; };
+		CE2BF8452902E21D00AD10BE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CE2BF8442902E21D00AD10BE /* Assets.xcassets */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		CE2BF7B72902DFF300AD10BE /* TrollTools.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TrollTools.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		CE2BF80F2902E07F00AD10BE /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		CE2BF8122902E07F00AD10BE /* MaterialView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MaterialView.swift; sourceTree = "<group>"; };
+		CE2BF8132902E07F00AD10BE /* ImagePickerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImagePickerView.swift; sourceTree = "<group>"; };
+		CE2BF8142902E07F00AD10BE /* BadgeChangerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BadgeChangerView.swift; sourceTree = "<group>"; };
+		CE2BF8152902E07F00AD10BE /* ThemesView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThemesView.swift; sourceTree = "<group>"; };
+		CE2BF8162902E07F00AD10BE /* PasscodeEditorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PasscodeEditorView.swift; sourceTree = "<group>"; };
+		CE2BF8172902E07F00AD10BE /* WebClipTemplate.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = WebClipTemplate.plist; sourceTree = "<group>"; };
+		CE2BF8182902E07F00AD10BE /* RootView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
+		CE2BF81A2902E07F00AD10BE /* TSUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSUtil.m; sourceTree = "<group>"; };
+		CE2BF81B2902E07F00AD10BE /* TSUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSUtil.h; sourceTree = "<group>"; };
+		CE2BF81C2902E07F00AD10BE /* CoreServices.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoreServices.h; sourceTree = "<group>"; };
+		CE2BF8202902E07F00AD10BE /* WallpaperGetter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WallpaperGetter.swift; sourceTree = "<group>"; };
+		CE2BF8212902E07F00AD10BE /* ThemeManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThemeManager.swift; sourceTree = "<group>"; };
+		CE2BF8222902E07F00AD10BE /* PasscodeKeyFaceManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PasscodeKeyFaceManager.swift; sourceTree = "<group>"; };
+		CE2BF8232902E07F00AD10BE /* BadgeChanger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BadgeChanger.swift; sourceTree = "<group>"; };
+		CE2BF8362902E10900AD10BE /* TrollToolsApp.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrollToolsApp.swift; sourceTree = "<group>"; };
+		CE2BF8392902E13900AD10BE /* TrollTools-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "TrollTools-Bridging-Header.h"; sourceTree = "<group>"; };
+		CE2BF83E2902E18900AD10BE /* CoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreServices.framework; path = System/Library/Frameworks/CoreServices.framework; sourceTree = SDKROOT; };
+		CE2BF8442902E21D00AD10BE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		CE2BF7B42902DFF300AD10BE /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CE2BF83F2902E18900AD10BE /* CoreServices.framework in Frameworks */,
+				CE2BF83C2902E14E00AD10BE /* Dynamic in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		CE2BF7AE2902DFF300AD10BE = {
+			isa = PBXGroup;
+			children = (
+				CE2BF7B92902DFF300AD10BE /* TrollTools */,
+				CE2BF7B82902DFF300AD10BE /* Products */,
+				CE2BF83D2902E18800AD10BE /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		CE2BF7B82902DFF300AD10BE /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				CE2BF7B72902DFF300AD10BE /* TrollTools.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		CE2BF7B92902DFF300AD10BE /* TrollTools */ = {
+			isa = PBXGroup;
+			children = (
+				CE2BF8442902E21D00AD10BE /* Assets.xcassets */,
+				CE2BF80F2902E07F00AD10BE /* Extensions.swift */,
+				CE2BF8362902E10900AD10BE /* TrollToolsApp.swift */,
+				CE2BF8392902E13900AD10BE /* TrollTools-Bridging-Header.h */,
+				CE2BF81E2902E07F00AD10BE /* Preview Content */,
+				CE2BF81F2902E07F00AD10BE /* Private APIs */,
+				CE2BF8182902E07F00AD10BE /* RootView.swift */,
+				CE2BF8192902E07F00AD10BE /* TS */,
+				CE2BF8102902E07F00AD10BE /* Views */,
+				CE2BF8172902E07F00AD10BE /* WebClipTemplate.plist */,
+			);
+			path = TrollTools;
+			sourceTree = "<group>";
+		};
+		CE2BF8102902E07F00AD10BE /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				CE2BF8112902E07F00AD10BE /* Other Views */,
+				CE2BF8142902E07F00AD10BE /* BadgeChangerView.swift */,
+				CE2BF8152902E07F00AD10BE /* ThemesView.swift */,
+				CE2BF8162902E07F00AD10BE /* PasscodeEditorView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		CE2BF8112902E07F00AD10BE /* Other Views */ = {
+			isa = PBXGroup;
+			children = (
+				CE2BF8122902E07F00AD10BE /* MaterialView.swift */,
+				CE2BF8132902E07F00AD10BE /* ImagePickerView.swift */,
+			);
+			path = "Other Views";
+			sourceTree = "<group>";
+		};
+		CE2BF8192902E07F00AD10BE /* TS */ = {
+			isa = PBXGroup;
+			children = (
+				CE2BF81A2902E07F00AD10BE /* TSUtil.m */,
+				CE2BF81B2902E07F00AD10BE /* TSUtil.h */,
+				CE2BF81C2902E07F00AD10BE /* CoreServices.h */,
+			);
+			path = TS;
+			sourceTree = "<group>";
+		};
+		CE2BF81E2902E07F00AD10BE /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		CE2BF81F2902E07F00AD10BE /* Private APIs */ = {
+			isa = PBXGroup;
+			children = (
+				CE2BF8202902E07F00AD10BE /* WallpaperGetter.swift */,
+				CE2BF8212902E07F00AD10BE /* ThemeManager.swift */,
+				CE2BF8222902E07F00AD10BE /* PasscodeKeyFaceManager.swift */,
+				CE2BF8232902E07F00AD10BE /* BadgeChanger.swift */,
+			);
+			path = "Private APIs";
+			sourceTree = "<group>";
+		};
+		CE2BF83D2902E18800AD10BE /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				CE2BF83E2902E18900AD10BE /* CoreServices.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		CE2BF7B62902DFF300AD10BE /* TrollTools */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = CE2BF7C52902DFF500AD10BE /* Build configuration list for PBXNativeTarget "TrollTools" */;
+			buildPhases = (
+				CE2BF7B32902DFF300AD10BE /* Sources */,
+				CE2BF7B42902DFF300AD10BE /* Frameworks */,
+				CE2BF7B52902DFF300AD10BE /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = TrollTools;
+			packageProductDependencies = (
+				CE2BF83B2902E14E00AD10BE /* Dynamic */,
+			);
+			productName = TrollTools;
+			productReference = CE2BF7B72902DFF300AD10BE /* TrollTools.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		CE2BF7AF2902DFF300AD10BE /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1400;
+				LastUpgradeCheck = 1400;
+				TargetAttributes = {
+					CE2BF7B62902DFF300AD10BE = {
+						CreatedOnToolsVersion = 14.0;
+						LastSwiftMigration = 1400;
+					};
+				};
+			};
+			buildConfigurationList = CE2BF7B22902DFF300AD10BE /* Build configuration list for PBXProject "TrollTools" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = CE2BF7AE2902DFF300AD10BE;
+			packageReferences = (
+				CE2BF83A2902E14E00AD10BE /* XCRemoteSwiftPackageReference "Dynamic" */,
+			);
+			productRefGroup = CE2BF7B82902DFF300AD10BE /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				CE2BF7B62902DFF300AD10BE /* TrollTools */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		CE2BF7B52902DFF300AD10BE /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CE2BF8452902E21D00AD10BE /* Assets.xcassets in Resources */,
+				CE2BF82A2902E07F00AD10BE /* WebClipTemplate.plist in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		CE2BF7B32902DFF300AD10BE /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CE2BF8302902E07F00AD10BE /* PasscodeKeyFaceManager.swift in Sources */,
+				CE2BF82B2902E07F00AD10BE /* RootView.swift in Sources */,
+				CE2BF8372902E10900AD10BE /* TrollToolsApp.swift in Sources */,
+				CE2BF8262902E07F00AD10BE /* ImagePickerView.swift in Sources */,
+				CE2BF8312902E07F00AD10BE /* BadgeChanger.swift in Sources */,
+				CE2BF82C2902E07F00AD10BE /* TSUtil.m in Sources */,
+				CE2BF8252902E07F00AD10BE /* MaterialView.swift in Sources */,
+				CE2BF8272902E07F00AD10BE /* BadgeChangerView.swift in Sources */,
+				CE2BF8282902E07F00AD10BE /* ThemesView.swift in Sources */,
+				CE2BF8292902E07F00AD10BE /* PasscodeEditorView.swift in Sources */,
+				CE2BF8242902E07F00AD10BE /* Extensions.swift in Sources */,
+				CE2BF82E2902E07F00AD10BE /* WallpaperGetter.swift in Sources */,
+				CE2BF82F2902E07F00AD10BE /* ThemeManager.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		CE2BF7C32902DFF500AD10BE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		CE2BF7C42902DFF500AD10BE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		CE2BF7C62902DFF500AD10BE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"TrollTools/Preview Content\"";
+				DEVELOPMENT_TEAM = 92S6JX27W2;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = net.sourceloc.TrollTools;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "TrollTools/TrollTools-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		CE2BF7C72902DFF500AD10BE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"TrollTools/Preview Content\"";
+				DEVELOPMENT_TEAM = 92S6JX27W2;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = net.sourceloc.TrollTools;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "TrollTools/TrollTools-Bridging-Header.h";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		CE2BF7B22902DFF300AD10BE /* Build configuration list for PBXProject "TrollTools" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CE2BF7C32902DFF500AD10BE /* Debug */,
+				CE2BF7C42902DFF500AD10BE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		CE2BF7C52902DFF500AD10BE /* Build configuration list for PBXNativeTarget "TrollTools" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CE2BF7C62902DFF500AD10BE /* Debug */,
+				CE2BF7C72902DFF500AD10BE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		CE2BF83A2902E14E00AD10BE /* XCRemoteSwiftPackageReference "Dynamic" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/mhdhejazi/Dynamic";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		CE2BF83B2902E14E00AD10BE /* Dynamic */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CE2BF83A2902E14E00AD10BE /* XCRemoteSwiftPackageReference "Dynamic" */;
+			productName = Dynamic;
+		};
+/* End XCSwiftPackageProductDependency section */
+	};
+	rootObject = CE2BF7AF2902DFF300AD10BE /* Project object */;
+}
