@@ -82,11 +82,11 @@
 		CE2BF7B92902DFF300AD10BE /* TrollTools */ = {
 			isa = PBXGroup;
 			children = (
+				CEDBC70A2902E5A000E566F7 /* Preview Content */,
 				CE2BF8442902E21D00AD10BE /* Assets.xcassets */,
 				CE2BF80F2902E07F00AD10BE /* Extensions.swift */,
 				CE2BF8362902E10900AD10BE /* TrollToolsApp.swift */,
 				CE2BF8392902E13900AD10BE /* TrollTools-Bridging-Header.h */,
-				CE2BF81E2902E07F00AD10BE /* Preview Content */,
 				CE2BF81F2902E07F00AD10BE /* Private APIs */,
 				CE2BF8182902E07F00AD10BE /* RootView.swift */,
 				CE2BF8192902E07F00AD10BE /* TS */,
@@ -126,13 +126,6 @@
 			path = TS;
 			sourceTree = "<group>";
 		};
-		CE2BF81E2902E07F00AD10BE /* Preview Content */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = "Preview Content";
-			sourceTree = "<group>";
-		};
 		CE2BF81F2902E07F00AD10BE /* Private APIs */ = {
 			isa = PBXGroup;
 			children = (
@@ -150,6 +143,13 @@
 				CE2BF83E2902E18900AD10BE /* CoreServices.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		CEDBC70A2902E5A000E566F7 /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "Preview Content";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -374,16 +374,18 @@
 				DEVELOPMENT_TEAM = 92S6JX27W2;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Lol, it needs it";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = net.sourceloc.TrollTools;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -406,16 +408,18 @@
 				DEVELOPMENT_TEAM = 92S6JX27W2;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Lol, it needs it";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = net.sourceloc.TrollTools;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
