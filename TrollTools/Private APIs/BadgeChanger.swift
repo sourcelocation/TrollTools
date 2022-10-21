@@ -10,6 +10,7 @@ import Dynamic
 
 class BadgeChanger {
     static func change(to color: UIColor, with radius: CGFloat) throws {
+        let radius = max(1, radius)
         let badge: UIImage = try UIImage.circle(radius: UIDevice.current.userInterfaceIdiom == .pad ? radius * 2 : radius, color: color)
         let badgeBitmapPath = "/var/mobile/Library/Caches/MappedImageCache/Persistent/SBIconBadgeView.BadgeBackground:26:26.cpbitmap"
         try? FileManager.default.removeItem(atPath: badgeBitmapPath)

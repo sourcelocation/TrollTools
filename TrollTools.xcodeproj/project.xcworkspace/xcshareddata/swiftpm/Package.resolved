@@ -1,12 +1,48 @@
 {
   "pins" : [
     {
+      "identity" : "ararchivekit",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/LebJe/ArArchiveKit",
+      "state" : {
+        "revision" : "ec33ce8bcb0be483e80ed49c95413e64e71e157b",
+        "version" : "0.3.0"
+      }
+    },
+    {
+      "identity" : "bitbytedata",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/tsolomko/BitByteData",
+      "state" : {
+        "revision" : "b4b41619522aacd7aae7b02fa8360833e796a03d",
+        "version" : "2.0.2"
+      }
+    },
+    {
       "identity" : "dynamic",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/mhdhejazi/Dynamic",
       "state" : {
         "branch" : "master",
         "revision" : "772883073d044bc754d401cabb6574624eb3778f"
+      }
+    },
+    {
+      "identity" : "swcompression",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/tsolomko/SWCompression",
+      "state" : {
+        "branch" : "develop",
+        "revision" : "5b590803b89b49c5e174f40b542df151edb3798d"
+      }
+    },
+    {
+      "identity" : "zip",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/marmelroy/Zip",
+      "state" : {
+        "branch" : "master",
+        "revision" : "67fa55813b9e7b3b9acee9c0ae501def28746d76"
       }
     }
   ],

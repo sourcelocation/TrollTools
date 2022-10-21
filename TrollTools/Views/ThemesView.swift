@@ -25,11 +25,11 @@ struct ThemesView: View {
                 if themes.count == 0 {
                     Text("No themes imported. \nImport them using the button in the top right corner (Themes have .theme extension).")
                         .padding()
-                        .background(Color(uiColor: .secondarySystemBackground))
+                        .background(Color(uiColor14: .secondarySystemBackground))
                         .multilineTextAlignment(.center)
                         .cornerRadius(16)
                         .font(.footnote)
-                        .foregroundColor(Color(uiColor: .secondaryLabel))
+                        .foregroundColor(Color(uiColor14: .secondaryLabel))
                 } else {
                     ScrollView {
                         LazyVGrid(columns: gridItemLayout, spacing: 20) {
@@ -53,7 +53,7 @@ struct ThemesView: View {
                 }
             }
             .navigationTitle("Themes")
-            .navigationBarTitleTextColor(Color(uiColor: .label))
+            .navigationBarTitleTextColor(Color(uiColor14: .label))
             .onAppear {
                 wallpaper = WallpaperGetter.homescreen()
                 if wallpaper == nil {
@@ -97,10 +97,34 @@ struct ThemesView: View {
             allowsMultipleSelection: false
         ) { result in
             guard let url = try? result.get().first else { alert("Couldn't get url of file. Did you select it?"); return }
+            let fm = FileManager.default
+            
             do {
-                let theme = try ThemeManager.importTheme(from: url)
-                themes.append(theme)
-                saveThemes()
+                if url.pathExtension == "deb" { // .deb import
+                    let extractedURL = fm.temporaryDirectory.appendingPathComponent("ExtractedTheme")
+                    try? fm.removeItem(at: extractedURL)
+                    let _ = try DebExtractor.extractDeb(url, to: extractedURL) { status in
+                        print(status)
+                    }
+                    let themesURL = extractedURL.appendingPathComponent("Library/Themes/")
+                    
+                    var numberOfThemesImported = 0
+                    for themeURL in try fm.contentsOfDirectory(at: themesURL, includingPropertiesForKeys: nil) {
+                        guard let theme = try? ThemeManager.importTheme(from: themeURL) else { continue }
+                        themes.append(theme)
+                        numberOfThemesImported += 1
+                    }
+                    saveThemes()
+                    if numberOfThemesImported == 0 {
+                        alert("Couldn't find any valid themes inside the .deb. Make sure it's a valid theme and it contains .theme files.")
+                    } else {
+                        alert("Successfully imported \(numberOfThemesImported) themes")
+                    }
+                } else { // IconBundles import
+                    let theme = try ThemeManager.importTheme(from: url)
+                    themes.append(theme)
+                    saveThemes()
+                }
             } catch { alert(error.localizedDescription) }
         }
         .alert(isPresented: $showingAlert) {
@@ -130,17 +154,13 @@ struct ThemesView: View {
         UserDefaults.standard.set(data, forKey: "themes")
     }
     func removeWebclips() {
-        do {
-            try ThemeManager.removeWebclips()
-            removeThemes()
-        } catch { alert(error.localizedDescription) }
+        try? ThemeManager.removeWebclips()
+        removeThemes()
     }
     func removeThemes() {
-        do {
-            UserDefaults.standard.set([], forKey: "currentThemeIDs")
-            try ThemeManager.removeCurrentThemes()
-            respring()
-        } catch { alert(error.localizedDescription) }
+        UserDefaults.standard.set([], forKey: "currentThemeIDs")
+        try? ThemeManager.removeCurrentThemes()
+        respring()
     }
 }
 
@@ -200,12 +220,12 @@ struct ThemeView: View {
                     .frame(maxWidth: .infinity)
             }
             .padding(10)
-            .background(isInUse ? Color(red: 48 / 256, green: 209 / 256, blue: 88 / 256, opacity: 0.5) : Color(uiColor: UIColor.tertiarySystemBackground))
+            .background(isInUse ? Color(red: 48 / 256, green: 209 / 256, blue: 88 / 256, opacity: 0.5) : Color(uiColor14: UIColor.tertiarySystemBackground))
             .cornerRadius(8)
-            .foregroundColor(.init(uiColor: .label))
+            .foregroundColor(.init(uiColor14: .label))
         }
         .padding(10)
-        .background(Color(uiColor: .secondarySystemBackground))
+        .background(Color(uiColor14: .secondarySystemBackground))
         .cornerRadius(16)
     }
 }

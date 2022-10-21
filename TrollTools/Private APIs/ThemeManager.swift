@@ -106,13 +106,21 @@ class ThemeManager {
     }
     
     static func importTheme(from importURL: URL) throws -> Theme {
-        if !fm.fileExists(atPath: themesDir.path) {
-            try fm.createDirectory(at: themesDir, withIntermediateDirectories: true)
+        let rawIcons = !fm.fileExists(atPath: importURL.appendingPathExtension("IconBundles").path)
+        let name = importURL.deletingPathExtension().lastPathComponent
+        if rawIcons {
+            let themeURL = themesDir.appendingPathComponent(name)
+            try fm.createDirectory(at: themeURL, withIntermediateDirectories: true)
+            try fm.copyItem(at: importURL, to: themeURL.appendingPathComponent("IconBundles"))
+        } else {
+            if !fm.fileExists(atPath: themesDir.path) {
+                try fm.createDirectory(at: themesDir, withIntermediateDirectories: true)
+            }
+            
+            try fm.copyItem(at: importURL, to: themesDir.appendingPathComponent(name))
         }
-        let targetURL = themesDir.appendingPathComponent(importURL.deletingPathExtension().lastPathComponent)
-        try fm.copyItem(at: importURL, to: targetURL)
-        print(themesDir)
         
+        let targetURL = themesDir.appendingPathComponent(name)
         return Theme(name: targetURL.deletingPathExtension().lastPathComponent, iconCount: try fm.contentsOfDirectory(at: targetURL.appendingPathComponent("IconBundles"), includingPropertiesForKeys: nil).count)
     }
     
