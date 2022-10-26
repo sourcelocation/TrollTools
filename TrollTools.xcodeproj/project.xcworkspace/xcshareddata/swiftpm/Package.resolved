@@ -8,6 +8,15 @@
         "branch" : "master",
         "revision" : "772883073d044bc754d401cabb6574624eb3778f"
       }
+    },
+    {
+      "identity" : "santanderwrappers",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/SerenaKit/SantanderWrappers",
+      "state" : {
+        "branch" : "main",
+        "revision" : "37f049e682c9fc24e22367efc57c59efed9047ee"
+      }
     }
   ],
   "version" : 2

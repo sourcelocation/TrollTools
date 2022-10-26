@@ -15,10 +15,6 @@ struct PasscodeEditorView: View {
     @State private var changedFaces: [Bool] = [Bool](repeating: false, count: 10)
     @State private var changingFaceN = 0
     
-    @State private var alertMessage = ""
-    @State private var alertTitle = ""
-    @State private var showingAlert = false
-    
     var body: some View {
         GeometryReader { proxy in
             let minSize = min(proxy.size.width, proxy.size.height)
@@ -68,7 +64,7 @@ struct PasscodeEditorView: View {
                                 try PasscodeKeyFaceManager.reset()
                                 respring()
                             } catch {
-                                alert("An error occured. \(error)")
+                                UIApplication.shared.alert(body:"An error occured. \(error)")
                             }
                         }
                         Spacer()
@@ -77,7 +73,7 @@ struct PasscodeEditorView: View {
                                 try PasscodeKeyFaceManager.removeAllFaces()
                                 faces = try PasscodeKeyFaceManager.getFaces()
                             } catch {
-                                alert("An error occured. \(error)")
+                                UIApplication.shared.alert(body:"An error occured. \(error)")
                             }
                         }
                     }
@@ -94,14 +90,8 @@ struct PasscodeEditorView: View {
                     changedFaces = faces
                 }
             } catch {
-                alert("An error occured. \(error)")
+                UIApplication.shared.alert(body: "An error occured. \(error)")
             }
-        }
-        .alert(isPresented: $showingAlert) {
-            Alert(
-                title: Text(alertTitle),
-                message: Text(alertMessage)
-            )
         }
         .sheet(isPresented: $showingImagePicker) {
             ImagePickerView(image: $faces[changingFaceN])
@@ -111,15 +101,9 @@ struct PasscodeEditorView: View {
             do {
                 try PasscodeKeyFaceManager.setFace(newValue, for: changingFaceN)
             } catch {
-                alert("An error occured while changing key face. \(error)")
+                UIApplication.shared.alert(body: "An error occured while changing key face. \(error)")
             }
         }
-    }
-    
-    func alert(_ message: String, title: String = "Error") {
-        alertTitle = title
-        alertMessage = message
-        showingAlert.toggle()
     }
     func showPicker(_ n: Int) {
         changingFaceN = n

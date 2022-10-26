@@ -15,6 +15,7 @@
 @property (getter=isPlaceholder,nonatomic,readonly) BOOL placeholder; 
 @property (getter=isRestricted,nonatomic,readonly) BOOL restricted;
 @property (nonatomic,readonly) NSSet * claimedURLSchemes;
+@property (nonatomic,readonly) NSString *applicationIdentifier;
 @end
 
 @interface LSApplicationWorkspace : NSObject
@@ -25,6 +26,7 @@
 - (BOOL)uninstallApplication:(NSString*)arg1 withOptions:(id)arg2;
 - (BOOL)openApplicationWithBundleID:(NSString *)arg1 ;
 - (void)enumerateApplicationsOfType:(NSUInteger)type block:(void (^)(LSApplicationProxy*))block;
+- (NSArray <LSApplicationProxy *> *)allApplications;
 @end
 
 @interface LSEnumerator : NSEnumerator

@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CE141B372903E73F00AB48A7 /* CardChangerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE141B362903E73F00AB48A7 /* CardChangerView.swift */; };
+		CE141B3A2903F20800AB48A7 /* ThemesSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE141B392903F20800AB48A7 /* ThemesSettingsView.swift */; };
+		CE141B3C2903F22F00AB48A7 /* ThemeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE141B3B2903F22F00AB48A7 /* ThemeView.swift */; };
+		CE141B4829045D5F00AB48A7 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE141B4729045D5F00AB48A7 /* MobileCoreServices.framework */; };
+		CE141B582904609B00AB48A7 /* CatalogThemeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE141B572904609B00AB48A7 /* CatalogThemeManager.swift */; };
+		CE141B5A290460AE00AB48A7 /* WebclipsThemeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE141B59290460AE00AB48A7 /* WebclipsThemeManager.swift */; };
 		CE2BF8242902E07F00AD10BE /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2BF80F2902E07F00AD10BE /* Extensions.swift */; };
 		CE2BF8252902E07F00AD10BE /* MaterialView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2BF8122902E07F00AD10BE /* MaterialView.swift */; };
 		CE2BF8262902E07F00AD10BE /* ImagePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2BF8132902E07F00AD10BE /* ImagePickerView.swift */; };
@@ -15,18 +21,28 @@
 		CE2BF8292902E07F00AD10BE /* PasscodeEditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2BF8162902E07F00AD10BE /* PasscodeEditorView.swift */; };
 		CE2BF82A2902E07F00AD10BE /* WebClipTemplate.plist in Resources */ = {isa = PBXBuildFile; fileRef = CE2BF8172902E07F00AD10BE /* WebClipTemplate.plist */; };
 		CE2BF82B2902E07F00AD10BE /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2BF8182902E07F00AD10BE /* RootView.swift */; };
-		CE2BF82C2902E07F00AD10BE /* TSUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = CE2BF81A2902E07F00AD10BE /* TSUtil.m */; };
 		CE2BF82E2902E07F00AD10BE /* WallpaperGetter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2BF8202902E07F00AD10BE /* WallpaperGetter.swift */; };
 		CE2BF82F2902E07F00AD10BE /* ThemeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2BF8212902E07F00AD10BE /* ThemeManager.swift */; };
 		CE2BF8302902E07F00AD10BE /* PasscodeKeyFaceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2BF8222902E07F00AD10BE /* PasscodeKeyFaceManager.swift */; };
 		CE2BF8312902E07F00AD10BE /* BadgeChanger.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2BF8232902E07F00AD10BE /* BadgeChanger.swift */; };
 		CE2BF8372902E10900AD10BE /* TrollToolsApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2BF8362902E10900AD10BE /* TrollToolsApp.swift */; };
-		CE2BF83C2902E14E00AD10BE /* Dynamic in Frameworks */ = {isa = PBXBuildFile; productRef = CE2BF83B2902E14E00AD10BE /* Dynamic */; };
-		CE2BF83F2902E18900AD10BE /* CoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE2BF83E2902E18900AD10BE /* CoreServices.framework */; };
 		CE2BF8452902E21D00AD10BE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CE2BF8442902E21D00AD10BE /* Assets.xcassets */; };
+		CE7D5CCA2905E10400EA26D2 /* AssetCatalogWrapper in Frameworks */ = {isa = PBXBuildFile; productRef = CE7D5CC92905E10400EA26D2 /* AssetCatalogWrapper */; };
+		CE7D5CFD2906C2BD00EA26D2 /* FSOperations in Frameworks */ = {isa = PBXBuildFile; productRef = CE7D5CFC2906C2BD00EA26D2 /* FSOperations */; };
+		CE7D5D1D290706C600EA26D2 /* NSTask in Frameworks */ = {isa = PBXBuildFile; productRef = CE7D5D1C290706C600EA26D2 /* NSTask */; };
+		CE8DC8D52904C22500A1CBB0 /* RootHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8DC8D42904C22500A1CBB0 /* RootHelper.swift */; };
+		CEFE362E2904AC6400938D98 /* TSUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = CEFE36292904AC6400938D98 /* TSUtil.m */; };
+		CEFE36632904AF8C00938D98 /* Dynamic in Frameworks */ = {isa = PBXBuildFile; productRef = CEFE36622904AF8C00938D98 /* Dynamic */; };
+		CEFE36642904B27B00938D98 /* CoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE2BF83E2902E18900AD10BE /* CoreServices.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		CE141B362903E73F00AB48A7 /* CardChangerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardChangerView.swift; sourceTree = "<group>"; };
+		CE141B392903F20800AB48A7 /* ThemesSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemesSettingsView.swift; sourceTree = "<group>"; };
+		CE141B3B2903F22F00AB48A7 /* ThemeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeView.swift; sourceTree = "<group>"; };
+		CE141B4729045D5F00AB48A7 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
+		CE141B572904609B00AB48A7 /* CatalogThemeManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatalogThemeManager.swift; sourceTree = "<group>"; };
+		CE141B59290460AE00AB48A7 /* WebclipsThemeManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebclipsThemeManager.swift; sourceTree = "<group>"; };
 		CE2BF7B72902DFF300AD10BE /* TrollTools.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TrollTools.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE2BF80F2902E07F00AD10BE /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		CE2BF8122902E07F00AD10BE /* MaterialView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MaterialView.swift; sourceTree = "<group>"; };
@@ -36,17 +52,24 @@
 		CE2BF8162902E07F00AD10BE /* PasscodeEditorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PasscodeEditorView.swift; sourceTree = "<group>"; };
 		CE2BF8172902E07F00AD10BE /* WebClipTemplate.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = WebClipTemplate.plist; sourceTree = "<group>"; };
 		CE2BF8182902E07F00AD10BE /* RootView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
-		CE2BF81A2902E07F00AD10BE /* TSUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSUtil.m; sourceTree = "<group>"; };
-		CE2BF81B2902E07F00AD10BE /* TSUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSUtil.h; sourceTree = "<group>"; };
-		CE2BF81C2902E07F00AD10BE /* CoreServices.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoreServices.h; sourceTree = "<group>"; };
 		CE2BF8202902E07F00AD10BE /* WallpaperGetter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WallpaperGetter.swift; sourceTree = "<group>"; };
 		CE2BF8212902E07F00AD10BE /* ThemeManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThemeManager.swift; sourceTree = "<group>"; };
 		CE2BF8222902E07F00AD10BE /* PasscodeKeyFaceManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PasscodeKeyFaceManager.swift; sourceTree = "<group>"; };
 		CE2BF8232902E07F00AD10BE /* BadgeChanger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BadgeChanger.swift; sourceTree = "<group>"; };
 		CE2BF8362902E10900AD10BE /* TrollToolsApp.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrollToolsApp.swift; sourceTree = "<group>"; };
-		CE2BF8392902E13900AD10BE /* TrollTools-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "TrollTools-Bridging-Header.h"; sourceTree = "<group>"; };
 		CE2BF83E2902E18900AD10BE /* CoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreServices.framework; path = System/Library/Frameworks/CoreServices.framework; sourceTree = SDKROOT; };
 		CE2BF8442902E21D00AD10BE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		CE6C7D9429048729004689F1 /* TrollTools-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "TrollTools-Bridging-Header.h"; sourceTree = "<group>"; };
+		CE7D5D04290700F900EA26D2 /* RootHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootHelper.swift; sourceTree = "<group>"; };
+		CE7D5D2229070FA600EA26D2 /* entitlements.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = entitlements.plist; sourceTree = "<group>"; };
+		CE8DC8D42904C22500A1CBB0 /* RootHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootHelper.swift; sourceTree = "<group>"; };
+		CEFE36262904A8B600938D98 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		CEFE36292904AC6400938D98 /* TSUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSUtil.m; sourceTree = "<group>"; };
+		CEFE362C2904AC6400938D98 /* TSUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSUtil.h; sourceTree = "<group>"; };
+		CEFE362D2904AC6400938D98 /* CoreServices.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoreServices.h; sourceTree = "<group>"; };
+		CEFE365C2904AE3800938D98 /* CoreUI.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = CoreUI.h; path = "../../Downloads/SantanderWrappers-main/Sources/CFrameworks/CoreUI/CoreUI.h"; sourceTree = "<group>"; };
+		CEFE36692904B31400938D98 /* CoreUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreUI.framework; path = "../../Library/Developer/Xcode/DerivedData/TrollTools-ganmhroxflomnzakcpcdzmzoural/SourcePackages/checkouts/SantanderWrappers/Sources/AssetCatalogWrapper/CoreUI/CoreUI.framework"; sourceTree = "<group>"; };
+		CEFE366B2904B32100938D98 /* CoreUI.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = CoreUI.tbd; path = "../../Library/Developer/Xcode/DerivedData/TrollTools-ganmhroxflomnzakcpcdzmzoural/SourcePackages/checkouts/SantanderWrappers/Sources/AssetCatalogWrapper/CoreUI/CoreUI.framework/CoreUI.tbd"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,18 +77,53 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CE2BF83F2902E18900AD10BE /* CoreServices.framework in Frameworks */,
-				CE2BF83C2902E14E00AD10BE /* Dynamic in Frameworks */,
+				CEFE36642904B27B00938D98 /* CoreServices.framework in Frameworks */,
+				CEFE36632904AF8C00938D98 /* Dynamic in Frameworks */,
+				CE7D5D1D290706C600EA26D2 /* NSTask in Frameworks */,
+				CE7D5CFD2906C2BD00EA26D2 /* FSOperations in Frameworks */,
+				CE141B4829045D5F00AB48A7 /* MobileCoreServices.framework in Frameworks */,
+				CE7D5CCA2905E10400EA26D2 /* AssetCatalogWrapper in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		CE141B382903F1F500AB48A7 /* Themes */ = {
+			isa = PBXGroup;
+			children = (
+				CE2BF8152902E07F00AD10BE /* ThemesView.swift */,
+				CE141B392903F20800AB48A7 /* ThemesSettingsView.swift */,
+				CE141B3B2903F22F00AB48A7 /* ThemeView.swift */,
+			);
+			path = Themes;
+			sourceTree = "<group>";
+		};
+		CE141B562904607C00AB48A7 /* Themes */ = {
+			isa = PBXGroup;
+			children = (
+				CE2BF8212902E07F00AD10BE /* ThemeManager.swift */,
+				CE141B572904609B00AB48A7 /* CatalogThemeManager.swift */,
+				CE141B59290460AE00AB48A7 /* WebclipsThemeManager.swift */,
+			);
+			path = Themes;
+			sourceTree = "<group>";
+		};
+		CE1CD0582905D302005C9582 /* Other */ = {
+			isa = PBXGroup;
+			children = (
+				CE2BF80F2902E07F00AD10BE /* Extensions.swift */,
+				CE2BF8362902E10900AD10BE /* TrollToolsApp.swift */,
+			);
+			path = Other;
+			sourceTree = "<group>";
+		};
 		CE2BF7AE2902DFF300AD10BE = {
 			isa = PBXGroup;
 			children = (
+				CE7D5D2229070FA600EA26D2 /* entitlements.plist */,
 				CE2BF7B92902DFF300AD10BE /* TrollTools */,
+				CE7D5D03290700F900EA26D2 /* RootHelper */,
 				CE2BF7B82902DFF300AD10BE /* Products */,
 				CE2BF83D2902E18800AD10BE /* Frameworks */,
 			);
@@ -82,15 +140,15 @@
 		CE2BF7B92902DFF300AD10BE /* TrollTools */ = {
 			isa = PBXGroup;
 			children = (
+				CE1CD0582905D302005C9582 /* Other */,
+				CEFE36262904A8B600938D98 /* Info.plist */,
 				CE2BF8442902E21D00AD10BE /* Assets.xcassets */,
-				CE2BF80F2902E07F00AD10BE /* Extensions.swift */,
-				CE2BF8362902E10900AD10BE /* TrollToolsApp.swift */,
-				CE2BF8392902E13900AD10BE /* TrollTools-Bridging-Header.h */,
+				CEFE36282904AC6400938D98 /* TS */,
 				CE2BF81F2902E07F00AD10BE /* Private APIs */,
 				CE2BF8182902E07F00AD10BE /* RootView.swift */,
-				CE2BF8192902E07F00AD10BE /* TS */,
 				CE2BF8102902E07F00AD10BE /* Views */,
 				CE2BF8172902E07F00AD10BE /* WebClipTemplate.plist */,
+				CE6C7D9429048729004689F1 /* TrollTools-Bridging-Header.h */,
 			);
 			path = TrollTools;
 			sourceTree = "<group>";
@@ -98,10 +156,11 @@
 		CE2BF8102902E07F00AD10BE /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				CE141B382903F1F500AB48A7 /* Themes */,
 				CE2BF8112902E07F00AD10BE /* Other Views */,
 				CE2BF8142902E07F00AD10BE /* BadgeChangerView.swift */,
-				CE2BF8152902E07F00AD10BE /* ThemesView.swift */,
 				CE2BF8162902E07F00AD10BE /* PasscodeEditorView.swift */,
+				CE141B362903E73F00AB48A7 /* CardChangerView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -115,23 +174,14 @@
 			path = "Other Views";
 			sourceTree = "<group>";
 		};
-		CE2BF8192902E07F00AD10BE /* TS */ = {
-			isa = PBXGroup;
-			children = (
-				CE2BF81A2902E07F00AD10BE /* TSUtil.m */,
-				CE2BF81B2902E07F00AD10BE /* TSUtil.h */,
-				CE2BF81C2902E07F00AD10BE /* CoreServices.h */,
-			);
-			path = TS;
-			sourceTree = "<group>";
-		};
 		CE2BF81F2902E07F00AD10BE /* Private APIs */ = {
 			isa = PBXGroup;
 			children = (
+				CE141B562904607C00AB48A7 /* Themes */,
 				CE2BF8202902E07F00AD10BE /* WallpaperGetter.swift */,
-				CE2BF8212902E07F00AD10BE /* ThemeManager.swift */,
 				CE2BF8222902E07F00AD10BE /* PasscodeKeyFaceManager.swift */,
 				CE2BF8232902E07F00AD10BE /* BadgeChanger.swift */,
+				CE8DC8D42904C22500A1CBB0 /* RootHelper.swift */,
 			);
 			path = "Private APIs";
 			sourceTree = "<group>";
@@ -139,9 +189,31 @@
 		CE2BF83D2902E18800AD10BE /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				CEFE366B2904B32100938D98 /* CoreUI.tbd */,
+				CEFE36692904B31400938D98 /* CoreUI.framework */,
+				CEFE365C2904AE3800938D98 /* CoreUI.h */,
+				CE141B4729045D5F00AB48A7 /* MobileCoreServices.framework */,
 				CE2BF83E2902E18900AD10BE /* CoreServices.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		CE7D5D03290700F900EA26D2 /* RootHelper */ = {
+			isa = PBXGroup;
+			children = (
+				CE7D5D04290700F900EA26D2 /* RootHelper.swift */,
+			);
+			path = RootHelper;
+			sourceTree = "<group>";
+		};
+		CEFE36282904AC6400938D98 /* TS */ = {
+			isa = PBXGroup;
+			children = (
+				CEFE36292904AC6400938D98 /* TSUtil.m */,
+				CEFE362C2904AC6400938D98 /* TSUtil.h */,
+				CEFE362D2904AC6400938D98 /* CoreServices.h */,
+			);
+			path = TS;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -161,7 +233,10 @@
 			);
 			name = TrollTools;
 			packageProductDependencies = (
-				CE2BF83B2902E14E00AD10BE /* Dynamic */,
+				CEFE36622904AF8C00938D98 /* Dynamic */,
+				CE7D5CC92905E10400EA26D2 /* AssetCatalogWrapper */,
+				CE7D5CFC2906C2BD00EA26D2 /* FSOperations */,
+				CE7D5D1C290706C600EA26D2 /* NSTask */,
 			);
 			productName = TrollTools;
 			productReference = CE2BF7B72902DFF300AD10BE /* TrollTools.app */;
@@ -193,7 +268,8 @@
 			);
 			mainGroup = CE2BF7AE2902DFF300AD10BE;
 			packageReferences = (
-				CE2BF83A2902E14E00AD10BE /* XCRemoteSwiftPackageReference "Dynamic" */,
+				CEFE36612904AF8C00938D98 /* XCRemoteSwiftPackageReference "Dynamic" */,
+				CE7D5CC82905E10400EA26D2 /* XCRemoteSwiftPackageReference "SantanderWrappers" */,
 			);
 			productRefGroup = CE2BF7B82902DFF300AD10BE /* Products */;
 			projectDirPath = "";
@@ -221,18 +297,24 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CEFE362E2904AC6400938D98 /* TSUtil.m in Sources */,
 				CE2BF8302902E07F00AD10BE /* PasscodeKeyFaceManager.swift in Sources */,
 				CE2BF82B2902E07F00AD10BE /* RootView.swift in Sources */,
 				CE2BF8372902E10900AD10BE /* TrollToolsApp.swift in Sources */,
 				CE2BF8262902E07F00AD10BE /* ImagePickerView.swift in Sources */,
 				CE2BF8312902E07F00AD10BE /* BadgeChanger.swift in Sources */,
-				CE2BF82C2902E07F00AD10BE /* TSUtil.m in Sources */,
 				CE2BF8252902E07F00AD10BE /* MaterialView.swift in Sources */,
 				CE2BF8272902E07F00AD10BE /* BadgeChangerView.swift in Sources */,
+				CE141B3C2903F22F00AB48A7 /* ThemeView.swift in Sources */,
 				CE2BF8282902E07F00AD10BE /* ThemesView.swift in Sources */,
+				CE141B372903E73F00AB48A7 /* CardChangerView.swift in Sources */,
+				CE8DC8D52904C22500A1CBB0 /* RootHelper.swift in Sources */,
 				CE2BF8292902E07F00AD10BE /* PasscodeEditorView.swift in Sources */,
+				CE141B582904609B00AB48A7 /* CatalogThemeManager.swift in Sources */,
 				CE2BF8242902E07F00AD10BE /* Extensions.swift in Sources */,
+				CE141B5A290460AE00AB48A7 /* WebclipsThemeManager.swift in Sources */,
 				CE2BF82E2902E07F00AD10BE /* WallpaperGetter.swift in Sources */,
+				CE141B3A2903F20800AB48A7 /* ThemesSettingsView.swift in Sources */,
 				CE2BF82F2902E07F00AD10BE /* ThemeManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -364,7 +446,14 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 92S6JX27W2;
 				ENABLE_PREVIEWS = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/TrollTools/Private\\ APIs/AssetCatalogWrapper/CoreUI",
+					"$(PROJECT_DIR)/TrollTools/Private\\ APIs/AssetCatalogWrapper/CoreUI",
+					"$(PROJECT_DIR)/TrollTools/Sources/AssetCatalogWrapper/CoreUI",
+				);
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = TrollTools/Info.plist;
 				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Lol, it needs it";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -376,7 +465,11 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.2;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/TrollTools/Private\\ APIs/AssetCatalogWrapper/CoreUI/CoreUI.framework",
+				);
+				MARKETING_VERSION = 2.0;
 				PRODUCT_BUNDLE_IDENTIFIER = net.sourceloc.TrollTools;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -397,7 +490,14 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 92S6JX27W2;
 				ENABLE_PREVIEWS = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/TrollTools/Private\\ APIs/AssetCatalogWrapper/CoreUI",
+					"$(PROJECT_DIR)/TrollTools/Private\\ APIs/AssetCatalogWrapper/CoreUI",
+					"$(PROJECT_DIR)/TrollTools/Sources/AssetCatalogWrapper/CoreUI",
+				);
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = TrollTools/Info.plist;
 				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Lol, it needs it";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -409,7 +509,11 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.2;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/TrollTools/Private\\ APIs/AssetCatalogWrapper/CoreUI/CoreUI.framework",
+				);
+				MARKETING_VERSION = 2.0;
 				PRODUCT_BUNDLE_IDENTIFIER = net.sourceloc.TrollTools;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -443,7 +547,15 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		CE2BF83A2902E14E00AD10BE /* XCRemoteSwiftPackageReference "Dynamic" */ = {
+		CE7D5CC82905E10400EA26D2 /* XCRemoteSwiftPackageReference "SantanderWrappers" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SerenaKit/SantanderWrappers";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
+		CEFE36612904AF8C00938D98 /* XCRemoteSwiftPackageReference "Dynamic" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/mhdhejazi/Dynamic";
 			requirement = {
@@ -454,9 +566,24 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		CE2BF83B2902E14E00AD10BE /* Dynamic */ = {
+		CE7D5CC92905E10400EA26D2 /* AssetCatalogWrapper */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = CE2BF83A2902E14E00AD10BE /* XCRemoteSwiftPackageReference "Dynamic" */;
+			package = CE7D5CC82905E10400EA26D2 /* XCRemoteSwiftPackageReference "SantanderWrappers" */;
+			productName = AssetCatalogWrapper;
+		};
+		CE7D5CFC2906C2BD00EA26D2 /* FSOperations */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CE7D5CC82905E10400EA26D2 /* XCRemoteSwiftPackageReference "SantanderWrappers" */;
+			productName = FSOperations;
+		};
+		CE7D5D1C290706C600EA26D2 /* NSTask */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CE7D5CC82905E10400EA26D2 /* XCRemoteSwiftPackageReference "SantanderWrappers" */;
+			productName = NSTask;
+		};
+		CEFE36622904AF8C00938D98 /* Dynamic */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CEFE36612904AF8C00938D98 /* XCRemoteSwiftPackageReference "Dynamic" */;
 			productName = Dynamic;
 		};
 /* End XCSwiftPackageProductDependency section */

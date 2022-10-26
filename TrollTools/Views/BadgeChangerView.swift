@@ -11,10 +11,6 @@ struct BadgeChangerView: View {
     @State private var color = Color.red
     @State private var radius: CGFloat = 24
     
-    @State private var alertMessage = ""
-    @State private var alertTitle = ""
-    @State private var showingAlert = false
-    
     var body: some View {
         GeometryReader { proxy in
             let minSize = min(proxy.size.width, proxy.size.height)
@@ -59,7 +55,7 @@ struct BadgeChangerView: View {
                                     try BadgeChanger.change(to: UIColor(color), with: radius)
                                     respring()
                                 } catch {
-                                    alert("An error occured. " + error.localizedDescription)
+                                    UIApplication.shared.alert(body:"An error occured. " + error.localizedDescription)
                                 }
                             })
                             .padding(10)
@@ -74,18 +70,6 @@ struct BadgeChangerView: View {
             }
             .navigationViewStyle(StackNavigationViewStyle())
         }
-        .alert(isPresented: $showingAlert) {
-            Alert(
-                title: Text(alertTitle),
-                message: Text(alertMessage)
-            )
-        }
-    }
-    
-    func alert(_ message: String, title: String = "Error") {
-        alertTitle = title
-        alertMessage = message
-        showingAlert.toggle()
     }
 }
 
