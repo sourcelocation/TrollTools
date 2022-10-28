@@ -42,8 +42,9 @@ if [ -e "$TARGET_APP/embedded.mobileprovision" ]; then
 fi
 
 cd $WORKING_LOCATION/RootHelper
+make clean
 make
-cp $WORKING_LOCATION/RootHelper/.theos/obj/trolltoolsroothelper $WORKING_LOCATION/build/TrollTools.app/trolltoolsroothelper
+cp $WORKING_LOCATION/RootHelper/.theos/obj/debug/trolltoolsroothelper $WORKING_LOCATION/build/TrollTools.app/trolltoolsroothelper
 cd -
 
 # cp $WORKING_LOCATION/build/DerivedData/Build/Products/$CONFIGURATION-iphoneos/RootHelper $WORKING_LOCATION/build/TrollTools.app/RootHelper

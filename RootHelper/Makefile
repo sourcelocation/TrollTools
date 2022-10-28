@@ -9,6 +9,6 @@ trolltoolsroothelper_FILES = $(wildcard *.m)
 trolltoolsroothelper_CFLAGS = -fobjc-arc
 trolltoolsroothelper_CODESIGN_FLAGS = -Sentitlements.plist
 trolltoolsroothelper_INSTALL_PATH = /usr/local/bin
-trolltoolsroothelper_PRIVATE_FRAMEWORKS = SpringBoardServices BackBoardServices
+trolltoolsroothelper_PRIVATE_FRAMEWORKS = SpringBoardServices BackBoardServices MobileCoreServices
 
 include $(THEOS_MAKE_PATH)/tool.mk

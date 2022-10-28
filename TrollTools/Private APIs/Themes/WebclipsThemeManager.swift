@@ -30,14 +30,12 @@ class WebclipsThemeManager {
                 guard let displayName = app.localizedName() else { continue }
                 try addWebClip(bundleID: bundleID, displayName: displayName)
             }
-
-            sendProgress("changine active icon symlink")
             
             // Copy icon to activeIconsDir
-            
             sendProgress("Setting icon")
             let activeIconDir = webclipsActiveIconsDir.appendingPathComponent(bundleID + ".png")
             try? fm.removeItem(at: activeIconDir)
+            sendProgress("changine active icon symlink")
             try fm.createSymbolicLink(at: activeIconDir, withDestinationURL: themeIconURL)
         }
     }

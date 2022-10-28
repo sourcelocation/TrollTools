@@ -32,9 +32,13 @@ class ThemeManager {
         try? fm.createDirectory(at: webclipsActiveIconsDir, withIntermediateDirectories: true)
         
         // Get theme icon ending like -large or @2x
-        guard let firstIconFilename = (try fm.contentsOfDirectory(at: iconBundlesURL, includingPropertiesForKeys: nil)).last?.lastPathComponent else { throw "Couldn't get last icon to get file ending" }
-        let filenameEnding = try getIconFileEnding(iconFilename: firstIconFilename)
-        
+        let iconBundleContents = try fm.contentsOfDirectory(at: iconBundlesURL, includingPropertiesForKeys: nil)
+        guard let filenameEnding = (iconBundleContents
+            .first(where: { url1 in url1.lastPathComponent.contains("com.apple.AppStore") }) ?? iconBundleContents.last)?
+            .deletingPathExtension()
+            .lastPathComponent
+            .replacingOccurrences(of: "com.apple.AppStore", with: "")
+        else { throw "Invalid theme, no icons found" }
         // Setting theme
         guard let apps = LSApplicationWorkspace.default().allApplications() else { throw "Couldn't get apps" }
         try CatalogThemeManager.setTheme(theme: theme, filenameEnding: filenameEnding, apps: apps, progress: progress)

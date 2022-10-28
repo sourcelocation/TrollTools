@@ -30,7 +30,7 @@ struct ThemesView: View {
                         .foregroundColor(Color(uiColor14: .secondaryLabel))
                 } else {
                     ScrollView {
-                        LazyVGrid(columns: gridItemLayout, spacing: 20) {
+                        LazyVGrid(columns: gridItemLayout, spacing: 8) {
                             ForEach(themes, id: \.url) { theme in
                                 ThemeView(theme: theme, isInUse: currentThemeIDs.contains(theme.id.uuidString), wallpaper: wallpaper!, defaultWallpaper: defaultWallpaper, applyTheme: applyTheme)
                                     .contextMenu {
@@ -84,7 +84,7 @@ struct ThemesView: View {
                 }
                 ToolbarItem(placement: .navigationBarLeading) {
                     Button(action: {
-                        UIApplication.shared.confirmAlert(title: "Remove custom icons", body: "All app icons will be reverted to their original appearance, but system app WebClips will remain. Are you sure you want to continue?", onOK: {
+                        UIApplication.shared.confirmAlert(title: "Remove custom icons", body: "All app icons will be reverted to their original appearance, but system app WebClips will remain. If you don't want them, you can safely delete them as any other normal app. Are you sure you want to continue?", onOK: {
                             removeThemes()
                         }, noCancel: false)
                     }) {
@@ -123,20 +123,24 @@ struct ThemesView: View {
                     try ThemeManager.set(theme: theme, progress: { str in
                         UIApplication.shared.change(title: "In progress", body: str)
                     })
-                    DispatchQueue.main.async {
+                    UIApplication.shared.change(title: "Rebuilding Icon Cache...", body: "Device will respring after rebuild\n\nElapsed time: \(Double(Int(-timeStart.timeIntervalSinceNow * 100.0)) / 100.0)s")
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.1, execute: {
+                        try! RootHelper.rebuildIconCache()
                         currentThemeIDs.append(theme.id.uuidString)
                         UserDefaults.standard.set(currentThemeIDs, forKey: "currentThemeIDs")
-                        UIApplication.shared.change(title: "Success", body: "Theme set successfully. Please rebuild caches inside TrollStore for changes to apply.\n\nElapsed time: \(Double(Int(-timeStart.timeIntervalSinceNow * 100.0)) / 100.0)")
-                    }
-                } catch { UIApplication.shared.alert(body: error.localizedDescription) }
+                        exit(0) // because it resprings
+                    })
+                } catch { UIApplication.shared.change(body: error.localizedDescription) }
             }
         }
         var found = false
         for app in LSApplicationWorkspace.default().allApplications() ?? [] {
             if FileManager.default.fileExists(atPath: app.bundleURL.appendingPathComponent("bak.car").path) {
-                found = true
-                UIApplication.shared.confirmAlert(title: "Mugunghwa installed - PLEASE READ.", body: "It seems you've used other theming engines on this device. It is highly recommended resetting all their options to default values and removing the app.", onOK: { apply() }, noCancel: false)
-                break
+                if !UserDefaults.standard.bool(forKey: "readAltAppsWarning") {
+                    found = true
+                    UIApplication.shared.confirmAlert(title: "Mugunghwa installed - PLEASE READ.", body: "It seems you've used other theming engines on this device. It is highly recommended resetting all their options to default values and removing the app.", onOK: { UserDefaults.standard.set(true, forKey: "readAltAppsWarning"); apply() }, noCancel: false)
+                    break
+                }
             }
         }
         if !found { apply() }
@@ -154,7 +158,11 @@ struct ThemesView: View {
             DispatchQueue.main.async {
                 currentThemeIDs = []
                 UserDefaults.standard.set([], forKey: "currentThemeIDs")
-                UIApplication.shared.change(title: "Success", body: "Restore successful. Please rebuild caches inside TrollStore for changes to apply.")
+                UIApplication.shared.change(title: "Rebuilding Icon Cache...", body: "Device will respring after rebuild")
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.1, execute: {
+                    try! RootHelper.rebuildIconCache()
+                    exit(0) // because it resprings
+                })
             }
         }
     }
