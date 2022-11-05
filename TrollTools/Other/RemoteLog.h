@@ -7,7 +7,7 @@
 #import <arpa/inet.h>
 
 // change this to match your destination (server) IP address
-#define RLOG_IP_ADDRESS "home.sourceloc.net"
+#define RLOG_IP_ADDRESS "192.168.0.24"
 #define RLOG_PORT 11909
 
 __attribute__((unused)) static void RLogv(NSString* format, va_list args)

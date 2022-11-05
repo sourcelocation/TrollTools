@@ -9,7 +9,7 @@ import UIKit
 import NSTaskBridge
 
 class RootHelper {
-    static let rootHelperPath = Bundle.main.url(forAuxiliaryExecutable: "trolltoolsroothelper")!.path
+    static let rootHelperPath = Bundle.main.url(forAuxiliaryExecutable: "trolltoolsroothelper")?.path ?? "/"
     
     static func move(from sourceURL: URL, to destURL: URL) throws {
         let code = spawnRoot(rootHelperPath, ["filemove", sourceURL.path, destURL.path], nil, nil)
@@ -33,6 +33,10 @@ class RootHelper {
     }
     static func rebuildIconCache() throws {
         let code = spawnRoot(rootHelperPath, ["rebuildiconcache", "", ""], nil, nil)
+        guard code == 0 else { throw "Helper.rebuildIconCache: returned non-zero code \(code)" }
+    }
+    static func loadMCM() throws {
+        let code = spawnRoot(rootHelperPath, ["", "", ""], nil, nil)
         guard code == 0 else { throw "Helper.rebuildIconCache: returned non-zero code \(code)" }
     }
 }

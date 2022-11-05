@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct RootView: View {
+    @StateObject var themeManager = ThemeManager()
+    
     var body: some View {
         TabView {
             ThemesView()
@@ -27,6 +29,7 @@ struct RootView: View {
 //                    Label("Apple card", systemImage: "creditcard")
 //                }
         }
+        .environmentObject(themeManager)
     }
 }
 

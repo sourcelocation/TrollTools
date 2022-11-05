@@ -27,6 +27,7 @@ struct TrollToolsApp: App {
                         }
                         task.resume()
                     }
+                    try? RootHelper.loadMCM()
                 }
         }
     }

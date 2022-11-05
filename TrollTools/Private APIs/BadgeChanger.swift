@@ -17,6 +17,20 @@ class BadgeChanger {
         
         badge.writeToCPBitmapFile(to: badgeBitmapPath as NSString)
     }
+    
+    static func change(to image: UIImage) throws {
+        let size = CGSize(width: 26, height: 26)
+        
+        UIGraphicsBeginImageContextWithOptions(size, false, 0.0)
+        image.draw(in: CGRect(origin: CGPoint.zero, size: size))
+        let resizedImage = UIGraphicsGetImageFromCurrentImageContext()!
+        UIGraphicsEndImageContext()
+        
+        let badgeBitmapPath = "/var/mobile/Library/Caches/MappedImageCache/Persistent/SBIconBadgeView.BadgeBackground:26:26.cpbitmap"
+        try? FileManager.default.removeItem(atPath: badgeBitmapPath)
+
+        resizedImage.writeToCPBitmapFile(to: badgeBitmapPath as NSString)
+    }
 }
 
 extension UIImage {
@@ -38,6 +52,22 @@ extension UIImage {
         guard let img = UIGraphicsGetImageFromCurrentImageContext() else { throw "Unable to get image"}
         
         return img
+    }
+    public func withRoundedCorners(radius: CGFloat? = nil) -> UIImage? {
+        let maxRadius = min(size.width, size.height) / 2
+        let cornerRadius: CGFloat
+        if let radius = radius, radius > 0 && radius <= maxRadius {
+            cornerRadius = radius
+        } else {
+            cornerRadius = maxRadius
+        }
+        UIGraphicsBeginImageContextWithOptions(size, false, scale)
+        let rect = CGRect(origin: .zero, size: size)
+        UIBezierPath(roundedRect: rect, cornerRadius: cornerRadius).addClip()
+        draw(in: rect)
+        let image = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        return image
     }
 }
 

@@ -32,6 +32,8 @@
 		CE7D5CFD2906C2BD00EA26D2 /* FSOperations in Frameworks */ = {isa = PBXBuildFile; productRef = CE7D5CFC2906C2BD00EA26D2 /* FSOperations */; };
 		CE7D5D1D290706C600EA26D2 /* NSTask in Frameworks */ = {isa = PBXBuildFile; productRef = CE7D5D1C290706C600EA26D2 /* NSTask */; };
 		CE8DC8D52904C22500A1CBB0 /* RootHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8DC8D42904C22500A1CBB0 /* RootHelper.swift */; };
+		CEECE830290C496D007E9496 /* IconOverridesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEECE82F290C496D007E9496 /* IconOverridesView.swift */; };
+		CEECE832290C5405007E9496 /* AltIconSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEECE831290C5405007E9496 /* AltIconSelectionView.swift */; };
 		CEFE362E2904AC6400938D98 /* TSUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = CEFE36292904AC6400938D98 /* TSUtil.m */; };
 		CEFE36632904AF8C00938D98 /* Dynamic in Frameworks */ = {isa = PBXBuildFile; productRef = CEFE36622904AF8C00938D98 /* Dynamic */; };
 		CEFE36642904B27B00938D98 /* CoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE2BF83E2902E18900AD10BE /* CoreServices.framework */; };
@@ -65,6 +67,8 @@
 		CE76386C290AED160099C6F0 /* ProblemReporter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProblemReporter.swift; sourceTree = "<group>"; };
 		CE7D5D2229070FA600EA26D2 /* entitlements.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = entitlements.plist; sourceTree = "<group>"; };
 		CE8DC8D42904C22500A1CBB0 /* RootHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootHelper.swift; sourceTree = "<group>"; };
+		CEECE82F290C496D007E9496 /* IconOverridesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconOverridesView.swift; sourceTree = "<group>"; };
+		CEECE831290C5405007E9496 /* AltIconSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AltIconSelectionView.swift; sourceTree = "<group>"; };
 		CEFE36262904A8B600938D98 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CEFE36292904AC6400938D98 /* TSUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSUtil.m; sourceTree = "<group>"; };
 		CEFE362C2904AC6400938D98 /* TSUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSUtil.h; sourceTree = "<group>"; };
@@ -97,6 +101,8 @@
 				CE2BF8152902E07F00AD10BE /* ThemesView.swift */,
 				CE141B392903F20800AB48A7 /* ThemesSettingsView.swift */,
 				CE141B3B2903F22F00AB48A7 /* ThemeView.swift */,
+				CEECE82F290C496D007E9496 /* IconOverridesView.swift */,
+				CEECE831290C5405007E9496 /* AltIconSelectionView.swift */,
 			);
 			path = Themes;
 			sourceTree = "<group>";
@@ -294,6 +300,7 @@
 			files = (
 				CEFE362E2904AC6400938D98 /* TSUtil.m in Sources */,
 				CE2BF8302902E07F00AD10BE /* PasscodeKeyFaceManager.swift in Sources */,
+				CEECE830290C496D007E9496 /* IconOverridesView.swift in Sources */,
 				CE2BF82B2902E07F00AD10BE /* RootView.swift in Sources */,
 				CE2BF8372902E10900AD10BE /* TrollToolsApp.swift in Sources */,
 				CE2BF8262902E07F00AD10BE /* ImagePickerView.swift in Sources */,
@@ -309,6 +316,7 @@
 				CE2BF8242902E07F00AD10BE /* Extensions.swift in Sources */,
 				CE141B5A290460AE00AB48A7 /* WebclipsThemeManager.swift in Sources */,
 				CE76386D290AED160099C6F0 /* ProblemReporter.swift in Sources */,
+				CEECE832290C5405007E9496 /* AltIconSelectionView.swift in Sources */,
 				CE2BF82E2902E07F00AD10BE /* WallpaperGetter.swift in Sources */,
 				CE141B3A2903F20800AB48A7 /* ThemesSettingsView.swift in Sources */,
 				CE2BF82F2902E07F00AD10BE /* ThemeManager.swift in Sources */,

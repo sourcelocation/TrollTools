@@ -11,84 +11,6 @@
 #import <SpringBoardServices/SpringBoardServices.h>
 #import <Security/Security.h>
 
-typedef CF_OPTIONS(uint32_t, SecCSFlags) {
-	kSecCSDefaultFlags = 0
-};
-#define kSecCSRequirementInformation 1 << 2
-extern CFStringRef kSecCodeInfoEntitlementsDict;
-
-typedef struct __SecCode const *SecStaticCodeRef;
-OSStatus SecStaticCodeCreateWithPathAndAttributes(CFURLRef path, SecCSFlags flags, CFDictionaryRef attributes, SecStaticCodeRef *staticCode);
-OSStatus SecCodeCopySigningInformation(SecStaticCodeRef code, SecCSFlags flags, CFDictionaryRef *information);
-
-NSDictionary* dumpEntitlements(SecStaticCodeRef codeRef)
-{
-	if(codeRef == NULL)
-	{
-		NSLog(@"[dumpEntitlements] attempting to dump entitlements without a StaticCodeRef");
-		return nil;
-	}
-	
-	CFDictionaryRef signingInfo = NULL;
-	OSStatus result;
-	
-	result = SecCodeCopySigningInformation(codeRef, kSecCSRequirementInformation, &signingInfo);
-	
-	if(result != errSecSuccess)
-	{
-		NSLog(@"[dumpEntitlements] failed to copy signing info from static code");
-		return nil;
-	}
-	
-	NSDictionary *entitlementsNSDict = nil;
-	
-	CFDictionaryRef entitlements = CFDictionaryGetValue(signingInfo, kSecCodeInfoEntitlementsDict);
-	if(entitlements == NULL)
-	{
-		NSLog(@"[dumpEntitlements] no entitlements specified");
-	}
-	else if(CFGetTypeID(entitlements) != CFDictionaryGetTypeID())
-	{
-		NSLog(@"[dumpEntitlements] invalid entitlements");
-	}
-	else
-	{
-		entitlementsNSDict = (__bridge NSDictionary *)(entitlements);
-		NSLog(@"[dumpEntitlements] dumped %@", entitlementsNSDict);
-	}
-	
-	CFRelease(signingInfo);
-	return entitlementsNSDict;
-}
-SecStaticCodeRef getStaticCodeRef(NSString *binaryPath)
-{
-	if(binaryPath == nil)
-	{
-		return NULL;
-	}
-	
-	CFURLRef binaryURL = CFURLCreateWithFileSystemPath(kCFAllocatorDefault, (__bridge CFStringRef)binaryPath, kCFURLPOSIXPathStyle, false);
-	if(binaryURL == NULL)
-	{
-		NSLog(@"[getStaticCodeRef] failed to get URL to binary %@", binaryPath);
-		return NULL;
-	}
-	
-	SecStaticCodeRef codeRef = NULL;
-	OSStatus result;
-	
-	result = SecStaticCodeCreateWithPathAndAttributes(binaryURL, kSecCSDefaultFlags, NULL, &codeRef);
-	
-	CFRelease(binaryURL);
-	
-	if(result != errSecSuccess)
-	{
-		NSLog(@"[getStaticCodeRef] failed to create static code for binary %@", binaryPath);
-		return NULL;
-	}
-		
-	return codeRef;
-}
 NSSet<NSString*>* immutableAppBundleIdentifiers(void)
 {
 	NSMutableSet* systemAppIdentifiers = [NSMutableSet new];
@@ -108,91 +30,68 @@ NSSet<NSString*>* immutableAppBundleIdentifiers(void)
 
 	return systemAppIdentifiers.copy;
 }
-NSDictionary* dumpEntitlementsFromBinaryAtPath(NSString *binaryPath)
-{
-	// This function is intended for one-shot checks. Main-event functions should retain/release their own SecStaticCodeRefs
-	
-	if(binaryPath == nil)
-	{
-		return nil;
-	}
-	
-	SecStaticCodeRef codeRef = getStaticCodeRef(binaryPath);
-	if(codeRef == NULL)
-	{
-		return nil;
-	}
-	
-	NSDictionary *entitlements = dumpEntitlements(codeRef);
-	CFRelease(codeRef);
-	
-	return entitlements;
-}
 
 void refreshAppRegistrations()
 {
-	//registerPath((char*)trollStoreAppPath().UTF8String, 1);
-	registerPath((char*)trollStoreAppPath().UTF8String, 0);
+	registerPath((char*)trollStoreAppPath().UTF8String, 0, YES);
 
 	for(NSString* appPath in trollStoreInstalledAppBundlePaths())
 	{
-		//registerPath((char*)appPath.UTF8String, 1);
-		registerPath((char*)appPath.UTF8String, 0);
+		registerPath((char*)appPath.UTF8String, 0, YES);
 	}
 }
 
-BOOL _installPersistenceHelper(LSApplicationProxy* appProxy, NSString* sourcePersistenceHelper, NSString* sourceRootHelper)
+// Apparently there is some odd behaviour where TrollStore installed apps sometimes get restricted
+// This works around that issue at least and is triggered when rebuilding icon cache
+void cleanRestrictions(void)
 {
-	NSLog(@"_installPersistenceHelper(%@, %@, %@)", appProxy, sourcePersistenceHelper, sourceRootHelper);
+	NSString* clientTruthPath = @"/private/var/containers/Shared/SystemGroup/systemgroup.com.apple.configurationprofiles/Library/ConfigurationProfiles/ClientTruth.plist";
+	NSURL* clientTruthURL = [NSURL fileURLWithPath:clientTruthPath];
+	NSDictionary* clientTruthDictionary = [NSDictionary dictionaryWithContentsOfURL:clientTruthURL];
 
-	NSString* executablePath = appProxy.canonicalExecutablePath;
-	NSString* bundlePath = appProxy.bundleURL.path;
-	if(!executablePath)
+	if(!clientTruthDictionary) return;
+
+	NSArray* valuesArr;
+
+	NSDictionary* lsdAppRemoval = clientTruthDictionary[@"com.apple.lsd.appremoval"];
+	if(lsdAppRemoval && [lsdAppRemoval isKindOfClass:NSDictionary.class])
 	{
-		NSBundle* appBundle = [NSBundle bundleWithPath:bundlePath];
-		executablePath = [bundlePath stringByAppendingPathComponent:[appBundle objectForInfoDictionaryKey:@"CFBundleExecutable"]];
+		NSDictionary* clientRestrictions = lsdAppRemoval[@"clientRestrictions"];
+		if(clientRestrictions && [clientRestrictions isKindOfClass:NSDictionary.class])
+		{
+			NSDictionary* unionDict = clientRestrictions[@"union"];
+			if(unionDict && [unionDict isKindOfClass:NSDictionary.class])
+			{
+				NSDictionary* removedSystemAppBundleIDs = unionDict[@"removedSystemAppBundleIDs"];
+				if(removedSystemAppBundleIDs && [removedSystemAppBundleIDs isKindOfClass:NSDictionary.class])
+				{
+					valuesArr = removedSystemAppBundleIDs[@"values"];
+				}
+			}
+		}
 	}
 
-	NSString* markPath = [bundlePath stringByAppendingPathComponent:@".TrollStorePersistenceHelper"];
-	NSString* rootHelperPath = [bundlePath stringByAppendingPathComponent:@"trollstorehelper"];
+	if(!valuesArr || !valuesArr.count) return;
 
-	// remove existing persistence helper binary if exists
-	if([[NSFileManager defaultManager] fileExistsAtPath:markPath] && [[NSFileManager defaultManager] fileExistsAtPath:executablePath])
+	NSMutableArray* valuesArrM = valuesArr.mutableCopy;
+	__block BOOL changed = NO;
+
+	[valuesArrM enumerateObjectsWithOptions:NSEnumerationReverse usingBlock:^(NSString* value, NSUInteger idx, BOOL *stop)
 	{
-		[[NSFileManager defaultManager] removeItemAtPath:executablePath error:nil];
-	}
+		if(![value hasPrefix:@"com.apple."])
+		{
+			[valuesArrM removeObjectAtIndex:idx];
+			changed = YES;
+		}
+	}];
 
-	// remove existing root helper binary if exists
-	if([[NSFileManager defaultManager] fileExistsAtPath:rootHelperPath])
-	{
-		[[NSFileManager defaultManager] removeItemAtPath:rootHelperPath error:nil];
-	}
+	if(!changed) return;
 
-	// install new persistence helper binary
-	if(![[NSFileManager defaultManager] copyItemAtPath:sourcePersistenceHelper toPath:executablePath error:nil])
-	{
-		return NO;
-	}
+	NSMutableDictionary* clientTruthDictionaryM = (__bridge_transfer NSMutableDictionary*)CFPropertyListCreateDeepCopy(kCFAllocatorDefault, (__bridge CFDictionaryRef)clientTruthDictionary, kCFPropertyListMutableContainersAndLeaves);
+	
+	clientTruthDictionaryM[@"com.apple.lsd.appremoval"][@"clientRestrictions"][@"union"][@"removedSystemAppBundleIDs"][@"values"] = valuesArrM;
 
-	chmod(executablePath.UTF8String, 0755);
-	chown(executablePath.UTF8String, 33, 33);
-
-	NSError* error;
-	if(![[NSFileManager defaultManager] copyItemAtPath:sourceRootHelper toPath:rootHelperPath error:&error])
-	{
-		NSLog(@"error copying root helper: %@", error);
-	}
-
-	chmod(rootHelperPath.UTF8String, 0755);
-	chown(rootHelperPath.UTF8String, 0, 0);
-
-	// mark system app as persistence helper
-	if(![[NSFileManager defaultManager] fileExistsAtPath:markPath])
-	{
-		[[NSFileManager defaultManager] createFileAtPath:markPath contents:[NSData data] attributes:nil];
-	}
-
-	return YES;
+	[clientTruthDictionaryM writeToURL:clientTruthURL error:nil];
 }
 
 
@@ -219,12 +118,12 @@ int main(int argc, char *argv[], char *envp[]) {
             [dict setObject:[NSNumber numberWithInt:511]  forKey:NSFilePosixPermissions];
             [[NSFileManager defaultManager] setAttributes:dict ofItemAtPath:source error:nil];
         } else if ([action isEqual: @"rebuildiconcache"]) {
-            [[LSApplicationWorkspace defaultWorkspace] _LSPrivateRebuildApplicationDatabasesForSystemApps:YES internal:YES user:YES];
-            refreshAppRegistrations(); // needed for trollstore apps still working after rebuilding, otherwise they won't launch
-            respring();
+			cleanRestrictions();
+			[[LSApplicationWorkspace defaultWorkspace] _LSPrivateRebuildApplicationDatabasesForSystemApps:YES internal:YES user:YES];
+			refreshAppRegistrations();
+			killall(@"backboardd");
         }
 
-        // NSLog(@"%s", getuid() == 0 ? "root" : "user");
         return 0;
     }
 }

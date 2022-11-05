@@ -7,12 +7,12 @@
 
 import Foundation
 
-//func remLog(_ objs: Any...) {
-//    for obj in objs {
-//        let args: [CVarArg] = [ String(describing: obj) ]
-//        withVaList(args) { RLogv("%@", $0) }
-//    }
-//}
+func remLog(_ objs: Any...) {
+    for obj in objs {
+        let args: [CVarArg] = [ String(describing: obj) ]
+        withVaList(args) { RLogv("%@", $0) }
+    }
+}
 
 //class ProblemReporter {
 //    func report(_ str: String) {

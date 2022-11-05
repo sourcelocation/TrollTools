@@ -14,6 +14,7 @@ struct PasscodeEditorView: View {
     @State private var faces: [UIImage?] = [UIImage?](repeating: nil, count: 10)
     @State private var changedFaces: [Bool] = [Bool](repeating: false, count: 10)
     @State private var changingFaceN = 0
+    @State private var isBig = false
     
     var body: some View {
         GeometryReader { proxy in
@@ -68,6 +69,10 @@ struct PasscodeEditorView: View {
                             }
                         }
                         Spacer()
+                        Button(isBig ? "Big" : "Small") {
+                            isBig.toggle()
+                        }
+                        Spacer()
                         Button("Remove all") {
                             do {
                                 try PasscodeKeyFaceManager.removeAllFaces()
@@ -99,7 +104,7 @@ struct PasscodeEditorView: View {
         .onChange(of: faces[changingFaceN] ?? UIImage()) { newValue in
             print(newValue)
             do {
-                try PasscodeKeyFaceManager.setFace(newValue, for: changingFaceN)
+                try PasscodeKeyFaceManager.setFace(newValue, for: changingFaceN, isBig: isBig)
             } catch {
                 UIApplication.shared.alert(body: "An error occured while changing key face. \(error)")
             }

@@ -11,71 +11,56 @@ import AssetCatalogWrapper
 
 class CatalogThemeManager {
     
-    static var fm = FileManager.default
+    var fm = FileManager.default
     
-    static func setTheme(theme: Theme, filenameEnding: String, apps: [LSApplicationProxy], progress: (String) -> ()) throws {
-        // Itterate over all icons
-        var systemApps: [LSApplicationProxy] = []
-        
-        let appCount = apps.count
-        for (i,app) in apps.enumerated() {
-                guard let bundleID = app.bundleIdentifier else { throw "Bundle not found" }
-                func sendProgress(_ str: String) {
-                    progress("App #\(i)/\(appCount)\n\(bundleID)\n\n\(str)")
-                }
-                
-                sendProgress("Starting")
-                guard let appURL = app.bundleURL else { continue }
-                
-                // check if it's in /var
-                sendProgress("Checking if app is in /var")
-                guard appURL.pathComponents.count >= 1 && (appURL.pathComponents[1] == "var" || appURL.pathComponents[1] == "private") else {
-                    systemApps.append(app)
-                    continue
-                }
-                
-                // Icon url
-                sendProgress("Getting url of icon in theme")
-                let themeIconURL = theme.url.appendingPathComponent("IconBundles").appendingPathComponent(bundleID + filenameEnding + ".png")
-                guard fm.fileExists(atPath: themeIconURL.path) else { continue }
-                
-                // Backup assets
-                let catalogURL = appURL.appendingPathComponent("Assets.car")
-                let backupURL = try backupAssetsURL(appURL: appURL)
-                
-                // Restore broken apps from backup
-                sendProgress("Checking if assets.car exists")
-                if !fm.fileExists(atPath: catalogURL.path) {
-                    sendProgress("Catalog not found - \(catalogURL.path).\nChecking if backup exists")
-                    if fm.fileExists(atPath: backupURL.path) {
-                        sendProgress("Restoring from backup")
-                        try RootHelper.copy(from: backupURL, to: catalogURL)
-                    } else { continue }
-                }
-                
-                // Create backup if not made
-                sendProgress("Checking if backup exists")
-                if !fm.fileExists(atPath: backupURL.path) {
-                    try RootHelper.copy(from: catalogURL, to: backupURL)
-                }
-                
-                // Get CGImage from icon
-                sendProgress("Creating icon CGImage from theme")
-                let imgData = try Data(contentsOf: themeIconURL)
-                guard let image = UIImage(data: imgData) else { continue }
-                guard let cgImage = image.cgImage else { continue }
-                
-                // Apply new icon
-                sendProgress("Start modifying")
-                try modifyIconInCatalog(url: catalogURL, to: cgImage, sendProgress: sendProgress(_:))
-                sendProgress("Completed")
+    func applyChanges(_ changes: [ThemeManager.UserAppIconChange], progress: (Double) -> ()) throws {
+        let changesCount = Double(changes.count)
+        for (i,change) in changes.enumerated() {
+            try? applyChange(change)
+            progress(Double(i) / changesCount)
         }
-            try WebclipsThemeManager.setTheme(theme: theme, filenameEnding: filenameEnding, apps: systemApps, progress: progress)
-        
-        progress("Completed.")
     }
     
-    static func restoreCatalogs(progress: (String) -> ()) throws {
+    private func applyChange(_ change: ThemeManager.UserAppIconChange) throws {
+        let appURL = change.bundleURL
+        let catalogURL = appURL.appendingPathComponent("Assets.car")
+
+        if let iconURL = change.themeIconURL {
+            // MARK: Apply custom icon
+            
+            // Backup ass :troll:
+            let backupURL = try backupAssetsURL(appURL: appURL)
+            
+            // Restore broken apps from backup
+            if !fm.fileExists(atPath: catalogURL.path) {
+                if fm.fileExists(atPath: backupURL.path) {
+                    try RootHelper.copy(from: backupURL, to: catalogURL)
+                } else { return }
+            }
+            
+            // Create backup if not made
+            if !fm.fileExists(atPath: backupURL.path) {
+                try RootHelper.copy(from: catalogURL, to: backupURL)
+            }
+            
+            // Get CGImage from icon
+            let imgData = try Data(contentsOf: iconURL)
+            guard let image = UIImage(data: imgData) else { return }
+            guard let cgImage = image.cgImage else { return }
+            
+            // Apply new icon
+            try modifyIconInCatalog(url: catalogURL, to: cgImage)
+        } else {
+            // MARK: Revert icon
+            guard fm.fileExists(atPath: catalogURL.path) else { return }
+            let backupURL = try backupAssetsURL(appURL: appURL)
+            guard fm.fileExists(atPath: backupURL.path) else { return }
+            try RootHelper.removeItem(at: catalogURL)
+            try RootHelper.move(from: backupURL, to: catalogURL)
+        }
+    }
+    
+    func restoreCatalogs(progress: (String) -> ()) throws {
         guard let apps = LSApplicationWorkspace.default().allApplications() else { throw "Couldn't get apps" }
         let appCount = apps.count
         for (i, app) in apps.enumerated() {
@@ -94,18 +79,15 @@ class CatalogThemeManager {
         }
     }
     
-    static func modifyIconInCatalog(url: URL, to icon: CGImage, sendProgress: (String) -> ()) throws { // icon: CGImage
+    func modifyIconInCatalog(url: URL, to icon: CGImage) throws { // icon: CGImage
         let tempAssetDir = URL(fileURLWithPath: "/var/mobile/.DO-NOT-DELETE-TrollTools/temp-assets-\(UUID()).car")
-        sendProgress("Moving assets to temp dir")
         try RootHelper.move(from: url, to: tempAssetDir)
         defer {
             try? RootHelper.move(from: tempAssetDir, to: url)
         }
 
-        sendProgress("Setting permission")
         try RootHelper.setPermission(url: tempAssetDir)
 
-        sendProgress("Getting renditions")
         let (catalog, renditionsRoot) = try AssetCatalogWrapper.shared.renditions(forCarArchive: tempAssetDir)
         for rendition in renditionsRoot {
             let type = rendition.type
@@ -116,14 +98,12 @@ class CatalogThemeManager {
                     try catalog.editItem(rend, fileURL: tempAssetDir, to: .image(icon))
                 } catch {
 //                    remLog("failed to edit rendition: \(error) \(rend.type) \(rend.name) \(rend.namedLookup)")
-                    sendProgress("Editing icon asset failed \(rend.type) \(rend.name) \(rend.namedLookup)")
                 }
             }
         }
-        sendProgress("Moving assets.car back into app's bundle")
     }
     
-    static private func backupAssetsURL(appURL: URL) throws -> URL {
+    private func backupAssetsURL(appURL: URL) throws -> URL {
         // Get version of app, so when app updates and user restores assets.car, old
         guard let infoPlistData = try? Data(contentsOf: appURL.appendingPathComponent("Info.plist")), let plist = try? PropertyListSerialization.propertyList(from: infoPlistData, format: nil) as? [String:Any] else { throw "Couldn't read template webclip plist" }
         guard let appShortVersion = (plist["CFBundleShortVersionString"] as? String) ?? plist["CFBundleVersion"] as? String else { throw "CFBundleShortVersionString missing for \(appURL.path)" }

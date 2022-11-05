@@ -9,11 +9,12 @@ import SwiftUI
 
 
 struct ThemeView: View {
+    @EnvironmentObject var themeManager: ThemeManager
     @State var theme: Theme
-    @State var isInUse: Bool
     var wallpaper: UIImage
     var defaultWallpaper: Bool = false
-    var applyTheme: (Theme) -> ()
+    @State var icons: [UIImage?] = []
+    @State var selected: Bool = false
     
     var body: some View {
         VStack {
@@ -26,7 +27,7 @@ struct ThemeView: View {
                     .clipped()
                     .cornerRadius(8)
                     .allowsHitTesting(false)
-                if let icons = try? ThemeManager.getIcons(forBundleIDs: ["com.apple.mobilephone", "com.apple.mobilesafari", "com.apple.mobileslideshow", "com.apple.camera", "com.apple.AppStore", "com.apple.Preferences", "com.apple.Music", "com.apple.calculator"], from: theme) {
+                if icons.count >= 8 {
                     VStack {
                         HStack {
                             ForEach(icons[0...3], id: \.self) {
@@ -65,29 +66,37 @@ struct ThemeView: View {
                 Spacer()
             }
             Button(action: {
-                if !isInUse {
-                    applyTheme(theme)
+                UIImpactFeedbackGenerator(style: .light).impactOccurred()
+                if selected {
+                    themeManager.preferedThemes.removeAll { t in t.name == theme.name }
                 } else {
-                    UIApplication.shared.alert(title: "Use \"Clear current themes\"", body: "You can only turn off *all* themes.")
+                    themeManager.preferedThemes.append(theme)
                 }
+                selected.toggle()
+                remLog(themeManager.preferedIcons.keys.count, themeManager.preferedThemes.count)
             }) {
-                Text(isInUse ? "In use" : "Activate")
+                Text(selected ? "Selected" : "Select")
                     .frame(maxWidth: .infinity)
+                
             }
             .padding(10)
-            .background(isInUse ? Color(red: 48 / 256, green: 209 / 256, blue: 88 / 256, opacity: 0.5) : Color(uiColor14: UIColor.tertiarySystemBackground))
+            .background(selected ? Color.blue : Color(uiColor14: UIColor.tertiarySystemBackground))
             .cornerRadius(8)
-            .foregroundColor(.init(uiColor14: .label))
+            .foregroundColor(selected ? .white : .init(uiColor14: .label) )
         }
         .padding(10)
         .background(Color(uiColor14: .secondarySystemBackground))
         .cornerRadius(16)
+        .onAppear {
+            icons = (try? themeManager.icons(forAppIDs: ["com.apple.mobilephone", "com.apple.mobilesafari", "com.apple.mobileslideshow", "com.apple.camera", "com.apple.AppStore", "com.apple.Preferences", "com.apple.Music", "com.apple.calculator"], from: theme)) ?? []
+            selected = themeManager.preferedThemes.contains(where: { t in t.name == theme.name })
+        }
     }
 }
 
 struct ThemeView_Previews: PreviewProvider {
     static var previews: some View {
-        ThemeView(theme: Theme(name: "Theme", iconCount: 23), isInUse: true, wallpaper: UIImage(named: "wallpaper")!, applyTheme: { _ in})
+        ThemeView(theme: Theme(name: "Theme", iconCount: 23), wallpaper: UIImage(named: "wallpaper")!)
             .frame(width: 190)
     }
 }

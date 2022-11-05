@@ -10,8 +10,8 @@ import UIKit
 class PasscodeKeyFaceManager {
     static let telephonyUIURL = URL(fileURLWithPath: "/var/mobile/Library/Caches/TelephonyUI-8")
     
-    static func setFace(_ image: UIImage, for n: Int) throws {
-        let size = CGSize(width: 150, height: 150)
+    static func setFace(_ image: UIImage, for n: Int, isBig: Bool) throws {
+        let size = isBig ? CGSize(width: 225, height: 225) : CGSize(width: 152, height: 152)
         UIGraphicsBeginImageContextWithOptions(size, false, 1.0)
         image.draw(in: CGRect(origin: .zero, size: size))
         let newImage = UIGraphicsGetImageFromCurrentImageContext()
@@ -26,7 +26,7 @@ class PasscodeKeyFaceManager {
         let fm = FileManager.default
         
         for imageURL in try fm.contentsOfDirectory(at: telephonyUIURL, includingPropertiesForKeys: nil) {
-            let size = CGSize(width: 150, height: 150)
+            let size = CGSize(width: 152, height: 152)
             UIGraphicsBeginImageContextWithOptions(size, false, 1.0)
             UIImage().draw(in: CGRect(origin: .zero, size: size))
             let newImage = UIGraphicsGetImageFromCurrentImageContext()

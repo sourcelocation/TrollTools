@@ -9,6 +9,9 @@ APPLICATION_NAME=TrollTools
 CONFIGURATION=Debug
 
 cd build
+if [ -e "$APPLICATION_NAME.tipa" ]; then
+rm $APPLICATION_NAME.tipa
+fi
 
 # Build .app
 xcodebuild -project "$WORKING_LOCATION/$APPLICATION_NAME.xcodeproj" \
@@ -61,4 +64,3 @@ cp -r $APPLICATION_NAME.app Payload/$APPLICATION_NAME.app
 zip -vr $APPLICATION_NAME.tipa Payload
 rm -rf $APPLICATION_NAME.app
 rm -rf Payload
-zip -vr share.zip $APPLICATION_NAME.tipa
