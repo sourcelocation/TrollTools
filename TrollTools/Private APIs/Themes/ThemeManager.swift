@@ -144,7 +144,7 @@ class ThemeManager: ObservableObject {
         try fm.createDirectory(at: themeURL, withIntermediateDirectories: true)
         
         for icon in (try? fm.contentsOfDirectory(at: importURL, includingPropertiesForKeys: nil)) ?? [] {
-            try fm.copyItem(at: icon, to: themeURL.appendingPathComponent(appIDFromIcon(url: icon) + ".png"))
+            try? fm.copyItem(at: icon, to: themeURL.appendingPathComponent(appIDFromIcon(url: icon) + ".png"))
         }
         return Theme(name: themeURL.deletingPathExtension().lastPathComponent, iconCount: try fm.contentsOfDirectory(at: themeURL, includingPropertiesForKeys: nil).count)
     }

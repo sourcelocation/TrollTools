@@ -26,6 +26,7 @@ struct IconOverridesView: View {
                         }
                 }
             }
+            .padding(.bottom, 80)
         }
         .navigationTitle("Icons override")
         .onAppear {

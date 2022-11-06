@@ -171,7 +171,7 @@ struct ThemesView: View {
         .navigationViewStyle(StackNavigationViewStyle())
         .fileImporter(
             isPresented: $isImporting,
-            allowedContentTypes: [.folder, .init(filenameExtension: "theme")!],
+            allowedContentTypes: [.folder],
             allowsMultipleSelection: false
         ) { result in
             guard let url = try? result.get().first else { UIApplication.shared.alert(body: "Couldn't get url of file. Did you select it?"); return }
@@ -198,11 +198,7 @@ struct ThemesView: View {
                         UIApplication.shared.change(title: "In progress", body: str)
                     })
                     UINotificationFeedbackGenerator().notificationOccurred(.success)
-                    UIApplication.shared.change(title: "Rebuilding Icon Cache...", body: "Device will respring after rebuild\n\nElapsed time: \(Double(Int(-timeStart.timeIntervalSinceNow * 100.0)) / 100.0)s")
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.1, execute: {
-                        try! RootHelper.rebuildIconCache()
-                        exit(0) // because it resprings
-                    })
+                    UIApplication.shared.change(title: "Rebuild Icon Caches", body: "To apply changes, please rebuild icon caches inside TrollStore\n\nElapsed time: \(Double(Int(-timeStart.timeIntervalSinceNow * 100.0)) / 100.0)s")
                 } catch { UIApplication.shared.change(body: error.localizedDescription) }
             }
         }
