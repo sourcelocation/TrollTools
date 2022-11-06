@@ -198,7 +198,10 @@ struct ThemesView: View {
                         UIApplication.shared.change(title: "In progress", body: str)
                     })
                     UINotificationFeedbackGenerator().notificationOccurred(.success)
-                    UIApplication.shared.change(title: "Rebuild Icon Caches", body: "To apply changes, please rebuild icon caches inside TrollStore\n\nElapsed time: \(Double(Int(-timeStart.timeIntervalSinceNow * 100.0)) / 100.0)s")
+                    UIApplication.shared.change(title: "Rebuilding Icon Cache...", body: "Device will respring after rebuild\n\nElapsed time: \(Double(Int(-timeStart.timeIntervalSinceNow * 100.0)) / 100.0)s")
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.1, execute: {
+                        try! RootHelper.rebuildIconCache()
+                    })
                 } catch { UIApplication.shared.change(body: error.localizedDescription) }
             }
         }
@@ -228,7 +231,6 @@ struct ThemesView: View {
                 UIApplication.shared.change(title: "Rebuilding Icon Cache...", body: "Device will respring after rebuild")
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.1, execute: {
                     try! RootHelper.rebuildIconCache()
-                    //                    exit(0) // because it resprings
                 })
             }
         }
