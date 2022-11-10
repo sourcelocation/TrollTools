@@ -11,6 +11,10 @@ import NSTaskBridge
 class RootHelper {
     static let rootHelperPath = Bundle.main.url(forAuxiliaryExecutable: "trolltoolsroothelper")?.path ?? "/"
     
+    static func writeStr(_ str: String, to url: URL) throws  {
+        let code = spawnRoot(rootHelperPath, ["writedata", str, url.path], nil, nil)
+        guard code == 0 else { throw "Helper.writedata: returned non-zero code \(code)" }
+    }
     static func move(from sourceURL: URL, to destURL: URL) throws {
         let code = spawnRoot(rootHelperPath, ["filemove", sourceURL.path, destURL.path], nil, nil)
         guard code == 0 else { throw "Helper.move: returned non-zero code \(code)" }
@@ -37,6 +41,6 @@ class RootHelper {
     }
     static func loadMCM() throws {
         let code = spawnRoot(rootHelperPath, ["", "", ""], nil, nil)
-        guard code == 0 else { throw "Helper.rebuildIconCache: returned non-zero code \(code)" }
+        guard code == 0 else { throw "Helper.loadMCM: returned non-zero code \(code)" }
     }
 }

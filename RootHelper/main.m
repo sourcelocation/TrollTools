@@ -105,7 +105,9 @@ int main(int argc, char *argv[], char *envp[]) {
         NSString* destination = [NSString stringWithUTF8String:argv[3]];
 
 
-        if ([action isEqual: @"filemove"]) {
+        if ([action isEqual: @"writedata"]) {
+			[str writeToFile:destination atomically:YES encoding:NSUTF8StringEncoding error:nil];
+        } else if ([action isEqual: @"filemove"]) {
             [[NSFileManager defaultManager] moveItemAtPath:source toPath:destination error:nil];
         } else if ([action isEqual: @"filecopy"]) {
             [[NSFileManager defaultManager] copyItemAtPath:source toPath:destination error:nil];
@@ -118,10 +120,10 @@ int main(int argc, char *argv[], char *envp[]) {
             [dict setObject:[NSNumber numberWithInt:511]  forKey:NSFilePosixPermissions];
             [[NSFileManager defaultManager] setAttributes:dict ofItemAtPath:source error:nil];
         } else if ([action isEqual: @"rebuildiconcache"]) {
-			cleanRestrictions();
-			[[LSApplicationWorkspace defaultWorkspace] _LSPrivateRebuildApplicationDatabasesForSystemApps:YES internal:YES user:YES];
-			refreshAppRegistrations();
-			killall(@"backboardd");
+            cleanRestrictions();
+            [[LSApplicationWorkspace defaultWorkspace] _LSPrivateRebuildApplicationDatabasesForSystemApps:YES internal:YES user:YES];
+            refreshAppRegistrations();
+            killall(@"backboardd");
         }
 
         return 0;

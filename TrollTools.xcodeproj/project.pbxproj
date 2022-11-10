@@ -28,12 +28,20 @@
 		CE2BF8372902E10900AD10BE /* TrollToolsApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2BF8362902E10900AD10BE /* TrollToolsApp.swift */; };
 		CE2BF8452902E21D00AD10BE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CE2BF8442902E21D00AD10BE /* Assets.xcassets */; };
 		CE76386D290AED160099C6F0 /* ProblemReporter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE76386C290AED160099C6F0 /* ProblemReporter.swift */; };
+		CE7975A5291B1E0C007A38E7 /* ToolsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7975A4291B1E0C007A38E7 /* ToolsView.swift */; };
+		CE7975A7291B2A4B007A38E7 /* GesturesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7975A6291B2A4B007A38E7 /* GesturesView.swift */; };
+		CE7975AC291C3494007A38E7 /* SwiftyXMLParser in Frameworks */ = {isa = PBXBuildFile; productRef = CE7975AB291C3494007A38E7 /* SwiftyXMLParser */; };
+		CE7975AF291C4270007A38E7 /* NoRespring.plist in Resources */ = {isa = PBXBuildFile; fileRef = CE7975AE291C4270007A38E7 /* NoRespring.plist */; };
+		CE7975B1291C4533007A38E7 /* LockscreenRespringView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7975B0291C4533007A38E7 /* LockscreenRespringView.swift */; };
 		CE7D5CCA2905E10400EA26D2 /* AssetCatalogWrapper in Frameworks */ = {isa = PBXBuildFile; productRef = CE7D5CC92905E10400EA26D2 /* AssetCatalogWrapper */; };
 		CE7D5CFD2906C2BD00EA26D2 /* FSOperations in Frameworks */ = {isa = PBXBuildFile; productRef = CE7D5CFC2906C2BD00EA26D2 /* FSOperations */; };
 		CE7D5D1D290706C600EA26D2 /* NSTask in Frameworks */ = {isa = PBXBuildFile; productRef = CE7D5D1C290706C600EA26D2 /* NSTask */; };
 		CE8DC8D52904C22500A1CBB0 /* RootHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8DC8D42904C22500A1CBB0 /* RootHelper.swift */; };
 		CEECE830290C496D007E9496 /* IconOverridesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEECE82F290C496D007E9496 /* IconOverridesView.swift */; };
 		CEECE832290C5405007E9496 /* AltIconSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEECE831290C5405007E9496 /* AltIconSelectionView.swift */; };
+		CEF56C3F291C605600DDEBFD /* CalculatorErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF56C3E291C605600DDEBFD /* CalculatorErrorView.swift */; };
+		CEF56C41291D4E7E00DDEBFD /* AboutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF56C40291D4E7E00DDEBFD /* AboutView.swift */; };
+		CEF56C44291D715A00DDEBFD /* CalculatorLocalizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = CEF56C42291D713700DDEBFD /* CalculatorLocalizable.strings */; };
 		CEFE362E2904AC6400938D98 /* TSUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = CEFE36292904AC6400938D98 /* TSUtil.m */; };
 		CEFE36632904AF8C00938D98 /* Dynamic in Frameworks */ = {isa = PBXBuildFile; productRef = CEFE36622904AF8C00938D98 /* Dynamic */; };
 		CEFE36642904B27B00938D98 /* CoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE2BF83E2902E18900AD10BE /* CoreServices.framework */; };
@@ -65,10 +73,17 @@
 		CE6C7D9429048729004689F1 /* TrollTools-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "TrollTools-Bridging-Header.h"; sourceTree = "<group>"; };
 		CE76386B290AECE70099C6F0 /* RemoteLog.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RemoteLog.h; sourceTree = "<group>"; };
 		CE76386C290AED160099C6F0 /* ProblemReporter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProblemReporter.swift; sourceTree = "<group>"; };
+		CE7975A4291B1E0C007A38E7 /* ToolsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolsView.swift; sourceTree = "<group>"; };
+		CE7975A6291B2A4B007A38E7 /* GesturesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GesturesView.swift; sourceTree = "<group>"; wrapsLines = 1; };
+		CE7975AE291C4270007A38E7 /* NoRespring.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = NoRespring.plist; sourceTree = "<group>"; };
+		CE7975B0291C4533007A38E7 /* LockscreenRespringView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LockscreenRespringView.swift; sourceTree = "<group>"; };
 		CE7D5D2229070FA600EA26D2 /* entitlements.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = entitlements.plist; sourceTree = "<group>"; };
 		CE8DC8D42904C22500A1CBB0 /* RootHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootHelper.swift; sourceTree = "<group>"; };
 		CEECE82F290C496D007E9496 /* IconOverridesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconOverridesView.swift; sourceTree = "<group>"; };
 		CEECE831290C5405007E9496 /* AltIconSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AltIconSelectionView.swift; sourceTree = "<group>"; };
+		CEF56C3E291C605600DDEBFD /* CalculatorErrorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalculatorErrorView.swift; sourceTree = "<group>"; };
+		CEF56C40291D4E7E00DDEBFD /* AboutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutView.swift; sourceTree = "<group>"; };
+		CEF56C42291D713700DDEBFD /* CalculatorLocalizable.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = CalculatorLocalizable.strings; sourceTree = "<group>"; };
 		CEFE36262904A8B600938D98 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CEFE36292904AC6400938D98 /* TSUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSUtil.m; sourceTree = "<group>"; };
 		CEFE362C2904AC6400938D98 /* TSUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSUtil.h; sourceTree = "<group>"; };
@@ -86,6 +101,7 @@
 				CEFE36642904B27B00938D98 /* CoreServices.framework in Frameworks */,
 				CEFE36632904AF8C00938D98 /* Dynamic in Frameworks */,
 				CE7D5D1D290706C600EA26D2 /* NSTask in Frameworks */,
+				CE7975AC291C3494007A38E7 /* SwiftyXMLParser in Frameworks */,
 				CE7D5CFD2906C2BD00EA26D2 /* FSOperations in Frameworks */,
 				CE141B4829045D5F00AB48A7 /* MobileCoreServices.framework in Frameworks */,
 				CE7D5CCA2905E10400EA26D2 /* AssetCatalogWrapper in Frameworks */,
@@ -120,6 +136,7 @@
 		CE1CD0582905D302005C9582 /* Other */ = {
 			isa = PBXGroup;
 			children = (
+				CE7975AD291C4256007A38E7 /* Templates */,
 				CE76386B290AECE70099C6F0 /* RemoteLog.h */,
 				CE2BF80F2902E07F00AD10BE /* Extensions.swift */,
 				CE2BF8362902E10900AD10BE /* TrollToolsApp.swift */,
@@ -149,14 +166,13 @@
 		CE2BF7B92902DFF300AD10BE /* TrollTools */ = {
 			isa = PBXGroup;
 			children = (
+				CE2BF8442902E21D00AD10BE /* Assets.xcassets */,
 				CE1CD0582905D302005C9582 /* Other */,
 				CEFE36262904A8B600938D98 /* Info.plist */,
-				CE2BF8442902E21D00AD10BE /* Assets.xcassets */,
 				CEFE36282904AC6400938D98 /* TS */,
 				CE2BF81F2902E07F00AD10BE /* Private APIs */,
 				CE2BF8182902E07F00AD10BE /* RootView.swift */,
 				CE2BF8102902E07F00AD10BE /* Views */,
-				CE2BF8172902E07F00AD10BE /* WebClipTemplate.plist */,
 				CE6C7D9429048729004689F1 /* TrollTools-Bridging-Header.h */,
 			);
 			path = TrollTools;
@@ -170,6 +186,11 @@
 				CE2BF8142902E07F00AD10BE /* BadgeChangerView.swift */,
 				CE2BF8162902E07F00AD10BE /* PasscodeEditorView.swift */,
 				CE141B362903E73F00AB48A7 /* CardChangerView.swift */,
+				CE7975A4291B1E0C007A38E7 /* ToolsView.swift */,
+				CE7975A6291B2A4B007A38E7 /* GesturesView.swift */,
+				CE7975B0291C4533007A38E7 /* LockscreenRespringView.swift */,
+				CEF56C3E291C605600DDEBFD /* CalculatorErrorView.swift */,
+				CEF56C40291D4E7E00DDEBFD /* AboutView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -207,6 +228,16 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		CE7975AD291C4256007A38E7 /* Templates */ = {
+			isa = PBXGroup;
+			children = (
+				CE2BF8172902E07F00AD10BE /* WebClipTemplate.plist */,
+				CE7975AE291C4270007A38E7 /* NoRespring.plist */,
+				CEF56C42291D713700DDEBFD /* CalculatorLocalizable.strings */,
+			);
+			path = Templates;
+			sourceTree = "<group>";
+		};
 		CEFE36282904AC6400938D98 /* TS */ = {
 			isa = PBXGroup;
 			children = (
@@ -238,6 +269,7 @@
 				CE7D5CC92905E10400EA26D2 /* AssetCatalogWrapper */,
 				CE7D5CFC2906C2BD00EA26D2 /* FSOperations */,
 				CE7D5D1C290706C600EA26D2 /* NSTask */,
+				CE7975AB291C3494007A38E7 /* SwiftyXMLParser */,
 			);
 			productName = TrollTools;
 			productReference = CE2BF7B72902DFF300AD10BE /* TrollTools.app */;
@@ -271,6 +303,7 @@
 			packageReferences = (
 				CEFE36612904AF8C00938D98 /* XCRemoteSwiftPackageReference "Dynamic" */,
 				CE7D5CC82905E10400EA26D2 /* XCRemoteSwiftPackageReference "SantanderWrappers" */,
+				CE7975AA291C3494007A38E7 /* XCRemoteSwiftPackageReference "SwiftyXMLParser" */,
 			);
 			productRefGroup = CE2BF7B82902DFF300AD10BE /* Products */;
 			projectDirPath = "";
@@ -287,7 +320,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				CE2BF8452902E21D00AD10BE /* Assets.xcassets in Resources */,
+				CEF56C44291D715A00DDEBFD /* CalculatorLocalizable.strings in Resources */,
 				CE2BF82A2902E07F00AD10BE /* WebClipTemplate.plist in Resources */,
+				CE7975AF291C4270007A38E7 /* NoRespring.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -309,13 +344,18 @@
 				CE2BF8272902E07F00AD10BE /* BadgeChangerView.swift in Sources */,
 				CE141B3C2903F22F00AB48A7 /* ThemeView.swift in Sources */,
 				CE2BF8282902E07F00AD10BE /* ThemesView.swift in Sources */,
+				CE7975B1291C4533007A38E7 /* LockscreenRespringView.swift in Sources */,
 				CE141B372903E73F00AB48A7 /* CardChangerView.swift in Sources */,
 				CE8DC8D52904C22500A1CBB0 /* RootHelper.swift in Sources */,
 				CE2BF8292902E07F00AD10BE /* PasscodeEditorView.swift in Sources */,
 				CE141B582904609B00AB48A7 /* CatalogThemeManager.swift in Sources */,
+				CE7975A5291B1E0C007A38E7 /* ToolsView.swift in Sources */,
 				CE2BF8242902E07F00AD10BE /* Extensions.swift in Sources */,
 				CE141B5A290460AE00AB48A7 /* WebclipsThemeManager.swift in Sources */,
+				CEF56C3F291C605600DDEBFD /* CalculatorErrorView.swift in Sources */,
+				CE7975A7291B2A4B007A38E7 /* GesturesView.swift in Sources */,
 				CE76386D290AED160099C6F0 /* ProblemReporter.swift in Sources */,
+				CEF56C41291D4E7E00DDEBFD /* AboutView.swift in Sources */,
 				CEECE832290C5405007E9496 /* AltIconSelectionView.swift in Sources */,
 				CE2BF82E2902E07F00AD10BE /* WallpaperGetter.swift in Sources */,
 				CE141B3A2903F20800AB48A7 /* ThemesSettingsView.swift in Sources */,
@@ -473,7 +513,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/TrollTools/Private\\ APIs/AssetCatalogWrapper/CoreUI/CoreUI.framework",
 				);
-				MARKETING_VERSION = 2.1.1;
+				MARKETING_VERSION = 2.1.2;
 				PRODUCT_BUNDLE_IDENTIFIER = net.sourceloc.TrollTools;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -520,7 +560,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/TrollTools/Private\\ APIs/AssetCatalogWrapper/CoreUI/CoreUI.framework",
 				);
-				MARKETING_VERSION = 2.1.1;
+				MARKETING_VERSION = 2.1.2;
 				PRODUCT_BUNDLE_IDENTIFIER = net.sourceloc.TrollTools;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -557,6 +597,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		CE7975AA291C3494007A38E7 /* XCRemoteSwiftPackageReference "SwiftyXMLParser" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/yahoojapan/SwiftyXMLParser";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
 		CE7D5CC82905E10400EA26D2 /* XCRemoteSwiftPackageReference "SantanderWrappers" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SerenaKit/SantanderWrappers";
@@ -576,6 +624,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		CE7975AB291C3494007A38E7 /* SwiftyXMLParser */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CE7975AA291C3494007A38E7 /* XCRemoteSwiftPackageReference "SwiftyXMLParser" */;
+			productName = SwiftyXMLParser;
+		};
 		CE7D5CC92905E10400EA26D2 /* AssetCatalogWrapper */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = CE7D5CC82905E10400EA26D2 /* XCRemoteSwiftPackageReference "SantanderWrappers" */;

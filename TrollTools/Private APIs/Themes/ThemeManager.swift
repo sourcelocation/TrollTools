@@ -118,7 +118,6 @@ class ThemeManager: ObservableObject {
         appIDs.map { try? icon(forAppID: $0, from: theme) }
     }
     func icon(forAppID appID: String, from theme: Theme) throws -> UIImage {
-        remLog(theme.url.appendingPathComponent(appID).path + ".png")
         guard let image = UIImage(contentsOfFile: theme.url.appendingPathComponent(appID).path + ".png") else { throw "Couldn't open image" }
         return image
     }

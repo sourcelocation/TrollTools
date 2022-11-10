@@ -17,6 +17,15 @@
         "branch" : "main",
         "revision" : "06608bb5180405fdb4d3d98df7a364a8e1a3f7d9"
       }
+    },
+    {
+      "identity" : "swiftyxmlparser",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/yahoojapan/SwiftyXMLParser",
+      "state" : {
+        "revision" : "d7a1d23f04c86c1cd2e8f19247dd15d74e0ea8be",
+        "version" : "5.6.0"
+      }
     }
   ],
   "version" : 2

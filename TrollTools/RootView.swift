@@ -16,13 +16,13 @@ struct RootView: View {
                 .tabItem {
                     Label("Themes", systemImage: "paintbrush")
                 }
-            BadgeChangerView()
+            ToolsView()
                 .tabItem {
-                    Label("Badge Color", systemImage: "app.badge")
+                    Label("Tools", systemImage: "wrench.and.screwdriver")
                 }
-            PasscodeEditorView()
+            AboutView()
                 .tabItem {
-                    Label("Pass Keys", systemImage: "ellipsis.rectangle")
+                    Label("About", systemImage: "info.circle")
                 }
 //            CardChangerView()
 //                .tabItem {
