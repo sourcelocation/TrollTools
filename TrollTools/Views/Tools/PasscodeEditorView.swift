@@ -55,7 +55,7 @@ struct PasscodeEditorView: View {
                         }
                         PasscodeKeyView(face: faces[0], action: { showPicker(0) })
                     }
-                    .padding(.vertical, 32)
+                    .padding(.top, 16)
                 }
                 VStack {
                     Spacer()
@@ -87,6 +87,7 @@ struct PasscodeEditorView: View {
                 }
             }
         }
+        .navigationBarTitleDisplayMode(.inline)
         .onAppear {
             do {
                 faces = try PasscodeKeyFaceManager.getFaces()

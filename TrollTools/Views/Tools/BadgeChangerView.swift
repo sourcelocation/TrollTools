@@ -17,11 +17,15 @@ struct BadgeChangerView: View {
     var body: some View {
         GeometryReader { proxy in
             let minSize = min(proxy.size.width, proxy.size.height)
-            ZStack {
+            ZStack(alignment: .center) {
                 Image(uiImage: WallpaperGetter.homescreen() ?? UIImage(named: "wallpaper")!)
                     .resizable()
                     .aspectRatio(contentMode: .fill)
-                    .frame(height: max(proxy.size.width, proxy.size.height) * 1.5)
+                    .scaleEffect(1.5)
+                    .frame(width: proxy.size.width, height: proxy.size.height)
+                MaterialView(.light)
+                    .brightness(-0.4)
+                    .ignoresSafeArea()
                 VStack {
                     ZStack(alignment: .topTrailing) {
                         Image(uiImage: UIImage(named: "1024")!)
@@ -90,8 +94,7 @@ struct BadgeChangerView: View {
                     .foregroundColor(.white)
                 }
             }
-            .navigationTitle("Badge Color")
-            .navigationBarTitleTextColor(Color.white)
+            .navigationBarTitleDisplayMode(.inline)
         }
         .sheet(isPresented: $showingImagePicker) {
             ImagePickerView(image: $image)

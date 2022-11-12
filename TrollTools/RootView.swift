@@ -12,13 +12,17 @@ struct RootView: View {
     
     var body: some View {
         TabView {
+            ToolsView()
+                .tabItem {
+                    Label("Tools", systemImage: "wrench.and.screwdriver")
+                }
             ThemesView()
                 .tabItem {
                     Label("Themes", systemImage: "paintbrush")
                 }
-            ToolsView()
+            LocationSimulationView()
                 .tabItem {
-                    Label("Tools", systemImage: "wrench.and.screwdriver")
+                    Label("Location Sim", systemImage: "location.viewfinder")
                 }
             AboutView()
                 .tabItem {

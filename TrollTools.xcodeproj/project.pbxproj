@@ -31,7 +31,7 @@
 		CE7975A5291B1E0C007A38E7 /* ToolsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7975A4291B1E0C007A38E7 /* ToolsView.swift */; };
 		CE7975A7291B2A4B007A38E7 /* GesturesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7975A6291B2A4B007A38E7 /* GesturesView.swift */; };
 		CE7975AC291C3494007A38E7 /* SwiftyXMLParser in Frameworks */ = {isa = PBXBuildFile; productRef = CE7975AB291C3494007A38E7 /* SwiftyXMLParser */; };
-		CE7975AF291C4270007A38E7 /* NoRespring.plist in Resources */ = {isa = PBXBuildFile; fileRef = CE7975AE291C4270007A38E7 /* NoRespring.plist */; };
+		CE7975AF291C4270007A38E7 /* com.apple.springboard.plist in Resources */ = {isa = PBXBuildFile; fileRef = CE7975AE291C4270007A38E7 /* com.apple.springboard.plist */; };
 		CE7975B1291C4533007A38E7 /* LockscreenRespringView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7975B0291C4533007A38E7 /* LockscreenRespringView.swift */; };
 		CE7D5CCA2905E10400EA26D2 /* AssetCatalogWrapper in Frameworks */ = {isa = PBXBuildFile; productRef = CE7D5CC92905E10400EA26D2 /* AssetCatalogWrapper */; };
 		CE7D5CFD2906C2BD00EA26D2 /* FSOperations in Frameworks */ = {isa = PBXBuildFile; productRef = CE7D5CFC2906C2BD00EA26D2 /* FSOperations */; };
@@ -41,7 +41,7 @@
 		CEECE832290C5405007E9496 /* AltIconSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEECE831290C5405007E9496 /* AltIconSelectionView.swift */; };
 		CEF56C3F291C605600DDEBFD /* CalculatorErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF56C3E291C605600DDEBFD /* CalculatorErrorView.swift */; };
 		CEF56C41291D4E7E00DDEBFD /* AboutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF56C40291D4E7E00DDEBFD /* AboutView.swift */; };
-		CEF56C44291D715A00DDEBFD /* CalculatorLocalizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = CEF56C42291D713700DDEBFD /* CalculatorLocalizable.strings */; };
+		CEF56C49291EFA7400DDEBFD /* LocationSimulationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF56C48291EFA7400DDEBFD /* LocationSimulationView.swift */; };
 		CEFE362E2904AC6400938D98 /* TSUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = CEFE36292904AC6400938D98 /* TSUtil.m */; };
 		CEFE36632904AF8C00938D98 /* Dynamic in Frameworks */ = {isa = PBXBuildFile; productRef = CEFE36622904AF8C00938D98 /* Dynamic */; };
 		CEFE36642904B27B00938D98 /* CoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE2BF83E2902E18900AD10BE /* CoreServices.framework */; };
@@ -75,7 +75,7 @@
 		CE76386C290AED160099C6F0 /* ProblemReporter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProblemReporter.swift; sourceTree = "<group>"; };
 		CE7975A4291B1E0C007A38E7 /* ToolsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolsView.swift; sourceTree = "<group>"; };
 		CE7975A6291B2A4B007A38E7 /* GesturesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GesturesView.swift; sourceTree = "<group>"; wrapsLines = 1; };
-		CE7975AE291C4270007A38E7 /* NoRespring.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = NoRespring.plist; sourceTree = "<group>"; };
+		CE7975AE291C4270007A38E7 /* com.apple.springboard.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = com.apple.springboard.plist; sourceTree = "<group>"; };
 		CE7975B0291C4533007A38E7 /* LockscreenRespringView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LockscreenRespringView.swift; sourceTree = "<group>"; };
 		CE7D5D2229070FA600EA26D2 /* entitlements.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = entitlements.plist; sourceTree = "<group>"; };
 		CE8DC8D42904C22500A1CBB0 /* RootHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootHelper.swift; sourceTree = "<group>"; };
@@ -83,7 +83,8 @@
 		CEECE831290C5405007E9496 /* AltIconSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AltIconSelectionView.swift; sourceTree = "<group>"; };
 		CEF56C3E291C605600DDEBFD /* CalculatorErrorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalculatorErrorView.swift; sourceTree = "<group>"; };
 		CEF56C40291D4E7E00DDEBFD /* AboutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutView.swift; sourceTree = "<group>"; };
-		CEF56C42291D713700DDEBFD /* CalculatorLocalizable.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = CalculatorLocalizable.strings; sourceTree = "<group>"; };
+		CEF56C45291DACCD00DDEBFD /* TrollTools.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = TrollTools.entitlements; sourceTree = "<group>"; };
+		CEF56C48291EFA7400DDEBFD /* LocationSimulationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationSimulationView.swift; sourceTree = "<group>"; };
 		CEFE36262904A8B600938D98 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CEFE36292904AC6400938D98 /* TSUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSUtil.m; sourceTree = "<group>"; };
 		CEFE362C2904AC6400938D98 /* TSUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSUtil.h; sourceTree = "<group>"; };
@@ -166,6 +167,7 @@
 		CE2BF7B92902DFF300AD10BE /* TrollTools */ = {
 			isa = PBXGroup;
 			children = (
+				CEF56C45291DACCD00DDEBFD /* TrollTools.entitlements */,
 				CE2BF8442902E21D00AD10BE /* Assets.xcassets */,
 				CE1CD0582905D302005C9582 /* Other */,
 				CEFE36262904A8B600938D98 /* Info.plist */,
@@ -181,15 +183,11 @@
 		CE2BF8102902E07F00AD10BE /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				CEF56C47291EFA6400DDEBFD /* LocSim */,
+				CEF56C46291EB06200DDEBFD /* Tools */,
 				CE141B382903F1F500AB48A7 /* Themes */,
 				CE2BF8112902E07F00AD10BE /* Other Views */,
-				CE2BF8142902E07F00AD10BE /* BadgeChangerView.swift */,
-				CE2BF8162902E07F00AD10BE /* PasscodeEditorView.swift */,
 				CE141B362903E73F00AB48A7 /* CardChangerView.swift */,
-				CE7975A4291B1E0C007A38E7 /* ToolsView.swift */,
-				CE7975A6291B2A4B007A38E7 /* GesturesView.swift */,
-				CE7975B0291C4533007A38E7 /* LockscreenRespringView.swift */,
-				CEF56C3E291C605600DDEBFD /* CalculatorErrorView.swift */,
 				CEF56C40291D4E7E00DDEBFD /* AboutView.swift */,
 			);
 			path = Views;
@@ -232,10 +230,30 @@
 			isa = PBXGroup;
 			children = (
 				CE2BF8172902E07F00AD10BE /* WebClipTemplate.plist */,
-				CE7975AE291C4270007A38E7 /* NoRespring.plist */,
-				CEF56C42291D713700DDEBFD /* CalculatorLocalizable.strings */,
+				CE7975AE291C4270007A38E7 /* com.apple.springboard.plist */,
 			);
 			path = Templates;
+			sourceTree = "<group>";
+		};
+		CEF56C46291EB06200DDEBFD /* Tools */ = {
+			isa = PBXGroup;
+			children = (
+				CE2BF8142902E07F00AD10BE /* BadgeChangerView.swift */,
+				CE2BF8162902E07F00AD10BE /* PasscodeEditorView.swift */,
+				CE7975A4291B1E0C007A38E7 /* ToolsView.swift */,
+				CE7975A6291B2A4B007A38E7 /* GesturesView.swift */,
+				CE7975B0291C4533007A38E7 /* LockscreenRespringView.swift */,
+				CEF56C3E291C605600DDEBFD /* CalculatorErrorView.swift */,
+			);
+			path = Tools;
+			sourceTree = "<group>";
+		};
+		CEF56C47291EFA6400DDEBFD /* LocSim */ = {
+			isa = PBXGroup;
+			children = (
+				CEF56C48291EFA7400DDEBFD /* LocationSimulationView.swift */,
+			);
+			path = LocSim;
 			sourceTree = "<group>";
 		};
 		CEFE36282904AC6400938D98 /* TS */ = {
@@ -320,9 +338,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				CE2BF8452902E21D00AD10BE /* Assets.xcassets in Resources */,
-				CEF56C44291D715A00DDEBFD /* CalculatorLocalizable.strings in Resources */,
 				CE2BF82A2902E07F00AD10BE /* WebClipTemplate.plist in Resources */,
-				CE7975AF291C4270007A38E7 /* NoRespring.plist in Resources */,
+				CE7975AF291C4270007A38E7 /* com.apple.springboard.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -349,6 +366,7 @@
 				CE8DC8D52904C22500A1CBB0 /* RootHelper.swift in Sources */,
 				CE2BF8292902E07F00AD10BE /* PasscodeEditorView.swift in Sources */,
 				CE141B582904609B00AB48A7 /* CatalogThemeManager.swift in Sources */,
+				CEF56C49291EFA7400DDEBFD /* LocationSimulationView.swift in Sources */,
 				CE7975A5291B1E0C007A38E7 /* ToolsView.swift in Sources */,
 				CE2BF8242902E07F00AD10BE /* Extensions.swift in Sources */,
 				CE141B5A290460AE00AB48A7 /* WebclipsThemeManager.swift in Sources */,
@@ -486,6 +504,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = TrollTools/TrollTools.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 92S6JX27W2;
@@ -533,6 +552,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = TrollTools/TrollTools.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 92S6JX27W2;

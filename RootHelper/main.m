@@ -106,7 +106,7 @@ int main(int argc, char *argv[], char *envp[]) {
 
 
         if ([action isEqual: @"writedata"]) {
-			[str writeToFile:destination atomically:YES encoding:NSUTF8StringEncoding error:nil];
+			[source writeToFile:destination atomically:YES encoding:NSUTF8StringEncoding error:nil];
         } else if ([action isEqual: @"filemove"]) {
             [[NSFileManager defaultManager] moveItemAtPath:source toPath:destination error:nil];
         } else if ([action isEqual: @"filecopy"]) {

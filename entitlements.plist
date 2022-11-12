@@ -7,6 +7,7 @@
 	<key>com.apple.security.exception.files.absolute-path.read-write</key>
 	<array>
 		<string>/var/Managed Preferences/mobile</string>
+		<string>/var/preferences</string>
 		<string>/var/mobile/Library/WebClips</string>
 	</array>
 	<key>com.apple.private.security.no-container</key>
