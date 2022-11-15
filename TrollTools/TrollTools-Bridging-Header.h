@@ -3,4 +3,5 @@
 //
 
 #import "TSUtil.h"
+#import "LocSimPrivateHeaders.h"
 #include "RemoteLog.h"

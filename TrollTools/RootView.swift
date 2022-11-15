@@ -14,24 +14,20 @@ struct RootView: View {
         TabView {
             ToolsView()
                 .tabItem {
-                    Label("Tools", systemImage: "wrench.and.screwdriver")
+                    Label("Tools", systemImage: "wrench.and.screwdriver.fill")
                 }
             ThemesView()
                 .tabItem {
                     Label("Themes", systemImage: "paintbrush")
                 }
-            LocationSimulationView()
-                .tabItem {
-                    Label("Location Sim", systemImage: "location.viewfinder")
-                }
+//            LocationSimulationView()
+//                .tabItem {
+//                    Label("Location Spoof", systemImage: "location.fill.viewfinder")
+//                }
             AboutView()
                 .tabItem {
                     Label("About", systemImage: "info.circle")
                 }
-//            CardChangerView()
-//                .tabItem {
-//                    Label("Apple card", systemImage: "creditcard")
-//                }
         }
         .environmentObject(themeManager)
     }

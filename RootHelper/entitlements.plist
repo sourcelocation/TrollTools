@@ -29,5 +29,9 @@
 	<true/>
 	<key>com.apple.multitasking.termination</key>
 	<true/>
+	<key>com.apple.private.security.storage-exempt.heritable</key>
+	<true/>
+	<key>com.apple.mobile.deleted.AllowFreeSpace</key>
+	<true/>
 </dict>
 </plist>

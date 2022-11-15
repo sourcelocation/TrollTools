@@ -66,6 +66,17 @@ struct ToolsView: View {
                                 .padding(.horizontal, 8)
                         }
                     }
+                    NavigationLink(destination: CarrierNameChangerView()) {
+                        HStack {
+                            Image(systemName: "chart.bar")
+                                .resizable()
+                                .aspectRatio(contentMode: .fit)
+                                .frame(width: 24, height: 24)
+                                .foregroundColor(.blue)
+                            Text("Custom Carrier Name")
+                                .padding(.horizontal, 8)
+                        }
+                    }
                     NavigationLink(destination: LockscreenRespringView()) {
                         HStack {
                             Image(systemName: "lock")
@@ -124,7 +135,7 @@ struct ToolsView: View {
             .navigationTitle("Tools")
             .onAppear {
                 for (i, option) in springboardOptions.enumerated() {
-                    springboardOptions[i].value = getSpringboardOption(key: option.key) as? Bool ?? false
+//                    springboardOptions[i].value = getSpringboardOption(key: option.key) as? Bool ?? false
                 }
             }
         }

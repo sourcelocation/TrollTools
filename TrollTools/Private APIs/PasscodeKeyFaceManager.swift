@@ -11,10 +11,13 @@ class PasscodeKeyFaceManager {
 
     static func setFace(_ image: UIImage, for n: Int, isBig: Bool) throws {
         let size = isBig ? CGSize(width: 225, height: 225) : CGSize(width: 152, height: 152)
-        let newImage = image.resized(to: size)
+        UIGraphicsBeginImageContextWithOptions(size, false, 1.0)
+        image.draw(in: CGRect(origin: .zero, size: size))
+        let newImage = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
         
         let url = try getURL(for: n)
-        guard let png = newImage.pngData() else { throw "No png data" }
+        guard let png = newImage?.pngData() else { throw "No png data" }
         try png.write(to: url)
     }
     
@@ -35,8 +38,10 @@ class PasscodeKeyFaceManager {
     
     static func reset() throws {
         let fm = FileManager.default
-        for imageURL in try fm.contentsOfDirectory(at: try telephonyUIURL(), includingPropertiesForKeys: nil) {
-            try fm.removeItem(at: imageURL)
+        for url in try FileManager.default.contentsOfDirectory(at: URL(fileURLWithPath: "/var/mobile/Library/Caches/"), includingPropertiesForKeys: nil) {
+            if url.lastPathComponent.contains("TelephonyUI") {
+                try fm.removeItem(at: url)
+            }
         }
     }
     

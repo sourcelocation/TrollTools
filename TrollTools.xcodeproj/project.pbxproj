@@ -42,6 +42,10 @@
 		CEF56C3F291C605600DDEBFD /* CalculatorErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF56C3E291C605600DDEBFD /* CalculatorErrorView.swift */; };
 		CEF56C41291D4E7E00DDEBFD /* AboutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF56C40291D4E7E00DDEBFD /* AboutView.swift */; };
 		CEF56C49291EFA7400DDEBFD /* LocationSimulationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF56C48291EFA7400DDEBFD /* LocationSimulationView.swift */; };
+		CEF56C4B291FD82200DDEBFD /* LocSimManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF56C4A291FD82200DDEBFD /* LocSimManager.swift */; };
+		CEF56C502921305300DDEBFD /* Map in Frameworks */ = {isa = PBXBuildFile; productRef = CEF56C4F2921305300DDEBFD /* Map */; };
+		CEF56C52292158DA00DDEBFD /* CarrierNameManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF56C51292158DA00DDEBFD /* CarrierNameManager.swift */; };
+		CEF56C5429215AA900DDEBFD /* CarrierNameChangerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF56C5329215AA900DDEBFD /* CarrierNameChangerView.swift */; };
 		CEFE362E2904AC6400938D98 /* TSUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = CEFE36292904AC6400938D98 /* TSUtil.m */; };
 		CEFE36632904AF8C00938D98 /* Dynamic in Frameworks */ = {isa = PBXBuildFile; productRef = CEFE36622904AF8C00938D98 /* Dynamic */; };
 		CEFE36642904B27B00938D98 /* CoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE2BF83E2902E18900AD10BE /* CoreServices.framework */; };
@@ -83,15 +87,15 @@
 		CEECE831290C5405007E9496 /* AltIconSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AltIconSelectionView.swift; sourceTree = "<group>"; };
 		CEF56C3E291C605600DDEBFD /* CalculatorErrorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalculatorErrorView.swift; sourceTree = "<group>"; };
 		CEF56C40291D4E7E00DDEBFD /* AboutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutView.swift; sourceTree = "<group>"; };
-		CEF56C45291DACCD00DDEBFD /* TrollTools.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = TrollTools.entitlements; sourceTree = "<group>"; };
 		CEF56C48291EFA7400DDEBFD /* LocationSimulationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationSimulationView.swift; sourceTree = "<group>"; };
+		CEF56C4A291FD82200DDEBFD /* LocSimManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocSimManager.swift; sourceTree = "<group>"; };
+		CEF56C4C291FD8B000DDEBFD /* LocSimPrivateHeaders.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LocSimPrivateHeaders.h; sourceTree = "<group>"; };
+		CEF56C51292158DA00DDEBFD /* CarrierNameManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarrierNameManager.swift; sourceTree = "<group>"; };
+		CEF56C5329215AA900DDEBFD /* CarrierNameChangerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarrierNameChangerView.swift; sourceTree = "<group>"; };
 		CEFE36262904A8B600938D98 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CEFE36292904AC6400938D98 /* TSUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSUtil.m; sourceTree = "<group>"; };
 		CEFE362C2904AC6400938D98 /* TSUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSUtil.h; sourceTree = "<group>"; };
 		CEFE362D2904AC6400938D98 /* CoreServices.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoreServices.h; sourceTree = "<group>"; };
-		CEFE365C2904AE3800938D98 /* CoreUI.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = CoreUI.h; path = "../../Downloads/SantanderWrappers-main/Sources/CFrameworks/CoreUI/CoreUI.h"; sourceTree = "<group>"; };
-		CEFE36692904B31400938D98 /* CoreUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreUI.framework; path = "../../Library/Developer/Xcode/DerivedData/TrollTools-ganmhroxflomnzakcpcdzmzoural/SourcePackages/checkouts/SantanderWrappers/Sources/AssetCatalogWrapper/CoreUI/CoreUI.framework"; sourceTree = "<group>"; };
-		CEFE366B2904B32100938D98 /* CoreUI.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = CoreUI.tbd; path = "../../Library/Developer/Xcode/DerivedData/TrollTools-ganmhroxflomnzakcpcdzmzoural/SourcePackages/checkouts/SantanderWrappers/Sources/AssetCatalogWrapper/CoreUI/CoreUI.framework/CoreUI.tbd"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -100,6 +104,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CEFE36642904B27B00938D98 /* CoreServices.framework in Frameworks */,
+				CEF56C502921305300DDEBFD /* Map in Frameworks */,
 				CEFE36632904AF8C00938D98 /* Dynamic in Frameworks */,
 				CE7D5D1D290706C600EA26D2 /* NSTask in Frameworks */,
 				CE7975AC291C3494007A38E7 /* SwiftyXMLParser in Frameworks */,
@@ -137,6 +142,7 @@
 		CE1CD0582905D302005C9582 /* Other */ = {
 			isa = PBXGroup;
 			children = (
+				CEFE36282904AC6400938D98 /* TS */,
 				CE7975AD291C4256007A38E7 /* Templates */,
 				CE76386B290AECE70099C6F0 /* RemoteLog.h */,
 				CE2BF80F2902E07F00AD10BE /* Extensions.swift */,
@@ -167,15 +173,13 @@
 		CE2BF7B92902DFF300AD10BE /* TrollTools */ = {
 			isa = PBXGroup;
 			children = (
-				CEF56C45291DACCD00DDEBFD /* TrollTools.entitlements */,
-				CE2BF8442902E21D00AD10BE /* Assets.xcassets */,
-				CE1CD0582905D302005C9582 /* Other */,
-				CEFE36262904A8B600938D98 /* Info.plist */,
-				CEFE36282904AC6400938D98 /* TS */,
-				CE2BF81F2902E07F00AD10BE /* Private APIs */,
-				CE2BF8182902E07F00AD10BE /* RootView.swift */,
-				CE2BF8102902E07F00AD10BE /* Views */,
 				CE6C7D9429048729004689F1 /* TrollTools-Bridging-Header.h */,
+				CE2BF8442902E21D00AD10BE /* Assets.xcassets */,
+				CE2BF8182902E07F00AD10BE /* RootView.swift */,
+				CEFE36262904A8B600938D98 /* Info.plist */,
+				CE2BF81F2902E07F00AD10BE /* Private APIs */,
+				CE2BF8102902E07F00AD10BE /* Views */,
+				CE1CD0582905D302005C9582 /* Other */,
 			);
 			path = TrollTools;
 			sourceTree = "<group>";
@@ -210,6 +214,8 @@
 				CE2BF8222902E07F00AD10BE /* PasscodeKeyFaceManager.swift */,
 				CE2BF8232902E07F00AD10BE /* BadgeChanger.swift */,
 				CE8DC8D42904C22500A1CBB0 /* RootHelper.swift */,
+				CEF56C4D291FD8B600DDEBFD /* LocSim */,
+				CEF56C51292158DA00DDEBFD /* CarrierNameManager.swift */,
 			);
 			path = "Private APIs";
 			sourceTree = "<group>";
@@ -217,9 +223,6 @@
 		CE2BF83D2902E18800AD10BE /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				CEFE366B2904B32100938D98 /* CoreUI.tbd */,
-				CEFE36692904B31400938D98 /* CoreUI.framework */,
-				CEFE365C2904AE3800938D98 /* CoreUI.h */,
 				CE141B4729045D5F00AB48A7 /* MobileCoreServices.framework */,
 				CE2BF83E2902E18900AD10BE /* CoreServices.framework */,
 			);
@@ -238,12 +241,13 @@
 		CEF56C46291EB06200DDEBFD /* Tools */ = {
 			isa = PBXGroup;
 			children = (
+				CE7975A4291B1E0C007A38E7 /* ToolsView.swift */,
 				CE2BF8142902E07F00AD10BE /* BadgeChangerView.swift */,
 				CE2BF8162902E07F00AD10BE /* PasscodeEditorView.swift */,
-				CE7975A4291B1E0C007A38E7 /* ToolsView.swift */,
 				CE7975A6291B2A4B007A38E7 /* GesturesView.swift */,
 				CE7975B0291C4533007A38E7 /* LockscreenRespringView.swift */,
 				CEF56C3E291C605600DDEBFD /* CalculatorErrorView.swift */,
+				CEF56C5329215AA900DDEBFD /* CarrierNameChangerView.swift */,
 			);
 			path = Tools;
 			sourceTree = "<group>";
@@ -252,6 +256,15 @@
 			isa = PBXGroup;
 			children = (
 				CEF56C48291EFA7400DDEBFD /* LocationSimulationView.swift */,
+			);
+			path = LocSim;
+			sourceTree = "<group>";
+		};
+		CEF56C4D291FD8B600DDEBFD /* LocSim */ = {
+			isa = PBXGroup;
+			children = (
+				CEF56C4C291FD8B000DDEBFD /* LocSimPrivateHeaders.h */,
+				CEF56C4A291FD82200DDEBFD /* LocSimManager.swift */,
 			);
 			path = LocSim;
 			sourceTree = "<group>";
@@ -288,6 +301,7 @@
 				CE7D5CFC2906C2BD00EA26D2 /* FSOperations */,
 				CE7D5D1C290706C600EA26D2 /* NSTask */,
 				CE7975AB291C3494007A38E7 /* SwiftyXMLParser */,
+				CEF56C4F2921305300DDEBFD /* Map */,
 			);
 			productName = TrollTools;
 			productReference = CE2BF7B72902DFF300AD10BE /* TrollTools.app */;
@@ -322,6 +336,7 @@
 				CEFE36612904AF8C00938D98 /* XCRemoteSwiftPackageReference "Dynamic" */,
 				CE7D5CC82905E10400EA26D2 /* XCRemoteSwiftPackageReference "SantanderWrappers" */,
 				CE7975AA291C3494007A38E7 /* XCRemoteSwiftPackageReference "SwiftyXMLParser" */,
+				CEF56C4E2921305300DDEBFD /* XCRemoteSwiftPackageReference "Map" */,
 			);
 			productRefGroup = CE2BF7B82902DFF300AD10BE /* Products */;
 			projectDirPath = "";
@@ -355,9 +370,11 @@
 				CEECE830290C496D007E9496 /* IconOverridesView.swift in Sources */,
 				CE2BF82B2902E07F00AD10BE /* RootView.swift in Sources */,
 				CE2BF8372902E10900AD10BE /* TrollToolsApp.swift in Sources */,
+				CEF56C4B291FD82200DDEBFD /* LocSimManager.swift in Sources */,
 				CE2BF8262902E07F00AD10BE /* ImagePickerView.swift in Sources */,
 				CE2BF8312902E07F00AD10BE /* BadgeChanger.swift in Sources */,
 				CE2BF8252902E07F00AD10BE /* MaterialView.swift in Sources */,
+				CEF56C52292158DA00DDEBFD /* CarrierNameManager.swift in Sources */,
 				CE2BF8272902E07F00AD10BE /* BadgeChangerView.swift in Sources */,
 				CE141B3C2903F22F00AB48A7 /* ThemeView.swift in Sources */,
 				CE2BF8282902E07F00AD10BE /* ThemesView.swift in Sources */,
@@ -375,6 +392,7 @@
 				CE76386D290AED160099C6F0 /* ProblemReporter.swift in Sources */,
 				CEF56C41291D4E7E00DDEBFD /* AboutView.swift in Sources */,
 				CEECE832290C5405007E9496 /* AltIconSelectionView.swift in Sources */,
+				CEF56C5429215AA900DDEBFD /* CarrierNameChangerView.swift in Sources */,
 				CE2BF82E2902E07F00AD10BE /* WallpaperGetter.swift in Sources */,
 				CE141B3A2903F20800AB48A7 /* ThemesSettingsView.swift in Sources */,
 				CE2BF82F2902E07F00AD10BE /* ThemeManager.swift in Sources */,
@@ -504,7 +522,6 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_ENTITLEMENTS = TrollTools/TrollTools.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 92S6JX27W2;
@@ -517,6 +534,8 @@
 				);
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = TrollTools/Info.plist;
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "Lol, it needs it";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Lol, it needs it";
 				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Lol, it needs it";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -532,7 +551,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/TrollTools/Private\\ APIs/AssetCatalogWrapper/CoreUI/CoreUI.framework",
 				);
-				MARKETING_VERSION = 2.1.2;
+				MARKETING_VERSION = 2.2;
 				PRODUCT_BUNDLE_IDENTIFIER = net.sourceloc.TrollTools;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -552,7 +571,6 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_ENTITLEMENTS = TrollTools/TrollTools.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 92S6JX27W2;
@@ -565,6 +583,8 @@
 				);
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = TrollTools/Info.plist;
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "Lol, it needs it";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Lol, it needs it";
 				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Lol, it needs it";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -580,7 +600,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/TrollTools/Private\\ APIs/AssetCatalogWrapper/CoreUI/CoreUI.framework",
 				);
-				MARKETING_VERSION = 2.1.2;
+				MARKETING_VERSION = 2.2;
 				PRODUCT_BUNDLE_IDENTIFIER = net.sourceloc.TrollTools;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -633,6 +653,14 @@
 				kind = branch;
 			};
 		};
+		CEF56C4E2921305300DDEBFD /* XCRemoteSwiftPackageReference "Map" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/pauljohanneskraft/Map";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.1.0;
+			};
+		};
 		CEFE36612904AF8C00938D98 /* XCRemoteSwiftPackageReference "Dynamic" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/mhdhejazi/Dynamic";
@@ -663,6 +691,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = CE7D5CC82905E10400EA26D2 /* XCRemoteSwiftPackageReference "SantanderWrappers" */;
 			productName = NSTask;
+		};
+		CEF56C4F2921305300DDEBFD /* Map */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CEF56C4E2921305300DDEBFD /* XCRemoteSwiftPackageReference "Map" */;
+			productName = Map;
 		};
 		CEFE36622904AF8C00938D98 /* Dynamic */ = {
 			isa = XCSwiftPackageProductDependency;
