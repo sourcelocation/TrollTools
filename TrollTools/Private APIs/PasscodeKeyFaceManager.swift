@@ -9,8 +9,19 @@ import UIKit
 
 class PasscodeKeyFaceManager {
 
-    static func setFace(_ image: UIImage, for n: Int, isBig: Bool) throws {
-        let size = isBig ? CGSize(width: 225, height: 225) : CGSize(width: 152, height: 152)
+    static func setFace(_ image: UIImage, for n: Int, keySize: Int, customX: Int, customY: Int) throws {
+        // this part could be cleaner
+        var usesCustomSize = true
+        var sizeToUse = 0
+        if keySize == 0 {
+            sizeToUse = 152
+            usesCustomSize = false
+        } else if keySize == 1 {
+            sizeToUse = 225
+            usesCustomSize = false
+        }
+        
+        let size = usesCustomSize ? CGSize(width: customX, height: customY) : CGSize(width: sizeToUse, height: sizeToUse)
         UIGraphicsBeginImageContextWithOptions(size, false, 1.0)
         image.draw(in: CGRect(origin: .zero, size: size))
         let newImage = UIGraphicsGetImageFromCurrentImageContext()

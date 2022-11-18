@@ -15,6 +15,9 @@ struct PasscodeEditorView: View {
     @State private var changedFaces: [Bool] = [Bool](repeating: false, count: 10)
     @State private var changingFaceN = 0
     @State private var isBig = false
+    @State private var customSize : [String] = ["152", "152"]
+    @State private var sizeButtonTexts : [String] = ["Small", "Big", "Custom"] // idk why I did it like this
+    @State private var sizeButtonState = 0
     
     var body: some View {
         GeometryReader { proxy in
@@ -57,6 +60,35 @@ struct PasscodeEditorView: View {
                     }
                     .padding(.top, 16)
                 }
+                .offset(x: 0, y: -35)
+                VStack {
+                    Spacer()
+                    if sizeButtonState == 2 {
+                        HStack {
+                            TextField("X", text: $customSize[0])
+                                .foregroundColor(.white)
+                                .multilineTextAlignment(.trailing)
+                                .padding(.horizontal, 5)
+                                .font(.system(size: 25))
+                                .minimumScaleFactor(0.5)
+                                .frame(width: 100, height: 40)
+                                .textFieldStyle(PlainTextFieldStyle())
+                            Text("x")
+                                .foregroundColor(.white)
+                                .font(.title2)
+                                .padding(5)
+                            TextField("Y", text: $customSize[1])
+                                .foregroundColor(.white)
+                                .padding(.horizontal, 5)
+                                .font(.system(size: 25))
+                                .minimumScaleFactor(0.5)
+                                .frame(width: 100, height: 40)
+                                .textFieldStyle(PlainTextFieldStyle())
+                        }
+                        .padding(.bottom, 70)
+                    }
+                }
+                
                 VStack {
                     Spacer()
                     HStack {
@@ -69,8 +101,12 @@ struct PasscodeEditorView: View {
                             }
                         }
                         Spacer()
-                        Button(isBig ? "Big" : "Small") {
-                            isBig.toggle()
+                        Button(sizeButtonTexts[sizeButtonState]) {
+                            if sizeButtonState == 0 || sizeButtonState == 1 {
+                                sizeButtonState += 1
+                            } else {
+                                sizeButtonState = 0
+                            }
                         }
                         Spacer()
                         Button("Remove all") {
@@ -104,10 +140,28 @@ struct PasscodeEditorView: View {
         }
         .onChange(of: faces[changingFaceN] ?? UIImage()) { newValue in
             print(newValue)
+            // reset the size if too big or small
+            if (Int(customSize[0]) ?? 152 <= 500) {
+                customSize[0] = "500"
+            } else if (Int(customSize[0]) ?? 152 <= 50) {
+                customSize[0] = "50"
+            }
+            
+            if (Int(customSize[1]) ?? 152 <= 500) {
+                customSize[1] = "500"
+            } else if (Int(customSize[1]) ?? 152 <= 50) {
+                customSize[1] = "50"
+            }
             do {
-                try PasscodeKeyFaceManager.setFace(newValue, for: changingFaceN, isBig: isBig)
+                try PasscodeKeyFaceManager.setFace(newValue, for: changingFaceN, keySize: sizeButtonState, customX: Int(customSize[0]) ?? 152, customY: Int(customSize[1]) ?? 152)
             } catch {
                 UIApplication.shared.alert(body: "An error occured while changing key face. \(error)")
+            }
+        }
+        
+        .onChange(of: sizeButtonState) { newValue in
+            if sizeButtonState == 2 {
+                // enable the size changer
             }
         }
     }
