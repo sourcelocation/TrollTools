@@ -141,15 +141,15 @@ struct PasscodeEditorView: View {
         .onChange(of: faces[changingFaceN] ?? UIImage()) { newValue in
             print(newValue)
             // reset the size if too big or small
-            if (Int(customSize[0]) ?? 152 <= 500) {
+            if (Int(customSize[0]) ?? 152 > 500) {
                 customSize[0] = "500"
-            } else if (Int(customSize[0]) ?? 152 <= 50) {
+            } else if (Int(customSize[0]) ?? 152 < 50) {
                 customSize[0] = "50"
             }
             
-            if (Int(customSize[1]) ?? 152 <= 500) {
+            if (Int(customSize[1]) ?? 152 > 500) {
                 customSize[1] = "500"
-            } else if (Int(customSize[1]) ?? 152 <= 50) {
+            } else if (Int(customSize[1]) ?? 152 < 50) {
                 customSize[1] = "50"
             }
             do {
