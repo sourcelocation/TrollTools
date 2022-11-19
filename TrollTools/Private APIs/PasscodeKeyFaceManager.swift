@@ -47,6 +47,23 @@ class PasscodeKeyFaceManager {
         }
     }
     
+    static func setFacesFromTheme(_ url: URL) throws {
+        let fm = FileManager.default
+        let teleURL = try telephonyUIURL()
+        
+        for imageURL in (try? fm.contentsOfDirectory(at: url, includingPropertiesForKeys: nil)) ?? [] {
+            let img = UIImage(contentsOfFile: imageURL.path)
+            let size = CGSize(width: img?.size.width ?? 152, height: img?.size.height ?? 152)
+            UIGraphicsBeginImageContextWithOptions(size, false, 1.0)
+            img!.draw(in: CGRect(origin: .zero, size: size))
+            let newImage = UIGraphicsGetImageFromCurrentImageContext()
+            UIGraphicsEndImageContext()
+            
+            guard let png = newImage?.pngData() else { throw "No png data" }
+            try png.write(to: teleURL.appendingPathComponent(imageURL.lastPathComponent))
+        }
+    }
+    
     static func reset() throws {
         let fm = FileManager.default
         for url in try FileManager.default.contentsOfDirectory(at: URL(fileURLWithPath: "/var/mobile/Library/Caches/"), includingPropertiesForKeys: nil) {

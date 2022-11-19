@@ -19,7 +19,10 @@ struct PasscodeEditorView: View {
     @State private var customSize : [String] = ["152", "152"]
     @State private var sizeButtonTexts : [String] = ["Small", "Big", "Custom"] // idk why I did it like this
     @State private var sizeButtonState = 0
-    //@State private var isImporting = false
+    @State private var isImporting = false
+    @State private var isExporting = false
+    
+    let fm = FileManager.default
     
     var body: some View {
         GeometryReader { proxy in
@@ -40,13 +43,23 @@ struct PasscodeEditorView: View {
                 //                    .ignoresSafeArea()
                 //                    .preferredColorScheme(.dark)
                 VStack {
-                    /*
-                    Button(action: {
-                        isImporting = true
-                    }) {
-                        Image(systemName: "square.and.arrow.down")
+                    HStack {
+                        Button(action: {
+                            isExporting = true
+                        }) {
+                            Image(systemName: "square.and.arrow.up")
+                        }
+                        .scaleEffect(1.75)
+                        .padding(.trailing, 20)
+                        
+                        Button(action: {
+                            isImporting = true
+                        }) {
+                            Image(systemName: "square.and.arrow.down")
+                        }
+                        .scaleEffect(1.75)
                     }
-                    .offset(x: 150, y: -50)*/
+                    .offset(x: 120, y: -75)
                     
                     Text("Passcode Face Editor")
                         .foregroundColor(.white)
@@ -134,6 +147,18 @@ struct PasscodeEditorView: View {
             }
         }
         .navigationBarTitleDisplayMode(.inline)
+        .fileImporter(isPresented: $isImporting,
+                      allowedContentTypes: [.folder],
+                      allowsMultipleSelection: false
+        ) { result in
+            guard let url = try? result.get().first else { UIApplication.shared.alert(body: "Couldn't get url of file. Did you select it?"); return }
+            isFinishedLoading = false
+            do {
+                // try appying the themes
+                try PasscodeKeyFaceManager.setFacesFromTheme(url)
+                faces = try PasscodeKeyFaceManager.getFaces()
+            } catch { UIApplication.shared.alert(body: error.localizedDescription) }
+        }
         .onAppear {
             do {
                 faces = try PasscodeKeyFaceManager.getFaces()
@@ -172,19 +197,6 @@ struct PasscodeEditorView: View {
                 }
             }
         }
-        
-        /*.fileImporter(
-            isPresented: $isImporting,
-            allowedContentTypes: [.folder],
-            allowsMultipleSelection: false
-        ) { result in
-            guard let url = try? result.get().first else { UIApplication.shared.alert(body: "Couldn't get url of file. Did you select it?"); return }
-            do {
-                let theme = try themeManager.importTheme(from: url)
-                themes.append(theme)
-                themeManager.themes = themes
-            } catch { UIApplication.shared.alert(body: error.localizedDescription) }
-        }*/
     }
     func showPicker(_ n: Int) {
         changingFaceN = n
