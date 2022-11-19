@@ -13,11 +13,13 @@ struct PasscodeEditorView: View {
     @State private var showingImagePicker = false
     @State private var faces: [UIImage?] = [UIImage?](repeating: nil, count: 10)
     @State private var changedFaces: [Bool] = [Bool](repeating: false, count: 10)
+    @State private var isFinishedLoading = false // needed to make sure it does not reset the size on startup
     @State private var changingFaceN = 0
     @State private var isBig = false
     @State private var customSize : [String] = ["152", "152"]
     @State private var sizeButtonTexts : [String] = ["Small", "Big", "Custom"] // idk why I did it like this
     @State private var sizeButtonState = 0
+    //@State private var isImporting = false
     
     var body: some View {
         GeometryReader { proxy in
@@ -38,6 +40,14 @@ struct PasscodeEditorView: View {
                 //                    .ignoresSafeArea()
                 //                    .preferredColorScheme(.dark)
                 VStack {
+                    /*
+                    Button(action: {
+                        isImporting = true
+                    }) {
+                        Image(systemName: "square.and.arrow.down")
+                    }
+                    .offset(x: 150, y: -50)*/
+                    
                     Text("Passcode Face Editor")
                         .foregroundColor(.white)
                         .font(.title2)
@@ -50,7 +60,7 @@ struct PasscodeEditorView: View {
                     
                     VStack(spacing: 16) {
                         ForEach((0...2), id: \.self) { y in
-                            HStack(spacing: 24) {
+                            HStack(spacing: 22) {
                                 ForEach((0...2), id: \.self) { x in
                                     PasscodeKeyView(face: faces[y * 3 + x + 1], action: { showPicker(y * 3 + x + 1) })
                                 }
@@ -140,33 +150,47 @@ struct PasscodeEditorView: View {
         }
         .onChange(of: faces[changingFaceN] ?? UIImage()) { newValue in
             print(newValue)
-            // reset the size if too big or small
-            if (Int(customSize[0]) ?? 152 > 500) {
-                customSize[0] = "500"
-            } else if (Int(customSize[0]) ?? 152 < 50) {
-                customSize[0] = "50"
-            }
-            
-            if (Int(customSize[1]) ?? 152 > 500) {
-                customSize[1] = "500"
-            } else if (Int(customSize[1]) ?? 152 < 50) {
-                customSize[1] = "50"
-            }
-            do {
-                try PasscodeKeyFaceManager.setFace(newValue, for: changingFaceN, keySize: sizeButtonState, customX: Int(customSize[0]) ?? 152, customY: Int(customSize[1]) ?? 152)
-            } catch {
-                UIApplication.shared.alert(body: "An error occured while changing key face. \(error)")
+            if isFinishedLoading {
+                // reset the size if too big or small
+                if (Int(customSize[0]) ?? 152 > 500) {
+                    customSize[0] = "500"
+                } else if (Int(customSize[0]) ?? 152 < 50) {
+                    customSize[0] = "50"
+                }
+                
+                if (Int(customSize[1]) ?? 152 > 500) {
+                    customSize[1] = "500"
+                } else if (Int(customSize[1]) ?? 152 < 50) {
+                    customSize[1] = "50"
+                }
+                isFinishedLoading = false
+                do {
+                    try PasscodeKeyFaceManager.setFace(newValue, for: changingFaceN, keySize: sizeButtonState, customX: Int(customSize[0]) ?? 152, customY: Int(customSize[1]) ?? 152)
+                    faces[changingFaceN] = try PasscodeKeyFaceManager.getFace(for: changingFaceN)
+                } catch {
+                    UIApplication.shared.alert(body: "An error occured while changing key face. \(error)")
+                }
             }
         }
         
-        .onChange(of: sizeButtonState) { newValue in
-            if sizeButtonState == 2 {
-                // enable the size changer
-            }
-        }
+        /*.fileImporter(
+            isPresented: $isImporting,
+            allowedContentTypes: [.folder],
+            allowsMultipleSelection: false
+        ) { result in
+            guard let url = try? result.get().first else { UIApplication.shared.alert(body: "Couldn't get url of file. Did you select it?"); return }
+            do {
+                let theme = try themeManager.importTheme(from: url)
+                themes.append(theme)
+                themeManager.themes = themes
+            } catch { UIApplication.shared.alert(body: error.localizedDescription) }
+        }*/
     }
     func showPicker(_ n: Int) {
         changingFaceN = n
+        if !isFinishedLoading {
+            isFinishedLoading = true
+        }
         PHPhotoLibrary.requestAuthorization(for: .readWrite) { status in
             DispatchQueue.main.async {
                 showingImagePicker = status == .authorized
@@ -186,6 +210,9 @@ struct PasscodeKeyView: View {
             ZStack {
                 Circle()
                     .fill(Color(UIColor(red: 1, green: 1, blue: 1, alpha: 0.12)))
+                    .frame(width: 70, height: 70) // background circle
+                Circle()
+                    .fill(Color(UIColor(red: 1, green: 1, blue: 1, alpha: 0))) // hidden circle for image
                 if face == nil {
                     Image(systemName: "plus")
                         .font(.system(size: 28, weight: .bold))
@@ -193,7 +220,7 @@ struct PasscodeKeyView: View {
                 } else {
                     Image(uiImage: face!)
                         .resizable()
-                        .frame(width: 70, height: 70)
+                        .frame(width: CGFloat(Float(face!.size.width)/3), height: CGFloat(Float(face!.size.height)/3))
                 }
             }
             .frame(width: 80, height: 80)
