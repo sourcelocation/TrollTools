@@ -7,16 +7,22 @@
 
 import UIKit
 
+enum KeySizeState: String {
+    case small = "Small"
+    case big = "Big"
+    case custom = "Custom"
+}
+
 class PasscodeKeyFaceManager {
 
-    static func setFace(_ image: UIImage, for n: Int, keySize: Int, customX: Int, customY: Int) throws {
+    static func setFace(_ image: UIImage, for n: Int, keySize: KeySizeState, customX: Int, customY: Int) throws {
         // this part could be cleaner
         var usesCustomSize = true
         var sizeToUse = 0
-        if keySize == 0 {
+        if keySize == KeySizeState.small {
             sizeToUse = 152
             usesCustomSize = false
-        } else if keySize == 1 {
+        } else if keySize == KeySizeState.big {
             sizeToUse = 225
             usesCustomSize = false
         }

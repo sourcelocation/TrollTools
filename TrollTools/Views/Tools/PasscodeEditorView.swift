@@ -17,8 +17,7 @@ struct PasscodeEditorView: View {
     @State private var changingFaceN = 0
     @State private var isBig = false
     @State private var customSize : [String] = ["152", "152"]
-    @State private var sizeButtonTexts : [String] = ["Small", "Big", "Custom"] // idk why I did it like this
-    @State private var sizeButtonState = 0
+    @State private var sizeButtonState = KeySizeState.small
     @State private var isImporting = false
     @State private var isExporting = false
     
@@ -86,7 +85,7 @@ struct PasscodeEditorView: View {
                 .offset(x: 0, y: -35)
                 VStack {
                     Spacer()
-                    if sizeButtonState == 2 {
+                    if sizeButtonState == KeySizeState.custom {
                         HStack {
                             TextField("X", text: $customSize[0])
                                 .foregroundColor(.white)
@@ -124,11 +123,13 @@ struct PasscodeEditorView: View {
                             }
                         }
                         Spacer()
-                        Button(sizeButtonTexts[sizeButtonState]) {
-                            if sizeButtonState == 0 || sizeButtonState == 1 {
-                                sizeButtonState += 1
+                        Button(sizeButtonState.rawValue) {
+                            if sizeButtonState == KeySizeState.small {
+                                sizeButtonState = KeySizeState.big
+                            } else if sizeButtonState == KeySizeState.big {
+                                sizeButtonState = KeySizeState.custom
                             } else {
-                                sizeButtonState = 0
+                                sizeButtonState = KeySizeState.small
                             }
                         }
                         Spacer()
