@@ -26,6 +26,7 @@ struct AboutView: View {
                     LinkCell(imageName: "haxi0", url: "https://twitter.com/haxi0sm", title: "@haxi0sm", circle: true)
                     LinkCell(imageName: "iTechExpert21", url: "https://twitter.com/iTechExpert21", title: "@iTechExpert21", circle: true)
                     LinkCell(imageName: "swayea", url: "https://github.com/swayea", title: "@swayea", circle: true)
+                    LinkCell(imageName: "LeminLimez", url: "https://github.com/leminlimez", title: "@LeminLimez", circle: true)
                 } header: {
                     Text("Credits")
                 }

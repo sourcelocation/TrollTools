@@ -53,9 +53,33 @@ class PasscodeKeyFaceManager {
         }
     }
     
+    static func getSupportURL() throws -> URL {
+        let fm = FileManager.default
+        
+        lazy var appSupportURL: URL = {
+            let urls = fm.urls(for: .applicationSupportDirectory, in: .userDomainMask)
+            return urls[0]
+        }()
+        
+        var isDir: ObjCBool = false
+        if !fm.fileExists(atPath: appSupportURL.path, isDirectory: &isDir) {
+            do {
+                try fm.createDirectory(atPath: appSupportURL.path, withIntermediateDirectories: true, attributes: nil)
+            } catch {
+                print(error)
+            }
+        }
+        
+        return appSupportURL
+    }
+    
     static func setFacesFromTheme(_ url: URL) throws {
         let fm = FileManager.default
         let teleURL = try telephonyUIURL()
+        
+        /*if url.lastPathComponent.contains(".zip") {
+            url.deletingPathExtension()
+        }*/
         
         for imageURL in (try? fm.contentsOfDirectory(at: url, includingPropertiesForKeys: nil)) ?? [] {
             let img = UIImage(contentsOfFile: imageURL.path)
@@ -67,6 +91,45 @@ class PasscodeKeyFaceManager {
             
             guard let png = newImage?.pngData() else { throw "No png data" }
             try png.write(to: teleURL.appendingPathComponent(imageURL.lastPathComponent))
+        }
+    }
+    
+    static func exportFaceTheme() throws -> URL? {
+        let fm = FileManager.default
+        let teleURL = try telephonyUIURL()
+        let supportURL = try getSupportURL()
+        
+        /*for imageURL in (try? fm.contentsOfDirectory(at: tempDir, includingPropertiesForKeys: nil)) ?? [] {
+            let img = UIImage(contentsOfFile: imageURL.path)
+            let size = CGSize(width: img?.size.width ?? 152, height: img?.size.height ?? 152)
+            UIGraphicsBeginImageContextWithOptions(size, false, 1.0)
+            img!.draw(in: CGRect(origin: .zero, size: size))
+            let newImage = UIGraphicsGetImageFromCurrentImageContext()
+            UIGraphicsEndImageContext()
+            
+            guard let png = newImage?.pngData() else { throw "No png data" }
+            try png.write(to: tempDir.appendingPathComponent(imageURL.lastPathComponent))
+        }*/
+        
+        var archiveURL: URL?
+        var error: NSError?
+        let coordinator = NSFileCoordinator()
+        
+        coordinator.coordinate(readingItemAt: teleURL, options: [.forUploading], error: &error) { (zipURL) in
+            let tmpURL = try! fm.url(
+                for: .itemReplacementDirectory,
+                in: .userDomainMask,
+                appropriateFor: zipURL,
+                create: true
+            ).appendingPathComponent("exported_theme.zip")
+            try! fm.moveItem(at: zipURL, to: tmpURL)
+            archiveURL = tmpURL
+        }
+        
+        if let archiveURL = archiveURL {
+            return archiveURL
+        } else {
+            throw "There was an error exporting"
         }
     }
     

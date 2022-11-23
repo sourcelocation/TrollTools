@@ -44,7 +44,14 @@ struct PasscodeEditorView: View {
                 VStack {
                     HStack {
                         Button(action: {
-                            isExporting = true
+                            do {
+                                var archiveURL: URL? = try PasscodeKeyFaceManager.exportFaceTheme()
+                                // show share menu
+                                let avc = UIActivityViewController(activityItems: [archiveURL!], applicationActivities: nil)
+                                UIApplication.shared.keyWindow?.rootViewController?.present(avc, animated: true)
+                            } catch {
+                                UIApplication.shared.alert(body: "An error occured while exporting key face.")
+                            }
                         }) {
                             Image(systemName: "square.and.arrow.up")
                         }
