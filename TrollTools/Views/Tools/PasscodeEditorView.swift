@@ -156,7 +156,9 @@ struct PasscodeEditorView: View {
         }
         .navigationBarTitleDisplayMode(.inline)
         .fileImporter(isPresented: $isImporting,
-                      allowedContentTypes: [.folder],
+                      allowedContentTypes: [
+                        UTType(filenameExtension: "passthm") ?? .zip
+                      ],
                       allowsMultipleSelection: false
         ) { result in
             guard let url = try? result.get().first else { UIApplication.shared.alert(body: "Couldn't get url of file. Did you select it?"); return }
@@ -200,6 +202,7 @@ struct PasscodeEditorView: View {
                 do {
                     try PasscodeKeyFaceManager.setFace(newValue, for: changingFaceN, keySize: sizeButtonState, customX: Int(customSize[0]) ?? 152, customY: Int(customSize[1]) ?? 152)
                     faces[changingFaceN] = try PasscodeKeyFaceManager.getFace(for: changingFaceN)
+                    isFinishedLoading = false
                 } catch {
                     UIApplication.shared.alert(body: "An error occured while changing key face. \(error)")
                 }
@@ -208,11 +211,11 @@ struct PasscodeEditorView: View {
     }
     func showPicker(_ n: Int) {
         changingFaceN = n
-        if !isFinishedLoading {
-            isFinishedLoading = true
-        }
         PHPhotoLibrary.requestAuthorization(for: .readWrite) { status in
             DispatchQueue.main.async {
+                if !isFinishedLoading {
+                    isFinishedLoading = true
+                }
                 showingImagePicker = status == .authorized
             }
         }
