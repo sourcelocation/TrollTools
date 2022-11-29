@@ -74,7 +74,7 @@ class PasscodeKeyFaceManager {
         return appSupportURL
     }
     
-    static func setFacesFromTheme(_ url: URL) throws {
+    static func setFacesFromTheme(_ url: URL, keySize: KeySizeState, customX: CGFloat, customY: CGFloat) throws {
         let fm = FileManager.default
         let teleURL = try telephonyUIURL()
         let supportURL = try getSupportURL()
@@ -85,7 +85,28 @@ class PasscodeKeyFaceManager {
                 if folder.lastPathComponent.contains("TelephonyUI") {
                     for imageURL in (try? fm.contentsOfDirectory(at: folder, includingPropertiesForKeys: nil)) ?? [] {
                         let img = UIImage(contentsOfFile: imageURL.path)
-                        let size = CGSize(width: img?.size.width ?? 152, height: img?.size.height ?? 152)
+                        var newSize: [CGFloat] = [img?.size.width ?? 152, img?.size.height ?? 152]
+                        // check the sizes and set it
+                        if img?.size.width == img?.size.height && (img?.size.width == 152 || img?.size.width == 225) {
+                            // change sizes to currently selected size
+                            // does not override  custom sizes from theme
+                            if keySize == KeySizeState.small {
+                                // make small
+                                newSize[0] = 152
+                                newSize[1] = 152
+                            } else if keySize == KeySizeState.big {
+                                // make big
+                                newSize[0] = 225
+                                newSize[1] = 225
+                            }
+                        } else if keySize == KeySizeState.custom {
+                            // replace sizes if a custom size is chosen
+                            // overrides custom sizes from theme
+                            newSize[0] = customX
+                            newSize[1] = customY
+                        }
+                        
+                        let size = CGSize(width: newSize[0], height: newSize[1])
                         UIGraphicsBeginImageContextWithOptions(size, false, 1.0)
                         img!.draw(in: CGRect(origin: .zero, size: size))
                         let newImage = UIGraphicsGetImageFromCurrentImageContext()

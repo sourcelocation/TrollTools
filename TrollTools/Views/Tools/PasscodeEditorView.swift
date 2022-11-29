@@ -168,7 +168,7 @@ struct PasscodeEditorView: View {
             canChange = false
             do {
                 // try appying the themes
-                try PasscodeKeyFaceManager.setFacesFromTheme(url)
+                try PasscodeKeyFaceManager.setFacesFromTheme(url, keySize: sizeButtonState, customX: CGFloat(Int(customSize[0]) ?? 152), customY: CGFloat(Int(customSize[1]) ?? 152))
                 faces = try PasscodeKeyFaceManager.getFaces()
             } catch { UIApplication.shared.alert(body: error.localizedDescription) }
         }
