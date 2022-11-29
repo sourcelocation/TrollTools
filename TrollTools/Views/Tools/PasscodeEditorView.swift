@@ -13,13 +13,15 @@ struct PasscodeEditorView: View {
     @State private var showingImagePicker = false
     @State private var faces: [UIImage?] = [UIImage?](repeating: nil, count: 10)
     @State private var changedFaces: [Bool] = [Bool](repeating: false, count: 10)
-    @State private var isFinishedLoading = false // needed to make sure it does not reset the size on startup
+    @State private var canChange = false // needed to make sure it does not reset the size on startup
     @State private var changingFaceN = 0
     @State private var isBig = false
     @State private var customSize : [String] = ["152", "152"]
     @State private var sizeButtonState = KeySizeState.small
     @State private var isImporting = false
     @State private var isExporting = false
+    
+    @State private var ipadView: Bool = (UIDevice.current.userInterfaceIdiom == .pad)
     
     let fm = FileManager.default
     
@@ -81,11 +83,11 @@ struct PasscodeEditorView: View {
                         ForEach((0...2), id: \.self) { y in
                             HStack(spacing: 22) {
                                 ForEach((0...2), id: \.self) { x in
-                                    PasscodeKeyView(face: faces[y * 3 + x + 1], action: { showPicker(y * 3 + x + 1) })
+                                    PasscodeKeyView(face: faces[y * 3 + x + 1], action: { showPicker(y * 3 + x + 1) }, ipadView: ipadView)
                                 }
                             }
                         }
-                        PasscodeKeyView(face: faces[0], action: { showPicker(0) })
+                        PasscodeKeyView(face: faces[0], action: { showPicker(0) }, ipadView: ipadView)
                     }
                     .padding(.top, 16)
                 }
@@ -157,12 +159,13 @@ struct PasscodeEditorView: View {
         .navigationBarTitleDisplayMode(.inline)
         .fileImporter(isPresented: $isImporting,
                       allowedContentTypes: [
+                        //.folder
                         UTType(filenameExtension: "passthm") ?? .zip
                       ],
                       allowsMultipleSelection: false
         ) { result in
             guard let url = try? result.get().first else { UIApplication.shared.alert(body: "Couldn't get url of file. Did you select it?"); return }
-            isFinishedLoading = false
+            canChange = false
             do {
                 // try appying the themes
                 try PasscodeKeyFaceManager.setFacesFromTheme(url)
@@ -185,7 +188,7 @@ struct PasscodeEditorView: View {
         }
         .onChange(of: faces[changingFaceN] ?? UIImage()) { newValue in
             print(newValue)
-            if isFinishedLoading {
+            if canChange {
                 // reset the size if too big or small
                 if (Int(customSize[0]) ?? 152 > 500) {
                     customSize[0] = "500"
@@ -198,11 +201,11 @@ struct PasscodeEditorView: View {
                 } else if (Int(customSize[1]) ?? 152 < 50) {
                     customSize[1] = "50"
                 }
-                isFinishedLoading = false
+                canChange = false
                 do {
                     try PasscodeKeyFaceManager.setFace(newValue, for: changingFaceN, keySize: sizeButtonState, customX: Int(customSize[0]) ?? 152, customY: Int(customSize[1]) ?? 152)
                     faces[changingFaceN] = try PasscodeKeyFaceManager.getFace(for: changingFaceN)
-                    isFinishedLoading = false
+                    canChange = false
                 } catch {
                     UIApplication.shared.alert(body: "An error occured while changing key face. \(error)")
                 }
@@ -213,8 +216,8 @@ struct PasscodeEditorView: View {
         changingFaceN = n
         PHPhotoLibrary.requestAuthorization(for: .readWrite) { status in
             DispatchQueue.main.async {
-                if !isFinishedLoading {
-                    isFinishedLoading = true
+                if !canChange {
+                    canChange = true
                 }
                 showingImagePicker = status == .authorized
             }
@@ -225,6 +228,7 @@ struct PasscodeEditorView: View {
 struct PasscodeKeyView: View {
     var face: UIImage?
     var action: () -> ()
+    var ipadView: Bool
     
     var body: some View {
         Button {
@@ -241,9 +245,17 @@ struct PasscodeKeyView: View {
                         .font(.system(size: 28, weight: .bold))
                         .foregroundColor(.white)
                 } else {
-                    Image(uiImage: face!)
-                        .resizable()
-                        .frame(width: CGFloat(Float(face!.size.width)/3), height: CGFloat(Float(face!.size.height)/3))
+                    if ipadView {
+                        // scale correctly for ipad
+                        Image(uiImage: face!)
+                            .resizable()
+                            .frame(width: CGFloat(Float(face!.size.width)/2), height: CGFloat(Float(face!.size.height)/2))
+                    } else {
+                        // normal (for phones)
+                        Image(uiImage: face!)
+                            .resizable()
+                            .frame(width: CGFloat(Float(face!.size.width)/3), height: CGFloat(Float(face!.size.height)/3))
+                    }
                 }
             }
             .frame(width: 80, height: 80)

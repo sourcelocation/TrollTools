@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import ZIPFoundation
 
 enum KeySizeState: String {
     case small = "Small"
@@ -76,14 +77,12 @@ class PasscodeKeyFaceManager {
     static func setFacesFromTheme(_ url: URL) throws {
         let fm = FileManager.default
         let teleURL = try telephonyUIURL()
-        //var finalURL: URL = url.deletingPathExtension()
-        //var name = url.deletingPathExtension().lastPathComponent
+        let supportURL = try getSupportURL()
         
         if url.lastPathComponent.contains(".passthm") {
-            for folder in (try? fm.contentsOfDirectory(at: url, includingPropertiesForKeys: nil)) ?? [] {
+            try fm.unzipItem(at: url, to: supportURL)
+            for folder in (try? fm.contentsOfDirectory(at: supportURL, includingPropertiesForKeys: nil)) ?? [] {
                 if folder.lastPathComponent.contains("TelephonyUI") {
-                    //finalURL = folder
-                    //name = url.lastPathComponent.replacingOccurrences(of: ".passthm", with: "")
                     for imageURL in (try? fm.contentsOfDirectory(at: folder, includingPropertiesForKeys: nil)) ?? [] {
                         let img = UIImage(contentsOfFile: imageURL.path)
                         let size = CGSize(width: img?.size.width ?? 152, height: img?.size.height ?? 152)
@@ -95,39 +94,20 @@ class PasscodeKeyFaceManager {
                         guard let png = newImage?.pngData() else { throw "No png data" }
                         try png.write(to: teleURL.appendingPathComponent(imageURL.lastPathComponent))
                     }
+                    
+                    // delete the files when done
+                    try fm.removeItem(at: folder)
+                    return
                 }
             }
         }
-        
-        /*for imageURL in (try? fm.contentsOfDirectory(at: finalURL, includingPropertiesForKeys: nil)) ?? [] {
-            let img = UIImage(contentsOfFile: imageURL.path)
-            let size = CGSize(width: img?.size.width ?? 152, height: img?.size.height ?? 152)
-            UIGraphicsBeginImageContextWithOptions(size, false, 1.0)
-            img!.draw(in: CGRect(origin: .zero, size: size))
-            let newImage = UIGraphicsGetImageFromCurrentImageContext()
-            UIGraphicsEndImageContext()
-            
-            guard let png = newImage?.pngData() else { throw "No png data" }
-            try png.write(to: teleURL.appendingPathComponent(imageURL.lastPathComponent))
-        }*/
+        throw "Unable to import passcode theme!"
     }
     
     static func exportFaceTheme() throws -> URL? {
         let fm = FileManager.default
         let teleURL = try telephonyUIURL()
         let supportURL = try getSupportURL()
-        
-        /*for imageURL in (try? fm.contentsOfDirectory(at: tempDir, includingPropertiesForKeys: nil)) ?? [] {
-            let img = UIImage(contentsOfFile: imageURL.path)
-            let size = CGSize(width: img?.size.width ?? 152, height: img?.size.height ?? 152)
-            UIGraphicsBeginImageContextWithOptions(size, false, 1.0)
-            img!.draw(in: CGRect(origin: .zero, size: size))
-            let newImage = UIGraphicsGetImageFromCurrentImageContext()
-            UIGraphicsEndImageContext()
-            
-            guard let png = newImage?.pngData() else { throw "No png data" }
-            try png.write(to: tempDir.appendingPathComponent(imageURL.lastPathComponent))
-        }*/
         
         var archiveURL: URL?
         var error: NSError?
