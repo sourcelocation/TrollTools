@@ -50,7 +50,7 @@ struct PasscodeEditorView: View {
                                 var archiveURL: URL? = try PasscodeKeyFaceManager.exportFaceTheme()
                                 // show share menu
                                 let avc = UIActivityViewController(activityItems: [archiveURL!], applicationActivities: nil)
-                                UIApplication.shared.keyWindow?.rootViewController?.present(avc, animated: true)
+                                UIApplication.shared.windows.first?.rootViewController?.present(avc, animated: true)
                             } catch {
                                 UIApplication.shared.alert(body: "An error occured while exporting key face.")
                             }
