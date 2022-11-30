@@ -21,13 +21,15 @@ struct PasscodeEditorView: View {
     @State private var isImporting = false
     @State private var isExporting = false
     
+    @State private var sizeLimit: [Int] = [50, 500] // the limits of the custom size (max, min)
+    
     @State private var ipadView: Bool = (UIDevice.current.userInterfaceIdiom == .pad)
     
     let fm = FileManager.default
     
     var body: some View {
         GeometryReader { proxy in
-            let minSize = min(proxy.size.width, proxy.size.height)
+            //let minSize = min(proxy.size.width, proxy.size.height)
             ZStack(alignment: .center) {
                 Image(uiImage: WallpaperGetter.lockscreen() ?? UIImage(named: "wallpaper")!)
                     .resizable()
@@ -165,7 +167,6 @@ struct PasscodeEditorView: View {
                       allowsMultipleSelection: false
         ) { result in
             guard let url = try? result.get().first else { UIApplication.shared.alert(body: "Couldn't get url of file. Did you select it?"); return }
-            canChange = false
             do {
                 // try appying the themes
                 try PasscodeKeyFaceManager.setFacesFromTheme(url, keySize: sizeButtonState, customX: CGFloat(Int(customSize[0]) ?? 152), customY: CGFloat(Int(customSize[1]) ?? 152))
@@ -184,28 +185,31 @@ struct PasscodeEditorView: View {
             }
         }
         .sheet(isPresented: $showingImagePicker) {
-            ImagePickerView(image: $faces[changingFaceN])
+            ImagePickerView(image: $faces[changingFaceN], didChange: $canChange)
         }
         .onChange(of: faces[changingFaceN] ?? UIImage()) { newValue in
             print(newValue)
             if canChange {
+                canChange = false
                 // reset the size if too big or small
-                if (Int(customSize[0]) ?? 152 > 500) {
-                    customSize[0] = "500"
-                } else if (Int(customSize[0]) ?? 152 < 50) {
-                    customSize[0] = "50"
+                if (Int(customSize[0]) ?? 152 > sizeLimit[1]) {
+                    // above max size
+                    customSize[0] = String(sizeLimit[1])
+                } else if (Int(customSize[0]) ?? 152 < sizeLimit[0]) {
+                    // below min size
+                    customSize[0] = String(sizeLimit[0])
                 }
                 
-                if (Int(customSize[1]) ?? 152 > 500) {
-                    customSize[1] = "500"
-                } else if (Int(customSize[1]) ?? 152 < 50) {
-                    customSize[1] = "50"
+                if (Int(customSize[1]) ?? 152 > sizeLimit[1]) {
+                    // above max size
+                    customSize[1] = String(sizeLimit[1])
+                } else if (Int(customSize[1]) ?? 152 < sizeLimit[0]) {
+                    // below min size
+                    customSize[1] = String(sizeLimit[0])
                 }
-                canChange = false
                 do {
                     try PasscodeKeyFaceManager.setFace(newValue, for: changingFaceN, keySize: sizeButtonState, customX: Int(customSize[0]) ?? 152, customY: Int(customSize[1]) ?? 152)
                     faces[changingFaceN] = try PasscodeKeyFaceManager.getFace(for: changingFaceN)
-                    canChange = false
                 } catch {
                     UIApplication.shared.alert(body: "An error occured while changing key face. \(error)")
                 }
@@ -216,9 +220,6 @@ struct PasscodeEditorView: View {
         changingFaceN = n
         PHPhotoLibrary.requestAuthorization(for: .readWrite) { status in
             DispatchQueue.main.async {
-                if !canChange {
-                    canChange = true
-                }
                 showingImagePicker = status == .authorized
             }
         }
