@@ -52,6 +52,9 @@ struct PasscodeEditorView: View {
                                 var archiveURL: URL? = try PasscodeKeyFaceManager.exportFaceTheme()
                                 // show share menu
                                 let avc = UIActivityViewController(activityItems: [archiveURL!], applicationActivities: nil)
+                                let view: UIView = UIApplication.shared.windows.first!.rootViewController!.view
+                                avc.popoverPresentationController?.sourceView = view // prevents crashing on iPads
+                                avc.popoverPresentationController?.sourceRect = CGRect(x: view.bounds.midX, y: view.bounds.maxY, width: 0, height: 0) // show up at center bottom on iPads
                                 UIApplication.shared.windows.first?.rootViewController?.present(avc, animated: true)
                             } catch {
                                 UIApplication.shared.alert(body: "An error occured while exporting key face.")
