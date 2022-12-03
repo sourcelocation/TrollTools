@@ -10,20 +10,21 @@ import Photos
 
 struct PasscodeEditorView: View {
     
+    @State private var ipadView: Bool = PasscodeKeyFaceManager.getDefaultFaceSize() == KeySize.small.rawValue ? true : false//(UIDevice.current.userInterfaceIdiom == .pad)
+    
     @State private var showingImagePicker = false
     @State private var faces: [UIImage?] = [UIImage?](repeating: nil, count: 10)
     @State private var changedFaces: [Bool] = [Bool](repeating: false, count: 10)
     @State private var canChange = false // needed to make sure it does not reset the size on startup
     @State private var changingFaceN = 0
     @State private var isBig = false
-    @State private var customSize : [String] = ["152", "152"]
-    @State private var sizeButtonState = KeySizeState.small
+    @State private var customSize: [CGFloat] = [CGFloat(KeySize.small.rawValue), CGFloat(KeySize.small.rawValue)]
+    @State private var currentSize: Int = PasscodeKeyFaceManager.getDefaultFaceSize()
+    //@State private var sizeButtonState = KeySizeState.small
     @State private var isImporting = false
     @State private var isExporting = false
     
     @State private var sizeLimit: [Int] = [50, 500] // the limits of the custom size (max, min)
-    
-    @State private var ipadView: Bool = (UIDevice.current.userInterfaceIdiom == .pad)
     
     let fm = FileManager.default
     
@@ -101,7 +102,7 @@ struct PasscodeEditorView: View {
                     .padding(.top, 16)
                 }
                 .offset(x: 0, y: -35)
-                VStack {
+                /*VStack {
                     Spacer()
                     if sizeButtonState == KeySizeState.custom {
                         HStack {
@@ -127,7 +128,7 @@ struct PasscodeEditorView: View {
                         }
                         .padding(.bottom, 70)
                     }
-                }
+                }*/
                 
                 VStack {
                     Spacer()
@@ -141,7 +142,7 @@ struct PasscodeEditorView: View {
                             }
                         }
                         Spacer()
-                        Button(sizeButtonState.rawValue) {
+                        /*Button(sizeButtonState.rawValue) {
                             if sizeButtonState == KeySizeState.small {
                                 sizeButtonState = KeySizeState.big
                             } else if sizeButtonState == KeySizeState.big {
@@ -149,6 +150,111 @@ struct PasscodeEditorView: View {
                             } else {
                                 sizeButtonState = KeySizeState.small
                             }
+                        }*/
+                        Button("Choose size") {
+                            // create and configure alert controller
+                            let alert = UIAlertController(title: "Choose a size", message: "", preferredStyle: .actionSheet)
+                            
+                            // create the actions
+                            let defaultAction = UIAlertAction(title: "Default", style: .default) { (action) in
+                                // set the size back to default
+                                currentSize = PasscodeKeyFaceManager.getDefaultFaceSize()
+                                
+                                do {
+                                    try PasscodeKeyFaceManager.setFacesFromTheme(try PasscodeKeyFaceManager.telephonyUIURL(), keySize: CGFloat(currentSize), customX: customSize[0], customY: customSize[1])
+                                } catch {
+                                    UIApplication.shared.alert(body:"An error occured. \(error)")
+                                }
+                            }
+                            
+                            let smallAction = UIAlertAction(title: "Small", style: .default) { (action) in
+                                // set the size to small
+                                customSize[0] = CGFloat(KeySize.small.rawValue)
+                                customSize[1] = CGFloat(KeySize.small.rawValue)
+                                currentSize = -1
+                                
+                                do {
+                                    try PasscodeKeyFaceManager.setFacesFromTheme(try PasscodeKeyFaceManager.telephonyUIURL(), keySize: CGFloat(currentSize), customX: customSize[0], customY: customSize[1])
+                                } catch {
+                                    UIApplication.shared.alert(body:"An error occured. \(error)")
+                                }
+                            }
+                            
+                            let bigAction = UIAlertAction(title: "Big", style: .default) { (action) in
+                                // set the size to big
+                                customSize[0] = CGFloat(KeySize.big.rawValue)
+                                customSize[1] = CGFloat(KeySize.big.rawValue)
+                                currentSize = -1
+                                
+                                do {
+                                    try PasscodeKeyFaceManager.setFacesFromTheme(try PasscodeKeyFaceManager.telephonyUIURL(), keySize: CGFloat(currentSize), customX: customSize[0], customY: customSize[1])
+                                } catch {
+                                    UIApplication.shared.alert(body:"An error occured. \(error)")
+                                }
+                            }
+                            
+                            let customAction = UIAlertAction(title: "Custom", style: .default) { (action) in
+                                // ask the user for a custom size
+                                var sizeAlert = UIAlertController(title: "Enter Key Dimensions", message: "Min: "+String(sizeLimit[0])+", Max: "+String(sizeLimit[1]), preferredStyle: .alert)
+                                // bring up the text prompts
+                                alert.addTextField { (textField) in
+                                    // text field for width
+                                    textField.placeholder = "Width"
+                                }
+                                alert.addTextField { (textField) in
+                                    // text field for height
+                                    textField.placeholder = "Height"
+                                }
+                                sizeAlert.addAction(UIAlertAction(title: "Confirm", style: .default) { (action) in
+                                    // set the sizes
+                                    // check if they entered something and if it is in bounds
+                                    let width: Int = Int(alert.textFields?[0].text! ?? "-1") ?? -1
+                                    let height: Int = Int(alert.textFields?[1].text! ?? "-1") ?? -1
+                                    if (width >= sizeLimit[0] && width <= sizeLimit[1]) && (height >= sizeLimit[0] && height <= sizeLimit[1]) {
+                                        // good to go
+                                        customSize[0] = CGFloat(width)
+                                        customSize[1] = CGFloat(height)
+                                        currentSize = -1
+                                    } else {
+                                        // alert that it was not a valid size
+                                        UIApplication.shared.alert(body:"Not a valid size!")
+                                    }
+                                })
+                                sizeAlert.addAction(UIAlertAction(title: "Cancel", style: .cancel) { (action) in
+                                    // cancel the process
+                                })
+                                UIApplication.shared.windows.first?.rootViewController?.present(sizeAlert, animated: true, completion: nil)
+                            }
+                            
+                            // determine which to put a check on
+                            if currentSize != -1 {
+                                defaultAction.setValue(true, forKey: "checked")
+                            } else if customSize[0] == CGFloat(KeySize.small.rawValue) && customSize[1] == CGFloat(KeySize.small.rawValue) {
+                                smallAction.setValue(true, forKey: "checked")
+                            } else if customSize[0] == CGFloat(KeySize.big.rawValue) && customSize[1] == CGFloat(KeySize.big.rawValue) {
+                                bigAction.setValue(true, forKey: "checked")
+                            } else {
+                                customAction.setValue(true, forKey: "checked")
+                            }
+                            
+                            let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { (action) in
+                                // cancels the action
+                            }
+                            
+                            // add the actions
+                            alert.addAction(defaultAction)
+                            alert.addAction(smallAction)
+                            alert.addAction(bigAction)
+                            alert.addAction(customAction)
+                            alert.addAction(cancelAction)
+                            
+                            let view: UIView = UIApplication.shared.windows.first!.rootViewController!.view
+                            // present popover for iPads
+                            alert.popoverPresentationController?.sourceView = view // prevents crashing on iPads
+                            alert.popoverPresentationController?.sourceRect = CGRect(x: view.bounds.midX, y: view.bounds.maxY, width: 0, height: 0) // show up at center bottom on iPads
+                            
+                            // present the alert
+                            UIApplication.shared.windows.first?.rootViewController?.present(alert, animated: true)
                         }
                         Spacer()
                         Button("Remove all") {
@@ -176,7 +282,7 @@ struct PasscodeEditorView: View {
             guard let url = try? result.get().first else { UIApplication.shared.alert(body: "Couldn't get url of file. Did you select it?"); return }
             do {
                 // try appying the themes
-                try PasscodeKeyFaceManager.setFacesFromTheme(url, keySize: sizeButtonState, customX: CGFloat(Int(customSize[0]) ?? 152), customY: CGFloat(Int(customSize[1]) ?? 152))
+                try PasscodeKeyFaceManager.setFacesFromTheme(url, keySize: CGFloat(currentSize), customX: customSize[0], customY: customSize[1])
                 faces = try PasscodeKeyFaceManager.getFaces()
             } catch { UIApplication.shared.alert(body: error.localizedDescription) }
         }
@@ -199,7 +305,7 @@ struct PasscodeEditorView: View {
             if canChange {
                 canChange = false
                 // reset the size if too big or small
-                if (Int(customSize[0]) ?? 152 > sizeLimit[1]) {
+                /*if (Int(customSize[0]) ?? 152 > sizeLimit[1]) {
                     // above max size
                     customSize[0] = String(sizeLimit[1])
                 } else if (Int(customSize[0]) ?? 152 < sizeLimit[0]) {
@@ -213,9 +319,9 @@ struct PasscodeEditorView: View {
                 } else if (Int(customSize[1]) ?? 152 < sizeLimit[0]) {
                     // below min size
                     customSize[1] = String(sizeLimit[0])
-                }
+                }*/
                 do {
-                    try PasscodeKeyFaceManager.setFace(newValue, for: changingFaceN, keySize: sizeButtonState, customX: Int(customSize[0]) ?? 152, customY: Int(customSize[1]) ?? 152)
+                    try PasscodeKeyFaceManager.setFace(newValue, for: changingFaceN, keySize: CGFloat(currentSize), customX: customSize[0], customY: customSize[1])
                     faces[changingFaceN] = try PasscodeKeyFaceManager.getFace(for: changingFaceN)
                 } catch {
                     UIApplication.shared.alert(body: "An error occured while changing key face. \(error)")
@@ -257,7 +363,7 @@ struct PasscodeKeyView: View {
                         // scale correctly for ipad
                         Image(uiImage: face!)
                             .resizable()
-                            .frame(width: CGFloat(Float(face!.size.width)/2), height: CGFloat(Float(face!.size.height)/2))
+                            .frame(width: CGFloat(Float(face!.size.width)/2.1), height: CGFloat(Float(face!.size.height)/2.1))
                     } else {
                         // normal (for phones)
                         Image(uiImage: face!)

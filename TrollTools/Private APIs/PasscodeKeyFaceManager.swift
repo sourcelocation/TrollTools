@@ -14,17 +14,19 @@ enum KeySizeState: String {
     case custom = "Custom"
 }
 
+enum KeySize: Int {
+    case small = 150
+    case big = 225
+}
+
 class PasscodeKeyFaceManager {
 
-    static func setFace(_ image: UIImage, for n: Int, keySize: KeySizeState, customX: Int, customY: Int) throws {
+    static func setFace(_ image: UIImage, for n: Int, keySize: CGFloat, customX: CGFloat, customY: CGFloat) throws {
         // this part could be cleaner
         var usesCustomSize = true
-        var sizeToUse = 0
-        if keySize == KeySizeState.small {
-            sizeToUse = 152
-            usesCustomSize = false
-        } else if keySize == KeySizeState.big {
-            sizeToUse = 225
+        var sizeToUse: CGFloat = 0
+        if keySize != -1 {
+            sizeToUse = keySize
             usesCustomSize = false
         }
         
@@ -43,7 +45,7 @@ class PasscodeKeyFaceManager {
         let fm = FileManager.default
         
         for imageURL in try fm.contentsOfDirectory(at: try telephonyUIURL(), includingPropertiesForKeys: nil) {
-            let size = CGSize(width: 152, height: 152)
+            let size = CGSize(width: KeySize.small.rawValue, height: KeySize.small.rawValue)
             UIGraphicsBeginImageContextWithOptions(size, false, 1.0)
             UIImage().draw(in: CGRect(origin: .zero, size: size))
             let newImage = UIGraphicsGetImageFromCurrentImageContext()
@@ -83,60 +85,71 @@ class PasscodeKeyFaceManager {
         return -1
     }
     
-    static func setFacesFromTheme(_ url: URL, keySize: KeySizeState, customX: CGFloat, customY: CGFloat) throws {
+    static func setFacesFromTheme(_ url: URL, keySize: CGFloat, customX: CGFloat, customY: CGFloat) throws {
         let fm = FileManager.default
         let teleURL = try telephonyUIURL()
         let supportURL = try getSupportURL()
+        let defaultSize = getDefaultFaceSize()
+        
+        var finalURL = url
+        var isTemp: Bool = false
+        
+        var sizeMultiplier: Double = 1
         
         if url.lastPathComponent.contains(".passthm") {
             try fm.unzipItem(at: url, to: supportURL)
             for folder in (try? fm.contentsOfDirectory(at: supportURL, includingPropertiesForKeys: nil)) ?? [] {
                 if folder.lastPathComponent.contains("TelephonyUI") {
-                    for imageURL in (try? fm.contentsOfDirectory(at: folder, includingPropertiesForKeys: nil)) ?? [] {
-                        // determine if it is a number
-                        var number: Int = try getNumberFromURL(url: imageURL)
-                        if number != -1 {
-                            let img = UIImage(contentsOfFile: imageURL.path)
-                            var newSize: [CGFloat] = [img?.size.width ?? 152, img?.size.height ?? 152]
-                            // check the sizes and set it
-                            if img?.size.width == img?.size.height && (img?.size.width == 152 || img?.size.width == 225) {
-                                // change sizes to currently selected size
-                                // does not override  custom sizes from theme
-                                if keySize == KeySizeState.small {
-                                    // make small
-                                    newSize[0] = 152
-                                    newSize[1] = 152
-                                } else if keySize == KeySizeState.big {
-                                    // make big
-                                    newSize[0] = 225
-                                    newSize[1] = 225
-                                }
-                            } else if keySize == KeySizeState.custom {
-                                // replace sizes if a custom size is chosen
-                                // overrides custom sizes from theme
-                                newSize[0] = customX
-                                newSize[1] = customY
-                            }
-                            
-                            let size = CGSize(width: newSize[0], height: newSize[1])
-                            UIGraphicsBeginImageContextWithOptions(size, false, 1.0)
-                            img!.draw(in: CGRect(origin: .zero, size: size))
-                            let newImage = UIGraphicsGetImageFromCurrentImageContext()
-                            UIGraphicsEndImageContext()
-                            
-                            let newURL = try getURL(for: number)
-                            guard let png = newImage?.pngData() else { throw "No png data" }
-                            try png.write(to: teleURL.appendingPathComponent(newURL.lastPathComponent))
-                        }
-                    }
+                    finalURL = folder
+                    isTemp = true
                     
-                    // delete the files when done
-                    try fm.removeItem(at: folder)
-                    return
+                    if fm.fileExists(atPath: folder.path + "/_small") && defaultSize >= KeySize.big.rawValue - 10 {
+                        // set the size for bigger keys
+                        sizeMultiplier = Double(KeySize.big.rawValue - 12)/Double(KeySize.small.rawValue)
+                        try fm.removeItem(atPath: folder.path + "/_small")
+                    } else if fm.fileExists(atPath: folder.path + "/_big") && defaultSize <= KeySize.small.rawValue + 10 {
+                        // set size for smaller keys
+                        sizeMultiplier = Double(KeySize.small.rawValue + 9)/Double(KeySize.big.rawValue)
+                        try fm.removeItem(atPath: folder.path + "/_big")
+                    }
                 }
             }
         }
-        throw "Unable to import passcode theme!"
+        for imageURL in (try? fm.contentsOfDirectory(at: finalURL, includingPropertiesForKeys: nil)) ?? [] {
+            // determine if it is a number
+            var number: Int = try getNumberFromURL(url: imageURL)
+            if number != -1 {
+                let img = UIImage(contentsOfFile: imageURL.path)
+                var newSize: [CGFloat] = [CGFloat(Double(img?.size.width ?? 150) * sizeMultiplier), CGFloat(Double(img?.size.height ?? 150) * sizeMultiplier)]
+                // check the sizes and set it
+                if img?.size.width == img?.size.height && (img?.size.width == CGFloat(KeySize.small.rawValue) || img?.size.width == CGFloat(KeySize.big.rawValue)) {
+                    // change sizes to currently selected size
+                    // does not override custom sizes from theme
+                    newSize[0] = keySize
+                    newSize[1] = keySize
+                } else if keySize == -1 && customX != CGFloat(KeySize.small.rawValue) && customX != CGFloat(KeySize.big.rawValue) && customY != CGFloat(KeySize.small.rawValue) && customY != CGFloat(KeySize.big.rawValue) {
+                    // replace sizes if a custom size is chosen
+                    // overrides custom sizes from theme
+                    newSize[0] = customX
+                    newSize[1] = customY
+                }
+                
+                let size = CGSize(width: newSize[0], height: newSize[1])
+                UIGraphicsBeginImageContextWithOptions(size, false, 1.0)
+                img!.draw(in: CGRect(origin: .zero, size: size))
+                let newImage = UIGraphicsGetImageFromCurrentImageContext()
+                UIGraphicsEndImageContext()
+                
+                let newURL = try getURL(for: number)
+                guard let png = newImage?.pngData() else { continue }
+                try png.write(to: teleURL.appendingPathComponent(newURL.lastPathComponent))
+            }
+        }
+        if isTemp {
+            // delete the files when done
+            try fm.removeItem(at: finalURL)
+            return
+        }
     }
     
     static func exportFaceTheme() throws -> URL? {
@@ -146,6 +159,12 @@ class PasscodeKeyFaceManager {
         var archiveURL: URL?
         var error: NSError?
         let coordinator = NSFileCoordinator()
+        
+        var userSize: String = getDefaultFaceSize() <= KeySize.small.rawValue + 10 ? "small" : "big"
+        
+        // create a file to be exported stating the size
+        let sizeFile = teleURL.path + "/_"+userSize
+        fm.createFile(atPath: sizeFile, contents: nil)
         
         coordinator.coordinate(readingItemAt: teleURL, options: [.forUploading], error: &error) { (zipURL) in
             let tmpURL = try! fm.url(
@@ -157,6 +176,8 @@ class PasscodeKeyFaceManager {
             try! fm.moveItem(at: zipURL, to: tmpURL)
             archiveURL = tmpURL
         }
+        // delete the size file
+        try fm.removeItem(atPath: sizeFile)
         
         if let archiveURL = archiveURL {
             return archiveURL
@@ -167,9 +188,12 @@ class PasscodeKeyFaceManager {
     
     static func reset() throws {
         let fm = FileManager.default
+        let defaults = UserDefaults.standard
         for url in try FileManager.default.contentsOfDirectory(at: URL(fileURLWithPath: "/var/mobile/Library/Caches/"), includingPropertiesForKeys: nil) {
             if url.lastPathComponent.contains("TelephonyUI") {
                 try fm.removeItem(at: url)
+                // reset default size
+                defaults.removeObject(forKey: "passcodeFaceSize")
             }
         }
     }
@@ -196,6 +220,31 @@ class PasscodeKeyFaceManager {
         guard let url = try FileManager.default.contentsOfDirectory(at: URL(fileURLWithPath: "/var/mobile/Library/Caches/"), includingPropertiesForKeys: nil)
             .first(where: { url in url.lastPathComponent.contains("TelephonyUI") }) else { throw "TelephonyUI folder not found. Have the caches been generated? Reset faces in app and try again." }
                    return url
+    }
+    
+    // user defaults stuff
+    static func getDefaultFaceSize() -> Int {
+        let defaults = UserDefaults.standard
+        var size = defaults.integer(forKey: "passcodeFaceSize")
+        
+        // if it exists, return it
+        if size != 0 {
+            return size
+        }
+        
+        // if it doesn't, create it
+        do {
+            let teleURL = try telephonyUIURL()
+            let fm = FileManager.default
+            size = Int(UIImage(contentsOfFile: try fm.contentsOfDirectory(at: teleURL, includingPropertiesForKeys: nil)[0].path)?.size.height ?? 150)
+            // set the value and return
+            defaults.set(size, forKey: "passcodeFaceSize")
+            return size
+        } catch {
+            // just set the defaults to 150
+            defaults.set(150, forKey: "passcodeFaceSize")
+            return 150
+        }
     }
 }
 
