@@ -18,7 +18,7 @@ struct PasscodeEditorView: View {
     @State private var canChange = false // needed to make sure it does not reset the size on startup
     @State private var changingFaceN = 0
     @State private var isBig = false
-    @State private var customSize: [CGFloat] = [CGFloat(KeySize.small.rawValue), CGFloat(KeySize.small.rawValue)]
+    @State private var customSize: [String] = [String(KeySize.small.rawValue), String(KeySize.small.rawValue)]
     @State private var currentSize: Int = PasscodeKeyFaceManager.getDefaultFaceSize()
     //@State private var sizeButtonState = KeySizeState.small
     @State private var isImporting = false
@@ -102,9 +102,9 @@ struct PasscodeEditorView: View {
                     .padding(.top, 16)
                 }
                 .offset(x: 0, y: -35)
-                /*VStack {
+                VStack {
                     Spacer()
-                    if sizeButtonState == KeySizeState.custom {
+                    if currentSize == -1 {
                         HStack {
                             TextField("X", text: $customSize[0])
                                 .foregroundColor(.white)
@@ -128,7 +128,7 @@ struct PasscodeEditorView: View {
                         }
                         .padding(.bottom, 70)
                     }
-                }*/
+                }
                 
                 VStack {
                     Spacer()
@@ -161,7 +161,7 @@ struct PasscodeEditorView: View {
                                 currentSize = PasscodeKeyFaceManager.getDefaultFaceSize()
                                 
                                 do {
-                                    try PasscodeKeyFaceManager.setFacesFromTheme(try PasscodeKeyFaceManager.telephonyUIURL(), keySize: CGFloat(currentSize), customX: customSize[0], customY: customSize[1])
+                                    try PasscodeKeyFaceManager.setFacesFromTheme(try PasscodeKeyFaceManager.telephonyUIURL(), keySize: CGFloat(currentSize), customX: CGFloat(Int(customSize[0]) ?? 150), customY: CGFloat(Int(customSize[1]) ?? 150))
                                 } catch {
                                     UIApplication.shared.alert(body:"An error occured. \(error)")
                                 }
@@ -169,12 +169,12 @@ struct PasscodeEditorView: View {
                             
                             let smallAction = UIAlertAction(title: "Small", style: .default) { (action) in
                                 // set the size to small
-                                customSize[0] = CGFloat(KeySize.small.rawValue)
-                                customSize[1] = CGFloat(KeySize.small.rawValue)
-                                currentSize = -1
+                                customSize[0] = String(KeySize.small.rawValue)
+                                customSize[1] = String(KeySize.small.rawValue)
+                                currentSize = -2
                                 
                                 do {
-                                    try PasscodeKeyFaceManager.setFacesFromTheme(try PasscodeKeyFaceManager.telephonyUIURL(), keySize: CGFloat(currentSize), customX: customSize[0], customY: customSize[1])
+                                    try PasscodeKeyFaceManager.setFacesFromTheme(try PasscodeKeyFaceManager.telephonyUIURL(), keySize: CGFloat(currentSize), customX: CGFloat(Int(customSize[0]) ?? 150), customY: CGFloat(Int(customSize[1]) ?? 150))
                                 } catch {
                                     UIApplication.shared.alert(body:"An error occured. \(error)")
                                 }
@@ -182,12 +182,12 @@ struct PasscodeEditorView: View {
                             
                             let bigAction = UIAlertAction(title: "Big", style: .default) { (action) in
                                 // set the size to big
-                                customSize[0] = CGFloat(KeySize.big.rawValue)
-                                customSize[1] = CGFloat(KeySize.big.rawValue)
-                                currentSize = -1
+                                customSize[0] = String(KeySize.big.rawValue)
+                                customSize[1] = String(KeySize.big.rawValue)
+                                currentSize = -2
                                 
                                 do {
-                                    try PasscodeKeyFaceManager.setFacesFromTheme(try PasscodeKeyFaceManager.telephonyUIURL(), keySize: CGFloat(currentSize), customX: customSize[0], customY: customSize[1])
+                                    try PasscodeKeyFaceManager.setFacesFromTheme(try PasscodeKeyFaceManager.telephonyUIURL(), keySize: CGFloat(currentSize), customX: CGFloat(Int(customSize[0]) ?? 150), customY: CGFloat(Int(customSize[1]) ?? 150))
                                 } catch {
                                     UIApplication.shared.alert(body:"An error occured. \(error)")
                                 }
@@ -212,8 +212,8 @@ struct PasscodeEditorView: View {
                                     let height: Int = Int(sizeAlert.textFields?[1].text! ?? "-1") ?? -1
                                     if (width >= sizeLimit[0] && width <= sizeLimit[1]) && (height >= sizeLimit[0] && height <= sizeLimit[1]) {
                                         // good to go
-                                        customSize[0] = CGFloat(width)
-                                        customSize[1] = CGFloat(height)
+                                        customSize[0] = String(width)
+                                        customSize[1] = String(height)
                                         currentSize = -1
                                     } else {
                                         // alert that it was not a valid size
@@ -227,11 +227,11 @@ struct PasscodeEditorView: View {
                             }
                             
                             // determine which to put a check on
-                            if currentSize != -1 {
+                            if currentSize > 0 {
                                 defaultAction.setValue(true, forKey: "checked")
-                            } else if customSize[0] == CGFloat(KeySize.small.rawValue) && customSize[1] == CGFloat(KeySize.small.rawValue) {
+                            } else if currentSize == -2 && Int(customSize[0]) == Int(KeySize.small.rawValue) && Int(customSize[1]) == Int(KeySize.small.rawValue) {
                                 smallAction.setValue(true, forKey: "checked")
-                            } else if customSize[0] == CGFloat(KeySize.big.rawValue) && customSize[1] == CGFloat(KeySize.big.rawValue) {
+                            } else if currentSize == -2 && Int(customSize[0]) == Int(KeySize.big.rawValue) && Int(customSize[1]) == Int(KeySize.big.rawValue) {
                                 bigAction.setValue(true, forKey: "checked")
                             } else {
                                 customAction.setValue(true, forKey: "checked")
@@ -282,7 +282,7 @@ struct PasscodeEditorView: View {
             guard let url = try? result.get().first else { UIApplication.shared.alert(body: "Couldn't get url of file. Did you select it?"); return }
             do {
                 // try appying the themes
-                try PasscodeKeyFaceManager.setFacesFromTheme(url, keySize: CGFloat(currentSize), customX: customSize[0], customY: customSize[1])
+                try PasscodeKeyFaceManager.setFacesFromTheme(url, keySize: CGFloat(currentSize), customX: CGFloat(Int(customSize[0]) ?? 150), customY: CGFloat(Int(customSize[1]) ?? 150))
                 faces = try PasscodeKeyFaceManager.getFaces()
             } catch { UIApplication.shared.alert(body: error.localizedDescription) }
         }
@@ -321,7 +321,7 @@ struct PasscodeEditorView: View {
                     customSize[1] = String(sizeLimit[0])
                 }*/
                 do {
-                    try PasscodeKeyFaceManager.setFace(newValue, for: changingFaceN, keySize: CGFloat(currentSize), customX: customSize[0], customY: customSize[1])
+                    try PasscodeKeyFaceManager.setFace(newValue, for: changingFaceN, keySize: CGFloat(currentSize), customX: CGFloat(Int(customSize[0]) ?? 150), customY: CGFloat(Int(customSize[1]) ?? 150))
                     faces[changingFaceN] = try PasscodeKeyFaceManager.getFace(for: changingFaceN)
                 } catch {
                     UIApplication.shared.alert(body: "An error occured while changing key face. \(error)")

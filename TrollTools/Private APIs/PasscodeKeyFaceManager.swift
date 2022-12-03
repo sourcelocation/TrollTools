@@ -25,7 +25,7 @@ class PasscodeKeyFaceManager {
         // this part could be cleaner
         var usesCustomSize = true
         var sizeToUse: CGFloat = 0
-        if keySize != -1 {
+        if keySize > 0 {
             sizeToUse = keySize
             usesCustomSize = false
         }
@@ -127,7 +127,7 @@ class PasscodeKeyFaceManager {
                     // does not override custom sizes from theme
                     newSize[0] = keySize
                     newSize[1] = keySize
-                } else if keySize == -1 && customX != CGFloat(KeySize.small.rawValue) && customX != CGFloat(KeySize.big.rawValue) && customY != CGFloat(KeySize.small.rawValue) && customY != CGFloat(KeySize.big.rawValue) {
+                } else if keySize <= 0 && customX != CGFloat(KeySize.small.rawValue) && customX != CGFloat(KeySize.big.rawValue) && customY != CGFloat(KeySize.small.rawValue) && customY != CGFloat(KeySize.big.rawValue) {
                     // replace sizes if a custom size is chosen
                     // overrides custom sizes from theme
                     newSize[0] = customX
