@@ -197,19 +197,19 @@ struct PasscodeEditorView: View {
                                 // ask the user for a custom size
                                 var sizeAlert = UIAlertController(title: "Enter Key Dimensions", message: "Min: "+String(sizeLimit[0])+", Max: "+String(sizeLimit[1]), preferredStyle: .alert)
                                 // bring up the text prompts
-                                alert.addTextField { (textField) in
+                                sizeAlert.addTextField { (textField) in
                                     // text field for width
                                     textField.placeholder = "Width"
                                 }
-                                alert.addTextField { (textField) in
+                                sizeAlert.addTextField { (textField) in
                                     // text field for height
                                     textField.placeholder = "Height"
                                 }
                                 sizeAlert.addAction(UIAlertAction(title: "Confirm", style: .default) { (action) in
                                     // set the sizes
                                     // check if they entered something and if it is in bounds
-                                    let width: Int = Int(alert.textFields?[0].text! ?? "-1") ?? -1
-                                    let height: Int = Int(alert.textFields?[1].text! ?? "-1") ?? -1
+                                    let width: Int = Int(sizeAlert.textFields?[0].text! ?? "-1") ?? -1
+                                    let height: Int = Int(sizeAlert.textFields?[1].text! ?? "-1") ?? -1
                                     if (width >= sizeLimit[0] && width <= sizeLimit[1]) && (height >= sizeLimit[0] && height <= sizeLimit[1]) {
                                         // good to go
                                         customSize[0] = CGFloat(width)
