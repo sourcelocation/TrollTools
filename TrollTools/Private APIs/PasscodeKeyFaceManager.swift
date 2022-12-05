@@ -19,6 +19,11 @@ enum KeySize: Int {
     case big = 225
 }
 
+enum PasscodeSizeLimit: Int { // the limits of the custom size
+    case min = 50
+    case max = 2500
+}
+
 class PasscodeKeyFaceManager {
 
     static func setFace(_ image: UIImage, for n: Int, keySize: CGFloat, customX: CGFloat, customY: CGFloat) throws {
@@ -138,6 +143,19 @@ class PasscodeKeyFaceManager {
                    // overrides custom sizes from theme
                    newSize[0] = customX
                    newSize[1] = customY
+                }
+                
+                // verify that the size of the images is under the limit
+                if Int(newSize[0]) < PasscodeSizeLimit.min.rawValue {
+                    newSize[0] = CGFloat(PasscodeSizeLimit.min.rawValue)
+                } else if Int(newSize[0]) > PasscodeSizeLimit.max.rawValue {
+                    newSize[0] = CGFloat(PasscodeSizeLimit.max.rawValue)
+                }
+                
+                if Int(newSize[1]) < PasscodeSizeLimit.min.rawValue {
+                    newSize[1] = CGFloat(PasscodeSizeLimit.min.rawValue)
+                } else if Int(newSize[1]) > PasscodeSizeLimit.max.rawValue {
+                    newSize[1] = CGFloat(PasscodeSizeLimit.max.rawValue)
                 }
                 
                 let size = CGSize(width: newSize[0], height: newSize[1])
