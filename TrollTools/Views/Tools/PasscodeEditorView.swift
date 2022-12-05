@@ -24,7 +24,7 @@ struct PasscodeEditorView: View {
     @State private var isImporting = false
     @State private var isExporting = false
     
-    @State private var sizeLimit: [Int] = [50, 2000] // the limits of the custom size (max, min)
+    @State private var sizeLimit: [Int] = [50, 2500] // the limits of the custom size (max, min)
     
     let fm = FileManager.default
     
