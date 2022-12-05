@@ -24,7 +24,7 @@ struct PasscodeEditorView: View {
     @State private var isImporting = false
     @State private var isExporting = false
     
-    @State private var sizeLimit: [Int] = [50, 500] // the limits of the custom size (max, min)
+    @State private var sizeLimit: [Int] = [50, 2000] // the limits of the custom size (max, min)
     
     let fm = FileManager.default
     
@@ -279,6 +279,7 @@ struct PasscodeEditorView: View {
                       ],
                       allowsMultipleSelection: false
         ) { result in
+            verifySize()
             guard let url = try? result.get().first else { UIApplication.shared.alert(body: "Couldn't get url of file. Did you select it?"); return }
             do {
                 // try appying the themes
@@ -320,6 +321,7 @@ struct PasscodeEditorView: View {
                     // below min size
                     customSize[1] = String(sizeLimit[0])
                 }*/
+                verifySize()
                 do {
                     try PasscodeKeyFaceManager.setFace(newValue, for: changingFaceN, keySize: CGFloat(currentSize), customX: CGFloat(Int(customSize[0]) ?? 150), customY: CGFloat(Int(customSize[1]) ?? 150))
                     faces[changingFaceN] = try PasscodeKeyFaceManager.getFace(for: changingFaceN)
@@ -335,6 +337,24 @@ struct PasscodeEditorView: View {
             DispatchQueue.main.async {
                 showingImagePicker = status == .authorized
             }
+        }
+    }
+    
+    func verifySize() {
+        if (Int(customSize[0]) ?? 152 > sizeLimit[1]) {
+            // above max size
+            customSize[0] = String(sizeLimit[1])
+        } else if (Int(customSize[0]) ?? 152 < sizeLimit[0]) {
+            // below min size
+            customSize[0] = String(sizeLimit[0])
+        }
+        
+        if (Int(customSize[1]) ?? 152 > sizeLimit[1]) {
+            // above max size
+            customSize[1] = String(sizeLimit[1])
+        } else if (Int(customSize[1]) ?? 152 < sizeLimit[0]) {
+            // below min size
+            customSize[1] = String(sizeLimit[0])
         }
     }
 }
