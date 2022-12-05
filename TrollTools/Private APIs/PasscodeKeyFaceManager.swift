@@ -127,17 +127,6 @@ class PasscodeKeyFaceManager {
                 let img = UIImage(contentsOfFile: imageURL.path)
                 var newSize: [CGFloat] = [CGFloat(Double(img?.size.width ?? 150) * sizeMultiplier), CGFloat(Double(img?.size.height ?? 150) * sizeMultiplier)]
                 // check the sizes and set it
-                /*if img?.size.width == img?.size.height && (img?.size.width == CGFloat(KeySize.small.rawValue) || img?.size.width == CGFloat(KeySize.big.rawValue)) {
-                    // change sizes to currently selected size
-                    // does not override custom sizes from theme
-                    newSize[0] = keySize
-                    newSize[1] = keySize
-                } else if keySize <= 0 && customX != CGFloat(KeySize.small.rawValue) && customX != CGFloat(KeySize.big.rawValue) && customY != CGFloat(KeySize.small.rawValue) && customY != CGFloat(KeySize.big.rawValue) {
-                    // replace sizes if a custom size is chosen
-                    // overrides custom sizes from theme
-                    newSize[0] = customX
-                    newSize[1] = customY
-                }*/
                 if keySize == -1 {
                    // replace sizes if a custom size is chosen
                    // overrides custom sizes from theme
