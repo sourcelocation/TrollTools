@@ -160,11 +160,11 @@ struct PasscodeEditorView: View {
                                 // set the size back to default
                                 currentSize = PasscodeKeyFaceManager.getDefaultFaceSize()
                                 
-                                do {
+                                /*do {
                                     try PasscodeKeyFaceManager.setFacesFromTheme(try PasscodeKeyFaceManager.telephonyUIURL(), keySize: CGFloat(currentSize), customX: CGFloat(Int(customSize[0]) ?? 150), customY: CGFloat(Int(customSize[1]) ?? 150))
                                 } catch {
                                     UIApplication.shared.alert(body:"An error occured. \(error)")
-                                }
+                                }*/
                             }
                             
                             let smallAction = UIAlertAction(title: "Small", style: .default) { (action) in
@@ -173,11 +173,11 @@ struct PasscodeEditorView: View {
                                 customSize[1] = String(KeySize.small.rawValue)
                                 currentSize = -2
                                 
-                                do {
+                                /*do {
                                     try PasscodeKeyFaceManager.setFacesFromTheme(try PasscodeKeyFaceManager.telephonyUIURL(), keySize: CGFloat(currentSize), customX: CGFloat(Int(customSize[0]) ?? 150), customY: CGFloat(Int(customSize[1]) ?? 150))
                                 } catch {
                                     UIApplication.shared.alert(body:"An error occured. \(error)")
-                                }
+                                }*/
                             }
                             
                             let bigAction = UIAlertAction(title: "Big", style: .default) { (action) in
@@ -186,11 +186,11 @@ struct PasscodeEditorView: View {
                                 customSize[1] = String(KeySize.big.rawValue)
                                 currentSize = -2
                                 
-                                do {
+                                /*do {
                                     try PasscodeKeyFaceManager.setFacesFromTheme(try PasscodeKeyFaceManager.telephonyUIURL(), keySize: CGFloat(currentSize), customX: CGFloat(Int(customSize[0]) ?? 150), customY: CGFloat(Int(customSize[1]) ?? 150))
                                 } catch {
                                     UIApplication.shared.alert(body:"An error occured. \(error)")
-                                }
+                                }*/
                             }
                             
                             let customAction = UIAlertAction(title: "Custom", style: .default) { (action) in

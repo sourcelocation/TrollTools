@@ -138,7 +138,7 @@ class PasscodeKeyFaceManager {
                     newSize[0] = customX
                     newSize[1] = customY
                 }*/
-                if keySize == -2 {
+                if keySize == -1 {
                    // replace sizes if a custom size is chosen
                    // overrides custom sizes from theme
                    newSize[0] = customX
