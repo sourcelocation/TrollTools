@@ -152,19 +152,20 @@ struct ToolsView: View {
     
     func toggleSpringboardOption(key: String, value: Any) throws {
         let url = URL(fileURLWithPath: "/var/preferences/com.apple.springboard.plist")
-        let tempurl = URL(fileURLWithPath: "/var/mobile/.DO-NOT-DELETE-TrollTools/temp-com.apple.springboard.plist")
         
+        var plistData: Data
         if !FileManager.default.fileExists(atPath: url.path) {
-            let templatePlistURL = Bundle.main.url(forResource: "com.apple.springboard", withExtension: "plist")!
-            try FileManager.default.copyItem(at: templatePlistURL, to: tempurl)
-            try RootHelper.move(from: tempurl, to: url)
+            plistData = try PropertyListSerialization.data(fromPropertyList: [key: value], format: .xml, options: 0)
+        } else {
+            guard let data = try? Data(contentsOf: url), var plist = try PropertyListSerialization.propertyList(from: data, format: nil) as? [String:Any] else { throw "Couldn't read com.apple.springboard.plist" }
+            plist[key] = value
+            
+            // Save plist
+            plistData = try PropertyListSerialization.data(fromPropertyList: plist, format: .xml, options: 0)
         }
-        guard let data = try? Data(contentsOf: url), var plist = try PropertyListSerialization.propertyList(from: data, format: nil) as? [String:Any] else { throw "Couldn't read com.apple.springboard.plist" }
-        plist[key] = value
         
-        // Save plist
-        let plistData = try PropertyListSerialization.data(fromPropertyList: plist, format: .xml, options: 0)
-        try plistData.write(to: url)
+        // write to file
+        try RootHelper.writeStr(String(decoding: plistData, as: UTF8.self), to: url)
     }
 }
 
