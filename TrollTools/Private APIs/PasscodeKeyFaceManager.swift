@@ -110,11 +110,11 @@ class PasscodeKeyFaceManager {
                     
                     if fm.fileExists(atPath: folder.path + "/_small") && defaultSize >= KeySize.big.rawValue - 10 {
                         // set the size for bigger keys
-                        sizeMultiplier = Double(KeySize.big.rawValue - 12)/Double(KeySize.small.rawValue)
+                        sizeMultiplier = 287/202//Double(KeySize.big.rawValue - 12)/Double(KeySize.small.rawValue)
                         try fm.removeItem(atPath: folder.path + "/_small")
                     } else if fm.fileExists(atPath: folder.path + "/_big") && defaultSize <= KeySize.small.rawValue + 10 {
                         // set size for smaller keys
-                        sizeMultiplier = Double(KeySize.small.rawValue + 9)/Double(KeySize.big.rawValue)
+                        sizeMultiplier = 202/287//Double(KeySize.small.rawValue + 9)/Double(KeySize.big.rawValue)
                         try fm.removeItem(atPath: folder.path + "/_big")
                     }
                 }
