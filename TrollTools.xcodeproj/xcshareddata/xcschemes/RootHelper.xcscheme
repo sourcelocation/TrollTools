@@ -14,8 +14,8 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "CE7D5D01290700F900EA26D2"
-               BuildableName = "RootHelper"
+               BlueprintIdentifier = "CE7D694E294109550048DF6D"
+               BuildableName = "libRootHelper.a"
                BlueprintName = "RootHelper"
                ReferencedContainer = "container:TrollTools.xcodeproj">
             </BuildableReference>
@@ -50,8 +50,8 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "CE7D5D01290700F900EA26D2"
-            BuildableName = "RootHelper"
+            BlueprintIdentifier = "CE7D694E294109550048DF6D"
+            BuildableName = "libRootHelper.a"
             BlueprintName = "RootHelper"
             ReferencedContainer = "container:TrollTools.xcodeproj">
          </BuildableReference>

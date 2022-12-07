@@ -28,6 +28,15 @@
       }
     },
     {
+      "identity" : "swift-argument-parser",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/apple/swift-argument-parser.git",
+      "state" : {
+        "revision" : "fddd1c00396eed152c45a46bea9f47b98e59301d",
+        "version" : "1.2.0"
+      }
+    },
+    {
       "identity" : "swiftyxmlparser",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/yahoojapan/SwiftyXMLParser",

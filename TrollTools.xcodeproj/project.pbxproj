@@ -314,7 +314,7 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
-				LastSwiftUpdateCheck = 1400;
+				LastSwiftUpdateCheck = 1410;
 				LastUpgradeCheck = 1400;
 				TargetAttributes = {
 					CE2BF7B62902DFF300AD10BE = {
@@ -337,6 +337,7 @@
 				CE7D5CC82905E10400EA26D2 /* XCRemoteSwiftPackageReference "SantanderWrappers" */,
 				CE7975AA291C3494007A38E7 /* XCRemoteSwiftPackageReference "SwiftyXMLParser" */,
 				CEF56C4E2921305300DDEBFD /* XCRemoteSwiftPackageReference "Map" */,
+				CE7D695629410A2A0048DF6D /* XCRemoteSwiftPackageReference "swift-argument-parser" */,
 			);
 			productRefGroup = CE2BF7B82902DFF300AD10BE /* Products */;
 			projectDirPath = "";
@@ -651,6 +652,14 @@
 			requirement = {
 				branch = main;
 				kind = branch;
+			};
+		};
+		CE7D695629410A2A0048DF6D /* XCRemoteSwiftPackageReference "swift-argument-parser" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/apple/swift-argument-parser.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
 			};
 		};
 		CEF56C4E2921305300DDEBFD /* XCRemoteSwiftPackageReference "Map" */ = {
