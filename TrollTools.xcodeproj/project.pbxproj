@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6FDA067D2935AA52003CE14A /* ZIPFoundation in Frameworks */ = {isa = PBXBuildFile; productRef = 6FDA067C2935AA52003CE14A /* ZIPFoundation */; };
 		CE141B372903E73F00AB48A7 /* CardChangerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE141B362903E73F00AB48A7 /* CardChangerView.swift */; };
 		CE141B3A2903F20800AB48A7 /* ThemesSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE141B392903F20800AB48A7 /* ThemesSettingsView.swift */; };
 		CE141B3C2903F22F00AB48A7 /* ThemeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE141B3B2903F22F00AB48A7 /* ThemeView.swift */; };
@@ -111,6 +112,7 @@
 				CE7D5CFD2906C2BD00EA26D2 /* FSOperations in Frameworks */,
 				CE141B4829045D5F00AB48A7 /* MobileCoreServices.framework in Frameworks */,
 				CE7D5CCA2905E10400EA26D2 /* AssetCatalogWrapper in Frameworks */,
+				6FDA067D2935AA52003CE14A /* ZIPFoundation in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -302,6 +304,7 @@
 				CE7D5D1C290706C600EA26D2 /* NSTask */,
 				CE7975AB291C3494007A38E7 /* SwiftyXMLParser */,
 				CEF56C4F2921305300DDEBFD /* Map */,
+				6FDA067C2935AA52003CE14A /* ZIPFoundation */,
 			);
 			productName = TrollTools;
 			productReference = CE2BF7B72902DFF300AD10BE /* TrollTools.app */;
@@ -338,6 +341,7 @@
 				CE7975AA291C3494007A38E7 /* XCRemoteSwiftPackageReference "SwiftyXMLParser" */,
 				CEF56C4E2921305300DDEBFD /* XCRemoteSwiftPackageReference "Map" */,
 				CE7D695629410A2A0048DF6D /* XCRemoteSwiftPackageReference "swift-argument-parser" */,
+				6FDA067B2935AA52003CE14A /* XCRemoteSwiftPackageReference "ZIPFoundation" */,
 			);
 			productRefGroup = CE2BF7B82902DFF300AD10BE /* Products */;
 			projectDirPath = "";
@@ -638,6 +642,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		6FDA067B2935AA52003CE14A /* XCRemoteSwiftPackageReference "ZIPFoundation" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/weichsel/ZIPFoundation";
+			requirement = {
+				branch = development;
+				kind = branch;
+			};
+		};
 		CE7975AA291C3494007A38E7 /* XCRemoteSwiftPackageReference "SwiftyXMLParser" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/yahoojapan/SwiftyXMLParser";
@@ -681,6 +693,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		6FDA067C2935AA52003CE14A /* ZIPFoundation */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 6FDA067B2935AA52003CE14A /* XCRemoteSwiftPackageReference "ZIPFoundation" */;
+			productName = ZIPFoundation;
+		};
 		CE7975AB291C3494007A38E7 /* SwiftyXMLParser */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = CE7975AA291C3494007A38E7 /* XCRemoteSwiftPackageReference "SwiftyXMLParser" */;

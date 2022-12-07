@@ -10,6 +10,7 @@ import PhotosUI
 
 struct ImagePickerView: UIViewControllerRepresentable {
     @Binding var image: UIImage?
+    @Binding var didChange: Bool
 
     func makeUIViewController(context: Context) -> PHPickerViewController {
         var config = PHPickerConfiguration()
@@ -43,6 +44,7 @@ struct ImagePickerView: UIViewControllerRepresentable {
                 provider.loadObject(ofClass: UIImage.self) { image, _ in
                     self.parent.image = image as? UIImage
                 }
+                self.parent.didChange = true
             }
         }
     }

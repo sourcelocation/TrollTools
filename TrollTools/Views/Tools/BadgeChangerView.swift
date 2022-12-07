@@ -13,6 +13,7 @@ struct BadgeChangerView: View {
     @State private var radius: CGFloat = 24
     @State private var showingImagePicker = false
     @State private var image: UIImage?
+    @State private var didChange: Bool = false
     
     var body: some View {
         GeometryReader { proxy in
@@ -97,7 +98,7 @@ struct BadgeChangerView: View {
             .navigationBarTitleDisplayMode(.inline)
         }
         .sheet(isPresented: $showingImagePicker) {
-            ImagePickerView(image: $image)
+            ImagePickerView(image: $image, didChange: $didChange)
         }
     }
     
