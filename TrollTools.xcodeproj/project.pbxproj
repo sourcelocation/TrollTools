@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6F63906B294B957900BA22D4 /* LSFootnoteChangerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F63906A294B957900BA22D4 /* LSFootnoteChangerView.swift */; };
 		6FDA067D2935AA52003CE14A /* ZIPFoundation in Frameworks */ = {isa = PBXBuildFile; productRef = 6FDA067C2935AA52003CE14A /* ZIPFoundation */; };
 		CE141B372903E73F00AB48A7 /* CardChangerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE141B362903E73F00AB48A7 /* CardChangerView.swift */; };
 		CE141B3A2903F20800AB48A7 /* ThemesSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE141B392903F20800AB48A7 /* ThemesSettingsView.swift */; };
@@ -53,6 +54,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		6F63906A294B957900BA22D4 /* LSFootnoteChangerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LSFootnoteChangerView.swift; sourceTree = "<group>"; };
 		CE141B362903E73F00AB48A7 /* CardChangerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardChangerView.swift; sourceTree = "<group>"; };
 		CE141B392903F20800AB48A7 /* ThemesSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemesSettingsView.swift; sourceTree = "<group>"; };
 		CE141B3B2903F22F00AB48A7 /* ThemeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeView.swift; sourceTree = "<group>"; };
@@ -250,6 +252,7 @@
 				CE7975B0291C4533007A38E7 /* LockscreenRespringView.swift */,
 				CEF56C3E291C605600DDEBFD /* CalculatorErrorView.swift */,
 				CEF56C5329215AA900DDEBFD /* CarrierNameChangerView.swift */,
+				6F63906A294B957900BA22D4 /* LSFootnoteChangerView.swift */,
 			);
 			path = Tools;
 			sourceTree = "<group>";
@@ -392,6 +395,7 @@
 				CE7975A5291B1E0C007A38E7 /* ToolsView.swift in Sources */,
 				CE2BF8242902E07F00AD10BE /* Extensions.swift in Sources */,
 				CE141B5A290460AE00AB48A7 /* WebclipsThemeManager.swift in Sources */,
+				6F63906B294B957900BA22D4 /* LSFootnoteChangerView.swift in Sources */,
 				CEF56C3F291C605600DDEBFD /* CalculatorErrorView.swift in Sources */,
 				CE7975A7291B2A4B007A38E7 /* GesturesView.swift in Sources */,
 				CE76386D290AED160099C6F0 /* ProblemReporter.swift in Sources */,

@@ -99,6 +99,17 @@ struct ToolsView: View {
                                 .padding(.horizontal, 8)
                         }
                     }
+                    NavigationLink(destination: LSFootnoteChangerView()) {
+                        HStack {
+                            Image(systemName: "platter.filled.bottom.and.arrow.down.iphone")
+                                .resizable()
+                                .aspectRatio(contentMode: .fit)
+                                .frame(width: 24, height: 24)
+                                .foregroundColor(.blue)
+                            Text("Lock Screen Footnote")
+                                .padding(.horizontal, 8)
+                        }
+                    }
                 } header: {
                     Text("General")
                 }
