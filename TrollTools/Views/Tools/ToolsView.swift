@@ -146,7 +146,7 @@ struct ToolsView: View {
             .navigationTitle("Tools")
             .onAppear {
                 for (i, option) in springboardOptions.enumerated() {
-//                    springboardOptions[i].value = getSpringboardOption(key: option.key) as? Bool ?? false
+                    springboardOptions[i].value = getSpringboardOption(key: option.key) as? Bool ?? false
                 }
             }
         }
@@ -158,7 +158,7 @@ struct ToolsView: View {
         guard let data = try? Data(contentsOf: url) else { return nil }
         let plist = try? PropertyListSerialization.propertyList(from: data, format: nil) as? [String:Any]
         
-        return plist?["SBDontLockAfterCrash"]
+        return plist?[key]
     }
     
     func toggleSpringboardOption(key: String, value: Any) throws {
