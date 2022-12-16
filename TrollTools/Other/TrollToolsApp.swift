@@ -13,12 +13,12 @@ struct TrollToolsApp: App {
         WindowGroup {
             RootView()
                 .onAppear {
-                    if let version = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String, let url = URL(string: "https://api.github.com/repos/sourcelocation/TrollTools/releases/latest") {
+                    if let version = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? Double, let url = URL(string: "https://api.github.com/repos/sourcelocation/TrollTools/releases/latest") {
                         let task = URLSession.shared.dataTask(with: url) {(data, response, error) in
                             guard let data = data else { return }
                             
                             if let json = try? JSONSerialization.jsonObject(with: data, options: .mutableContainers) as? [String: Any] {
-                                if json["tag_name"] as? String != version {
+                                if json["tag_name"] as? Double ?? 2.1 > version {
                                     UIApplication.shared.confirmAlert(title: "Update available", body: "A new TrollTools update is available, do you want to visit releases page?", onOK: {
                                         UIApplication.shared.open(URL(string: "https://github.com/sourcelocation/TrollTools/releases/latest")!)
                                     }, noCancel: false)
