@@ -25,7 +25,8 @@
 		<dict>
 			<key>UTTypeConformsTo</key>
 			<array>
-				<string>com.apple.package</string>
+				<string>public.data</string>
+				<string>public.archive</string>
 			</array>
 			<key>UTTypeDescription</key>
 			<string>Passcode Theme File</string>
@@ -38,6 +39,7 @@
 				<key>public.filename-extension</key>
 				<array>
 					<string>passthm</string>
+					<string>PASSTHM</string>
 				</array>
 			</dict>
 		</dict>
@@ -47,7 +49,8 @@
 		<dict>
 			<key>UTTypeConformsTo</key>
 			<array>
-				<string>public.directory</string>
+				<string>public.data</string>
+				<string>public.archive</string>
 			</array>
 			<key>UTTypeDescription</key>
 			<string>Passcode Theme File</string>
@@ -60,6 +63,7 @@
 				<key>public.filename-extension</key>
 				<array>
 					<string>passthm</string>
+					<string>PASSTHM</string>
 				</array>
 			</dict>
 		</dict>

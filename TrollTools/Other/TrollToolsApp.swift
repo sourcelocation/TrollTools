@@ -29,6 +29,19 @@ struct TrollToolsApp: App {
                     }
                     try? RootHelper.loadMCM()
                 }
+                .onOpenURL(perform: { url in
+                    // for opening passthm files
+                    if url.pathExtension.lowercased() == "passthm" {
+                        let defaultKeySize = PasscodeKeyFaceManager.getDefaultFaceSize()
+                        do {
+                            // try appying the themes
+                            try PasscodeKeyFaceManager.setFacesFromTheme(url, keySize: CGFloat(defaultKeySize), customX: CGFloat(150), customY: CGFloat(150))
+                            // show the passcode screen
+                            //PasscodeEditorView()
+                            ToolsView().activateView(viewName: "PasscodeEditorView", isActive: true)
+                        } catch { UIApplication.shared.alert(body: error.localizedDescription) }
+                    }
+                })
         }
     }
 }

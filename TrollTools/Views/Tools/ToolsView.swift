@@ -16,6 +16,15 @@ struct ToolsView: View {
         var imageName: String
     }
     
+    struct GeneralOption: Identifiable {
+        var key: String
+        var id = UUID()
+        var view: AnyView
+        var title: String
+        var imageName: String
+        var active: Bool = false
+    }
+    
     
     @State var springboardOptions: [SpringboardOption] = [
         .init(value: false, key: "SBShowRSSI", title: "Numeric Wi-Fi Strength", imageName: "wifi"),
@@ -29,85 +38,31 @@ struct ToolsView: View {
         .init(value: false, key: "SBControlCenterDemo", title: "CC AirPlay Radar", imageName: "wifi.circle"),
     ]
     
+    @State var generalOptions: [GeneralOption] = [
+        .init(key: "GesturesView", view: AnyView(GesturesView()), title: "iPhone X Gestures", imageName: "iphone"),
+        .init(key: "BadgeChangerView", view: AnyView(BadgeChangerView()), title: "Custom Badges", imageName: "app.badge"),
+        .init(key: "PasscodeEditorView", view: AnyView(PasscodeEditorView()), title: "Passcode faces", imageName: "ellipsis.rectangle"),
+        .init(key: "CarrierNameChangerView", view: AnyView(CarrierNameChangerView()), title: "Custom Carrier Name", imageName: "chart.bar"),
+        .init(key: "LockscreenRespringView", view: AnyView(LockscreenRespringView()), title: "Locking after Respring", imageName: "lock"),
+        .init(key: "CalculatorErrorView", view: AnyView(CalculatorErrorView()), title: "Calculator Error Message", imageName: "function"),
+        .init(key: "LSFootnoteChangerView", view: AnyView(LSFootnoteChangerView()), title: "Lock Screen Footnote", imageName: "platter.filled.bottom.and.arrow.down.iphone"),
+    ]
+    
     var body: some View {
         NavigationView {
             List {
                 Section {
-                    NavigationLink(destination: GesturesView()) {
-                        HStack {
-                            Image(systemName: "iphone")
-                                .resizable()
-                                .aspectRatio(contentMode: .fit)
-                                .frame(width: 24, height: 24)
-                                .foregroundColor(.blue)
-                            Text("iPhone X Gestures")
-                                .padding(.horizontal, 10)
-                        }
-                    }
-                    NavigationLink(destination: BadgeChangerView()) {
-                        HStack {
-                            Image(systemName: "app.badge")
-                                .resizable()
-                                .aspectRatio(contentMode: .fit)
-                                .frame(width: 24, height: 24)
-                                .foregroundColor(.blue)
-                            Text("Custom Badges")
-                                .padding(.horizontal, 8)
-                        }
-                    }
-                    NavigationLink(destination: PasscodeEditorView()) {
-                        HStack {
-                            Image(systemName: "ellipsis.rectangle")
-                                .resizable()
-                                .aspectRatio(contentMode: .fit)
-                                .frame(width: 24, height: 24)
-                                .foregroundColor(.blue)
-                            Text("Passcode faces")
-                                .padding(.horizontal, 8)
-                        }
-                    }
-                    NavigationLink(destination: CarrierNameChangerView()) {
-                        HStack {
-                            Image(systemName: "chart.bar")
-                                .resizable()
-                                .aspectRatio(contentMode: .fit)
-                                .frame(width: 24, height: 24)
-                                .foregroundColor(.blue)
-                            Text("Custom Carrier Name")
-                                .padding(.horizontal, 8)
-                        }
-                    }
-                    NavigationLink(destination: LockscreenRespringView()) {
-                        HStack {
-                            Image(systemName: "lock")
-                                .resizable()
-                                .aspectRatio(contentMode: .fit)
-                                .frame(width: 24, height: 24)
-                                .foregroundColor(.blue)
-                            Text("Locking after Respring")
-                                .padding(.horizontal, 8)
-                        }
-                    }
-                    NavigationLink(destination: CalculatorErrorView()) {
-                        HStack {
-                            Image(systemName: "function")
-                                .resizable()
-                                .aspectRatio(contentMode: .fit)
-                                .frame(width: 24, height: 24)
-                                .foregroundColor(.blue)
-                            Text("Calculator Error Message")
-                                .padding(.horizontal, 8)
-                        }
-                    }
-                    NavigationLink(destination: LSFootnoteChangerView()) {
-                        HStack {
-                            Image(systemName: "platter.filled.bottom.and.arrow.down.iphone")
-                                .resizable()
-                                .aspectRatio(contentMode: .fit)
-                                .frame(width: 24, height: 24)
-                                .foregroundColor(.blue)
-                            Text("Lock Screen Footnote")
-                                .padding(.horizontal, 8)
+                    ForEach($generalOptions) { option in
+                        NavigationLink(destination: option.view.wrappedValue, isActive: option.active) {
+                            HStack {
+                                Image(systemName: option.imageName.wrappedValue)
+                                    .resizable()
+                                    .aspectRatio(contentMode: .fit)
+                                    .frame(width: 24, height: 24)
+                                    .foregroundColor(.blue)
+                                Text(option.title.wrappedValue)
+                                    .padding(.horizontal, 8)
+                            }
                         }
                     }
                 } header: {
@@ -177,6 +132,18 @@ struct ToolsView: View {
         
         // write to file
         try RootHelper.writeStr(String(decoding: plistData, as: UTF8.self), to: url)
+    }
+    
+    func activateView(viewName: String, isActive: Bool) {
+        for (i, option) in generalOptions.enumerated() {
+            if option.key == viewName {
+                var option = generalOptions[i]
+                option.active = isActive
+                generalOptions[i] = option
+                print("Activity: " + String(generalOptions[i].active) )
+                return
+            }
+        }
     }
 }
 
