@@ -1,0 +1,59 @@
+{
+  "pins" : [
+    {
+      "identity" : "dynamic",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/mhdhejazi/Dynamic",
+      "state" : {
+        "branch" : "master",
+        "revision" : "772883073d044bc754d401cabb6574624eb3778f"
+      }
+    },
+    {
+      "identity" : "map",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/pauljohanneskraft/Map",
+      "state" : {
+        "revision" : "a99a9083aac4c5eba1cd83291eb2e222df287f31",
+        "version" : "0.1.0"
+      }
+    },
+    {
+      "identity" : "santanderwrappers",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/SerenaKit/SantanderWrappers",
+      "state" : {
+        "branch" : "main",
+        "revision" : "78c19b2eeba612b0fb7b13df7ab304062ee22622"
+      }
+    },
+    {
+      "identity" : "swift-argument-parser",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/apple/swift-argument-parser.git",
+      "state" : {
+        "revision" : "fddd1c00396eed152c45a46bea9f47b98e59301d",
+        "version" : "1.2.0"
+      }
+    },
+    {
+      "identity" : "swiftyxmlparser",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/yahoojapan/SwiftyXMLParser",
+      "state" : {
+        "revision" : "d7a1d23f04c86c1cd2e8f19247dd15d74e0ea8be",
+        "version" : "5.6.0"
+      }
+    },
+    {
+      "identity" : "zipfoundation",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/weichsel/ZIPFoundation",
+      "state" : {
+        "branch" : "development",
+        "revision" : "642436f3684009ca7a5e3d6b30f2ecea26f8f772"
+      }
+    }
+  ],
+  "version" : 2
+}
