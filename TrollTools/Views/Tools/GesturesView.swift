@@ -55,7 +55,7 @@ struct GesturesView: View {
                 let data = try Data(contentsOf: url)
                 
                 guard var plist = try PropertyListSerialization.propertyList(from: data, format: nil) as? [String:Any] else { throw "Couldn't read com.apple.MobileGestalt.plist" }
-                let origDeviceTypeURL = URL(fileURLWithPath: "/var/mobile/.DO-NOT-DELETE-TrollTools/.DO-NOT-DELETE-ArtworkDeviceSubTypeBackup")
+                /*let origDeviceTypeURL = URL(fileURLWithPath: "/var/mobile/.DO-NOT-DELETE-TrollTools/.DO-NOT-DELETE-ArtworkDeviceSubTypeBackup")
                 var origDeviceType = 0
                 
                 if !FileManager.default.fileExists(atPath: origDeviceTypeURL.path) {
@@ -67,7 +67,8 @@ struct GesturesView: View {
                 } else {
                     guard let data = try? Data(contentsOf: origDeviceTypeURL), let deviceTypeStr = String(data: data, encoding: .utf8), let deviceType = Int(deviceTypeStr) else { throw "Couldn't retrieve original device type" }
                     origDeviceType = deviceType
-                }
+                }*/
+                let origDeviceType: Int = Int(UIScreen.main.nativeBounds.height)
                 
                 if var firstLevel = plist["CacheExtra"] as? [String : Any], var secondLevel = firstLevel["oPeik/9e8lQWMszEjbPzng"] as? [String: Any], var thirdLevel = secondLevel["ArtworkDeviceSubType"] as? Int {
                     thirdLevel = isEnabled ? 2436 : origDeviceType
