@@ -9,10 +9,15 @@ import UIKit
 import Dynamic
 
 class BadgeChanger {
+    #if targetEnvironment(simulator)
+    static let badgeBitmapPath = "/Users/sourcelocation/Downloads/SBIconBadgeView.BadgeBackground:26:26.cpbitmap"
+    #else
+    static let badgeBitmapPath = "/var/mobile/Library/Caches/MappedImageCache/Persistent/SBIconBadgeView.BadgeBackground:26:26.cpbitmap"
+    #endif
+    
     static func change(to color: UIColor, with radius: CGFloat) throws {
         let radius = max(1, radius)
         let badge: UIImage = try UIImage.circle(radius: UIDevice.current.userInterfaceIdiom == .pad ? radius * 2 : radius, color: color)
-        let badgeBitmapPath = "/var/mobile/Library/Caches/MappedImageCache/Persistent/SBIconBadgeView.BadgeBackground:26:26.cpbitmap"
         try? FileManager.default.removeItem(atPath: badgeBitmapPath)
         
         badge.writeToCPBitmapFile(to: badgeBitmapPath as NSString)
@@ -26,7 +31,6 @@ class BadgeChanger {
         let resizedImage = UIGraphicsGetImageFromCurrentImageContext()!
         UIGraphicsEndImageContext()
         
-        let badgeBitmapPath = "/var/mobile/Library/Caches/MappedImageCache/Persistent/SBIconBadgeView.BadgeBackground:26:26.cpbitmap"
         try? FileManager.default.removeItem(atPath: badgeBitmapPath)
 
         resizedImage.writeToCPBitmapFile(to: badgeBitmapPath as NSString)

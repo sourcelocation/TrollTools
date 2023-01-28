@@ -13,6 +13,15 @@ struct TrollToolsApp: App {
         WindowGroup {
             RootView()
                 .onAppear {
+                    // run exploit
+                    #if targetEnvironment(simulator)
+                    #else
+                    grant_full_disk_access({ error in
+                        print(error?.localizedDescription ?? "Unsandboxed!")
+                    })
+                    #endif
+                    
+                    
                     if let version = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? Double, let url = URL(string: "https://api.github.com/repos/sourcelocation/TrollTools/releases/latest") {
                         let task = URLSession.shared.dataTask(with: url) {(data, response, error) in
                             guard let data = data else { return }
@@ -27,7 +36,7 @@ struct TrollToolsApp: App {
                         }
                         task.resume()
                     }
-                    try? RootHelper.loadMCM()
+//                    try? RootHelper.loadMCM()
                 }
                 .onOpenURL(perform: { url in
                     // for opening passthm files

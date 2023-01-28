@@ -202,9 +202,3 @@ void killall(NSString* processName)
 		}
 	});
 }
-
-void respring(void)
-{
-	killall(@"SpringBoard");
-	exit(0);
-}
