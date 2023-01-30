@@ -17,9 +17,9 @@ jobs:
       - name: Install Theos
         uses: Randomblock1/theos-action@v1.1
       - name: build
-        run:  bash ipabuild.sh
+        run:  ./ipabuild.sh
       - name: Upload artifact
         uses: actions/upload-artifact@v3
         with:
           name: TrollTools.tipa
-          path: /Users/runner/work/${{github.event.repository.name}}/${{github.event.repository.name}}/build/TrollTools.tipa
+          path: build/TrollTools.tipa
