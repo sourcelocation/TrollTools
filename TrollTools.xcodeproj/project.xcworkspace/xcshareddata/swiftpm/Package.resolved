@@ -14,17 +14,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/pauljohanneskraft/Map",
       "state" : {
-        "revision" : "a99a9083aac4c5eba1cd83291eb2e222df287f31",
-        "version" : "0.1.0"
-      }
-    },
-    {
-      "identity" : "santanderwrappers",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/SerenaKit/SantanderWrappers",
-      "state" : {
-        "branch" : "main",
-        "revision" : "78c19b2eeba612b0fb7b13df7ab304062ee22622"
+        "revision" : "3eed43ceaf7892a4021a34f87da2e6561e50318c",
+        "version" : "0.2.0"
       }
     },
     {
@@ -32,8 +23,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/apple/swift-argument-parser.git",
       "state" : {
-        "revision" : "fddd1c00396eed152c45a46bea9f47b98e59301d",
-        "version" : "1.2.0"
+        "revision" : "8f4d2753f0e4778c76d5f05ad16c74f707390531",
+        "version" : "1.2.3"
       }
     },
     {
@@ -51,7 +42,7 @@
       "location" : "https://github.com/weichsel/ZIPFoundation",
       "state" : {
         "branch" : "development",
-        "revision" : "43ec568034b3731101dbf7670765d671c30f54f3"
+        "revision" : "e6464a023ffa9d9aaaad80be2159d2755107b651"
       }
     }
   ],

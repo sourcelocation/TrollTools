@@ -10,6 +10,9 @@
 		2120EBE6298453060030285A /* grant_full_disk_access.m in Sources */ = {isa = PBXBuildFile; fileRef = 2120EBE5298453050030285A /* grant_full_disk_access.m */; };
 		2120EBE9298453380030285A /* vm_unaligned_copy_switch_race.c in Sources */ = {isa = PBXBuildFile; fileRef = 2120EBE7298453380030285A /* vm_unaligned_copy_switch_race.c */; };
 		2120EBEC2984534A0030285A /* helpers.m in Sources */ = {isa = PBXBuildFile; fileRef = 2120EBEA2984534A0030285A /* helpers.m */; };
+		217DFA862B139D530058B146 /* ApplicationsWrapper in Frameworks */ = {isa = PBXBuildFile; productRef = 217DFA852B139D530058B146 /* ApplicationsWrapper */; };
+		217DFA882B139D530058B146 /* AssetCatalogWrapper in Frameworks */ = {isa = PBXBuildFile; productRef = 217DFA872B139D530058B146 /* AssetCatalogWrapper */; };
+		21DC9D2C2B139C050028ED6E /* CoreUI in Resources */ = {isa = PBXBuildFile; fileRef = 21DC9D2B2B139C050028ED6E /* CoreUI */; };
 		21EC7AF8298532C400B537AF /* Respring.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21EC7AF7298532C400B537AF /* Respring.swift */; };
 		6F63906B294B957900BA22D4 /* LSFootnoteChangerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F63906A294B957900BA22D4 /* LSFootnoteChangerView.swift */; };
 		6FDA067D2935AA52003CE14A /* ZIPFoundation in Frameworks */ = {isa = PBXBuildFile; productRef = 6FDA067C2935AA52003CE14A /* ZIPFoundation */; };
@@ -39,9 +42,6 @@
 		CE7975AC291C3494007A38E7 /* SwiftyXMLParser in Frameworks */ = {isa = PBXBuildFile; productRef = CE7975AB291C3494007A38E7 /* SwiftyXMLParser */; };
 		CE7975AF291C4270007A38E7 /* com.apple.springboard.plist in Resources */ = {isa = PBXBuildFile; fileRef = CE7975AE291C4270007A38E7 /* com.apple.springboard.plist */; };
 		CE7975B1291C4533007A38E7 /* LockscreenRespringView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7975B0291C4533007A38E7 /* LockscreenRespringView.swift */; };
-		CE7D5CCA2905E10400EA26D2 /* AssetCatalogWrapper in Frameworks */ = {isa = PBXBuildFile; productRef = CE7D5CC92905E10400EA26D2 /* AssetCatalogWrapper */; };
-		CE7D5CFD2906C2BD00EA26D2 /* FSOperations in Frameworks */ = {isa = PBXBuildFile; productRef = CE7D5CFC2906C2BD00EA26D2 /* FSOperations */; };
-		CE7D5D1D290706C600EA26D2 /* NSTask in Frameworks */ = {isa = PBXBuildFile; productRef = CE7D5D1C290706C600EA26D2 /* NSTask */; };
 		CE8DC8D52904C22500A1CBB0 /* RootHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8DC8D42904C22500A1CBB0 /* RootHelper.swift */; };
 		CEECE830290C496D007E9496 /* IconOverridesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEECE82F290C496D007E9496 /* IconOverridesView.swift */; };
 		CEECE832290C5405007E9496 /* AltIconSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEECE831290C5405007E9496 /* AltIconSelectionView.swift */; };
@@ -64,6 +64,8 @@
 		2120EBEA2984534A0030285A /* helpers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = helpers.m; sourceTree = "<group>"; };
 		2120EBEB2984534A0030285A /* helpers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = helpers.h; sourceTree = "<group>"; };
 		2120EBED298454EB0030285A /* grant_full_disk_access.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = grant_full_disk_access.h; sourceTree = "<group>"; };
+		21DC9D2B2B139C050028ED6E /* CoreUI */ = {isa = PBXFileReference; lastKnownFileType = folder; path = CoreUI; sourceTree = "<group>"; };
+		21DC9D2E2B139CFC0028ED6E /* PrivateKits */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = PrivateKits; path = ../developer/tweaks/PrivateKits; sourceTree = "<group>"; };
 		21EC7AF7298532C400B537AF /* Respring.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Respring.swift; sourceTree = "<group>"; };
 		6F63906A294B957900BA22D4 /* LSFootnoteChangerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LSFootnoteChangerView.swift; sourceTree = "<group>"; };
 		CE141B362903E73F00AB48A7 /* CardChangerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardChangerView.swift; sourceTree = "<group>"; };
@@ -120,12 +122,11 @@
 				CEFE36642904B27B00938D98 /* CoreServices.framework in Frameworks */,
 				CEF56C502921305300DDEBFD /* Map in Frameworks */,
 				CEFE36632904AF8C00938D98 /* Dynamic in Frameworks */,
-				CE7D5D1D290706C600EA26D2 /* NSTask in Frameworks */,
 				CE7975AC291C3494007A38E7 /* SwiftyXMLParser in Frameworks */,
-				CE7D5CFD2906C2BD00EA26D2 /* FSOperations in Frameworks */,
 				CE141B4829045D5F00AB48A7 /* MobileCoreServices.framework in Frameworks */,
-				CE7D5CCA2905E10400EA26D2 /* AssetCatalogWrapper in Frameworks */,
+				217DFA862B139D530058B146 /* ApplicationsWrapper in Frameworks */,
 				6FDA067D2935AA52003CE14A /* ZIPFoundation in Frameworks */,
+				217DFA882B139D530058B146 /* AssetCatalogWrapper in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -143,6 +144,14 @@
 				2120EBE8298453380030285A /* vm_unaligned_copy_switch_race.h */,
 			);
 			path = Exploit;
+			sourceTree = "<group>";
+		};
+		21DC9D2D2B139C070028ED6E /* AssetCatalogWrapper */ = {
+			isa = PBXGroup;
+			children = (
+				21DC9D2B2B139C050028ED6E /* CoreUI */,
+			);
+			path = AssetCatalogWrapper;
 			sourceTree = "<group>";
 		};
 		CE141B382903F1F500AB48A7 /* Themes */ = {
@@ -184,6 +193,7 @@
 		CE2BF7AE2902DFF300AD10BE = {
 			isa = PBXGroup;
 			children = (
+				21DC9D2E2B139CFC0028ED6E /* PrivateKits */,
 				CE7D5D2229070FA600EA26D2 /* entitlements.plist */,
 				CE2BF7B92902DFF300AD10BE /* TrollTools */,
 				CE2BF7B82902DFF300AD10BE /* Products */,
@@ -239,6 +249,7 @@
 		CE2BF81F2902E07F00AD10BE /* Private APIs */ = {
 			isa = PBXGroup;
 			children = (
+				21DC9D2D2B139C070028ED6E /* AssetCatalogWrapper */,
 				CE141B562904607C00AB48A7 /* Themes */,
 				CE2BF8202902E07F00AD10BE /* WallpaperGetter.swift */,
 				CE2BF8222902E07F00AD10BE /* PasscodeKeyFaceManager.swift */,
@@ -328,12 +339,11 @@
 			name = TrollTools;
 			packageProductDependencies = (
 				CEFE36622904AF8C00938D98 /* Dynamic */,
-				CE7D5CC92905E10400EA26D2 /* AssetCatalogWrapper */,
-				CE7D5CFC2906C2BD00EA26D2 /* FSOperations */,
-				CE7D5D1C290706C600EA26D2 /* NSTask */,
 				CE7975AB291C3494007A38E7 /* SwiftyXMLParser */,
 				CEF56C4F2921305300DDEBFD /* Map */,
 				6FDA067C2935AA52003CE14A /* ZIPFoundation */,
+				217DFA852B139D530058B146 /* ApplicationsWrapper */,
+				217DFA872B139D530058B146 /* AssetCatalogWrapper */,
 			);
 			productName = TrollTools;
 			productReference = CE2BF7B72902DFF300AD10BE /* TrollTools.app */;
@@ -366,11 +376,11 @@
 			mainGroup = CE2BF7AE2902DFF300AD10BE;
 			packageReferences = (
 				CEFE36612904AF8C00938D98 /* XCRemoteSwiftPackageReference "Dynamic" */,
-				CE7D5CC82905E10400EA26D2 /* XCRemoteSwiftPackageReference "SantanderWrappers" */,
 				CE7975AA291C3494007A38E7 /* XCRemoteSwiftPackageReference "SwiftyXMLParser" */,
 				CEF56C4E2921305300DDEBFD /* XCRemoteSwiftPackageReference "Map" */,
 				CE7D695629410A2A0048DF6D /* XCRemoteSwiftPackageReference "swift-argument-parser" */,
 				6FDA067B2935AA52003CE14A /* XCRemoteSwiftPackageReference "ZIPFoundation" */,
+				217DFA842B139D530058B146 /* XCRemoteSwiftPackageReference "PrivateKits" */,
 			);
 			productRefGroup = CE2BF7B82902DFF300AD10BE /* Products */;
 			projectDirPath = "";
@@ -387,6 +397,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CE2BF8452902E21D00AD10BE /* Assets.xcassets in Resources */,
+				21DC9D2C2B139C050028ED6E /* CoreUI in Resources */,
 				CE2BF82A2902E07F00AD10BE /* WebClipTemplate.plist in Resources */,
 				CE7975AF291C4270007A38E7 /* com.apple.springboard.plist in Resources */,
 			);
@@ -684,6 +695,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		217DFA842B139D530058B146 /* XCRemoteSwiftPackageReference "PrivateKits" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/NSAntoine/PrivateKits";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
 		6FDA067B2935AA52003CE14A /* XCRemoteSwiftPackageReference "ZIPFoundation" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/weichsel/ZIPFoundation";
@@ -698,14 +717,6 @@
 			requirement = {
 				kind = upToNextMajorVersion;
 				minimumVersion = 5.0.0;
-			};
-		};
-		CE7D5CC82905E10400EA26D2 /* XCRemoteSwiftPackageReference "SantanderWrappers" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/SerenaKit/SantanderWrappers";
-			requirement = {
-				branch = main;
-				kind = branch;
 			};
 		};
 		CE7D695629410A2A0048DF6D /* XCRemoteSwiftPackageReference "swift-argument-parser" */ = {
@@ -735,6 +746,16 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		217DFA852B139D530058B146 /* ApplicationsWrapper */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 217DFA842B139D530058B146 /* XCRemoteSwiftPackageReference "PrivateKits" */;
+			productName = ApplicationsWrapper;
+		};
+		217DFA872B139D530058B146 /* AssetCatalogWrapper */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 217DFA842B139D530058B146 /* XCRemoteSwiftPackageReference "PrivateKits" */;
+			productName = AssetCatalogWrapper;
+		};
 		6FDA067C2935AA52003CE14A /* ZIPFoundation */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 6FDA067B2935AA52003CE14A /* XCRemoteSwiftPackageReference "ZIPFoundation" */;
@@ -744,21 +765,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = CE7975AA291C3494007A38E7 /* XCRemoteSwiftPackageReference "SwiftyXMLParser" */;
 			productName = SwiftyXMLParser;
-		};
-		CE7D5CC92905E10400EA26D2 /* AssetCatalogWrapper */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = CE7D5CC82905E10400EA26D2 /* XCRemoteSwiftPackageReference "SantanderWrappers" */;
-			productName = AssetCatalogWrapper;
-		};
-		CE7D5CFC2906C2BD00EA26D2 /* FSOperations */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = CE7D5CC82905E10400EA26D2 /* XCRemoteSwiftPackageReference "SantanderWrappers" */;
-			productName = FSOperations;
-		};
-		CE7D5D1C290706C600EA26D2 /* NSTask */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = CE7D5CC82905E10400EA26D2 /* XCRemoteSwiftPackageReference "SantanderWrappers" */;
-			productName = NSTask;
 		};
 		CEF56C4F2921305300DDEBFD /* Map */ = {
 			isa = XCSwiftPackageProductDependency;
